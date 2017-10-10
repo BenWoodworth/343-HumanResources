@@ -7,10 +7,11 @@ buildscript {
     ext {
         java_target = '1.8'
 
-        version_kotlin = '1.1.51'
+        version_kotlin = '1.1.4-2'
         version_ktlint = '0.8.1'
         version_spark = '2.6.0'
         version_freemarker = '2.3.14'
+        version_slf4j = '1.6.1'
     }
 
     repositories {
@@ -39,6 +40,9 @@ dependencies {
 
     compile "com.sparkjava:spark-core:$version_spark"
     compile "org.freemarker:freemarker:$version_freemarker"
+
+    compile "org.slf4j:slf4j-simple:$version_slf4j"
+    compile "org.slf4j:slf4j-api:$version_slf4j"
 }
 
 task ktlint(type: JavaExec) {
