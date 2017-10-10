@@ -1,19 +1,21 @@
-import spark.Spark.*
+import spark.kotlin.*
 
 fun main(args: Array<String>) {
-    port(1234)
+    val http = ignite()
 
-    get("/") { request, _ ->
+    http.port(1234)
+
+    http.get("/") {
         """
-            <html>
-            <body>
-                Hello, world!<br />
+        <html>
+        <body>
+            Hello, world!<br />
 
-                Your IP address is ${request.ip()}<br />
+            Your IP address is ${request.ip()}<br />
 
-                How are you doing today?
-            </body>
-            </html>
+            How are you doing today?
+        </body>
+        </html>
         """
     }
 }
