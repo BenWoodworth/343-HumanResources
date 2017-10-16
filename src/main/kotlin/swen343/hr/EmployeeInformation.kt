@@ -14,5 +14,6 @@ data class EmployeeInformation (
         val password: String,
         val jobTitle: String,
         val supervisor: String,
-        val payroll: String
+        val payroll: Number,
+        val salary: Currency
 )
