@@ -10,7 +10,7 @@ import java.io.StringWriter
  */
 class ResourceTemplateLoader : TemplateLoader {
 
-    private val templatesDir = File(javaClass.getResource("templates").toURI())
+    private val templatesDir = File(javaClass.getResource("/templates").toURI())
 
     private val freemarkerConf = Configuration().apply {
         setDirectoryForTemplateLoading(templatesDir)
