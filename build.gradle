@@ -8,7 +8,6 @@ buildscript {
         java_target = '1.8'
 
         version_kotlin = '1.1.4-2'
-        version_kotlinx_html = '0.6.4'
         version_ktlint = '0.8.1'
         version_spark = '1.0.0-alpha'
         version_freemarker = '2.3.14'
@@ -42,7 +41,6 @@ dependencies {
     ktlint 'com.github.shyiko:ktlint:0.8.1'
 
     compile "com.sparkjava:spark-kotlin:$version_spark"
-    compile "org.jetbrains.kotlinx:kotlinx-html-jvm:$version_kotlinx_html"
     compile "org.freemarker:freemarker:$version_freemarker"
 
     compile "org.slf4j:slf4j-simple:$version_slf4j"
