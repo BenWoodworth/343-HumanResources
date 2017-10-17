@@ -69,3 +69,9 @@ sourceSets {
 
     test.java.srcDirs += "src/test/kotlin"
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'swen343.hr.MainKt'
+    }
+}
