@@ -1,5 +1,6 @@
-package swen343.hr
+package swen343.hr.dependencies
 
+import swen343.hr.models.Employee
 import swen343.hr.datasource.MySQLDatabase
 import java.sql.ResultSet
 import java.sql.SQLException
