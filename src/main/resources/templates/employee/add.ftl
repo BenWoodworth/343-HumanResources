@@ -13,7 +13,7 @@
 
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Create employee</h3>
+                    <h3 class="panel-title">Create a new employee</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -25,36 +25,44 @@
 
                                 <tr>
                                     <td>Title:</td>
-                                    <td><form>
-
+                                    <td>
                                         <input type="text" name="title"><br>
-
-                                    </form></td>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Department:</td>
-                                    <td>Human Resources</td>
+                                    <td>
+                                        <input type="text" name="department"><br>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Salary</td>
-                                    <td>$1,000,000</td>
+                                    <td>
+                                        <input type="text" name="salary"><br>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Address:</td>
-                                    <td>Somewhere</td>
+                                    <td>
+                                        <input type="text" name="title"><br>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Phone Number:</td>
-                                    <td>123-456-789</td>
+                                    <td>
+                                        <input type="text" name="title"><br>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Email:</td>
-                                    <td><a href="mailto:bla@rit.edu">bla@rit.edu</a></td>
+                                    <td>
+                                        <input type="text" name="title"><br>
+                                    </td>
                                 </tr>
 
 
@@ -63,6 +71,7 @@
 
 
                         </div>
+                        <input type="submit" value="Submit">
                     </div>
                 </div>
 
