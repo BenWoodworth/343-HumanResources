@@ -8,10 +8,8 @@ import java.io.File
  */
 class ResourceTemplateLoader : TemplateLoader {
 
-    private val templatesDir = File(javaClass.getResource("/templates").toURI())
-
     private val freemarkerConf = freemarker.template.Configuration().apply {
-        setDirectoryForTemplateLoading(templatesDir)
+        setClassForTemplateLoading(javaClass, "/templates")
 
         defaultEncoding = "UTF-8"
         templateExceptionHandler = freemarker.template.TemplateExceptionHandler.RETHROW_HANDLER

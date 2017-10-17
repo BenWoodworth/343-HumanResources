@@ -74,4 +74,6 @@ jar {
     manifest {
         attributes 'Main-Class': 'swen343.hr.MainKt'
     }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
