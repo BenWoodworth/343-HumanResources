@@ -5,7 +5,7 @@ import spark.Spark.path
 import spark.kotlin.get
 import spark.kotlin.staticFiles
 import swen343.hr.controllers.api.ApiController
-import swen343.hr.controllers.employee.EmployeeController
+import swen343.hr.controllers.employee.EmployeesController
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.viewmodels.IndexViewModel
 
@@ -18,7 +18,7 @@ class IndexController(
 
         path("/api", ApiController())
 
-
+        path("/employees", EmployeesController(templateLoader))
 
         get("/") {
             templateLoader.loadTemplate(
@@ -26,6 +26,5 @@ class IndexController(
                     IndexViewModel(request.ip())
             )
         }
-
     }
 }
