@@ -117,7 +117,7 @@ class JdbcEmployeeService : EmployeeService {
         }
     }
 
-    override fun deleteEmployee(employee: Employee) {
+    override fun deleteEmployee(id: Int) {
         var stmt: Statement? = null
         var resultset: ResultSet? = null
 

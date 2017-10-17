@@ -9,6 +9,22 @@ class DummyEmployeeService : EmployeeService {
 
     private val employees = mutableListOf<Employee>()
 
+    override fun getEmployees() = employees.toList()
+
+    override fun getEmployee(id: Int) = employees.firstOrNull { it.id == id }
+
+    override fun addEmployee(employee: Employee) {
+        employees.add(employee)
+    }
+
+    override fun editEmployee(employee: Employee) = addEmployee(employee)
+
+    override fun deleteEmployee(id: Int) {
+        employees.removeIf {
+            it.id == id
+        }
+    }
+
     init {
         addEmployee(Employee(
                 id = 0,
@@ -298,22 +314,5 @@ class DummyEmployeeService : EmployeeService {
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
         ))
-    }
-
-    override fun getEmployees() = employees.toList()
-
-    override fun getEmployee(id: Int) = employees.firstOrNull { it.id == id }
-
-    override fun addEmployee(employee: Employee) {
-        deleteEmployee(employee)
-        employees.add(employee)
-    }
-
-    override fun editEmployee(employee: Employee) = addEmployee(employee)
-
-    override fun deleteEmployee(employee: Employee) {
-        employees.removeIf {
-            it.id == employee.id
-        }
     }
 }

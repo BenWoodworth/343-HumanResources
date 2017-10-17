@@ -1,6 +1,7 @@
 package swen343.hr.controllers.employee
 
 import spark.RouteGroup
+import spark.kotlin.delete
 import spark.kotlin.get
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
@@ -43,6 +44,15 @@ class EmployeesController(
             else {
 
             }
+        }
+
+        get("/employees/delete/:id") {
+            val id = request.params("id").toIntOrNull()
+            if (id!=null) {
+                employeeService.deleteEmployee(id)
+            }
+            response.redirect("/")
+
         }
 
         get("/profile/:id") {

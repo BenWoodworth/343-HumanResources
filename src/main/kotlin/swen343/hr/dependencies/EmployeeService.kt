@@ -12,5 +12,5 @@ interface EmployeeService {
 
     fun editEmployee(employee: Employee)
 
-    fun deleteEmployee(employee: Employee)
+    fun deleteEmployee(id: Int)
 }

@@ -26,7 +26,11 @@
             <td><a href="employees/profile">${employee.firstName}</a></td>
             <td><a href="employees/profile">${employee.lastName}</a></td>
             <td><a href="employees/profile">${employee.email}</a></td>
-            <td><button>-</button></td>
+            <td>
+                <form action="employees/delete/${employee.id}" type="get">
+                    <input type="submit" value="-" />
+                </form>
+            </td>
 
         </tr>
         </#list>
