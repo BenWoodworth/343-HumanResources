@@ -3,7 +3,6 @@ package swen343.hr.controllers.employee
 import spark.RouteGroup
 import spark.kotlin.get
 import swen343.hr.dependencies.TemplateLoader
-import swen343.hr.viewmodels.IndexViewModel
 
 /**
  * Created by ben on 10/16/17.

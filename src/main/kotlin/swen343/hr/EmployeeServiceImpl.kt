@@ -7,7 +7,6 @@ import java.sql.Statement
 
 class EmployeeServiceImpl : EmployeeServiceInt {
 
-
     override fun addEmployee() {
 
         var stmt: Statement? = null
@@ -59,7 +58,6 @@ class EmployeeServiceImpl : EmployeeServiceInt {
 
     }
 
-
     override fun editEmployee(employee: Employee) {
 
         var stmt: Statement? = null
@@ -110,7 +108,6 @@ class EmployeeServiceImpl : EmployeeServiceInt {
         }
     }
 
-
     override fun deleteEmployee(employee: Employee) {
         var stmt: Statement? = null
         var resultset: ResultSet? = null
@@ -160,7 +157,4 @@ class EmployeeServiceImpl : EmployeeServiceInt {
         }
     }
 }
-
-
-
 
