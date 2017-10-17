@@ -5,15 +5,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                <A class="btn btn-primary btn-mid" role="button" href="edit" >Edit Profile</A>
-                <A class="btn btn-primary btn-mid" role="button" href="../" >Back</A>
+                <A class="btn btn-primary btn-mid" role="button" href="../edit/${employee.id}" >Edit Profile</A>
+                <A class="btn btn-primary btn-mid" role="button" href="/" >Back</A>
             </div>
 
 
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Kenneth Martinez</h3>
+                        <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -26,32 +26,32 @@
 
                                     <tr>
                                         <td>Title:</td>
-                                        <td>CEO</td>
+                                        <td>${employee.title}</td>
                                     </tr>
 
                                     <tr>
                                         <td>Department:</td>
-                                        <td>Human Resources</td>
+                                        <td>${employee.department}</td>
                                     </tr>
 
                                     <tr>
                                         <td>Salary</td>
-                                        <td>$1,000,000</td>
+                                        <td>${employee.salary}</td>
                                     </tr>
 
                                     <tr>
                                         <td>Address:</td>
-                                        <td>Somewhere</td>
+                                        <td>${employee.address}</td>
                                     </tr>
 
                                     <tr>
                                         <td>Phone Number:</td>
-                                        <td>123-456-789</td>
+                                        <td>${employee.phoneNumber}</td>
                                     </tr>
 
                                     <tr>
                                         <td>Email:</td>
-                                        <td><a href="mailto:bla@rit.edu">bla@rit.edu</a></td>
+                                        <td><a href="mailto:${employee.email}">${employee.email}</a></td>
                                     </tr>
 
 
@@ -65,6 +65,7 @@
 
 
                 </div>
+
             </div>
         </div>
     </div>

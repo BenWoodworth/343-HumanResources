@@ -59,7 +59,7 @@
 
                     </div>
 
-                    <A class="btn btn-primary btn-mid" role="button" type="submit" value="Save" href="../">Save</A>
+                    <A class="btn btn-primary btn-mid" role="button" type="submit" value="Save" href="../profile/${employee.id}">Save</A>
                 </div>
             </div>
 

@@ -1,6 +1,7 @@
 <#import "lib/utils.ftl" as u>
 
 <html>
+<title>Welcome to HR!</title>
 <@u.head/>
 <body>
 <div class="container">
@@ -17,9 +18,9 @@
         <tbody data-link="row" class="rowlink">
         <#list employees as employee>
         <tr>
-            <td><a href="employees/profile">${employee.firstName}</a></td>
-            <td><a href="employees/profile">${employee.lastName}</a></td>
-            <td><a href="employees/profile">${employee.email}</a></td>
+            <td><a href="employees/profile/${employee.id}">${employee.firstName}</a></td>
+            <td><a href="employees/profile/${employee.id}">${employee.lastName}</a></td>
+            <td><a href="employees/profile/${employee.id}">${employee.email}</a></td>
         </tr>
         </#list>
         </tbody>

@@ -66,7 +66,7 @@
                                 </tbody>
                             </table>
 
-                            <A class="btn btn-primary btn-mid" role="button" type="submit" value="Submit" href="../">Save</A>
+                            <A class="btn btn-primary btn-mid" role="button" type="submit" value="Submit" href="/">Save</A>
                         </div>
 
                     </div>

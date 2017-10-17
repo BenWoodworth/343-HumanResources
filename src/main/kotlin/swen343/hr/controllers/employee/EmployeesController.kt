@@ -4,6 +4,7 @@ import spark.RouteGroup
 import spark.kotlin.get
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
+import swen343.hr.viewmodels.EmployeeViewModel
 
 /**
  * Created by ben on 10/16/17.
@@ -29,20 +30,35 @@ class EmployeesController(
             )
         }
 
-        get("/edit") {
-            templateLoader.loadTemplate(
-                    "/employees/edit.ftl"
+        get("/edit/:id") {
+            val id = request.params("id").toIntOrNull()
+            val employee = id?.let { employeeService.getEmployee(id) }
+            if (employee!=null){
+                templateLoader.loadTemplate(
+                        "/employees/edit.ftl",
+                        EmployeeViewModel(employee)
 
+                )
+            }
+            else {
 
-            )
+            }
         }
 
-        get("/profile") {
-            templateLoader.loadTemplate(
-                    "/employees/profile.ftl"
+        get("/profile/:id") {
+            val id = request.params("id").toIntOrNull()
+            val employee = id?.let { employeeService.getEmployee(id) }
+            if (employee!=null){
+                templateLoader.loadTemplate(
+                        "/employees/profile.ftl",
+                        EmployeeViewModel(employee)
 
+                )
+            }
+            else {
 
-            )
+            }
+
         }
     }
 }
