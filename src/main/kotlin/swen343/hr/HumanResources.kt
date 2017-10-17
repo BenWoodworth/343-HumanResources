@@ -2,6 +2,8 @@ package swen343.hr
 
 import spark.kotlin.get
 import spark.kotlin.port
+import spark.kotlin.staticFiles
+
 
 /**
  * Created by ben on 10/16/17.
@@ -11,8 +13,11 @@ class HumanResources(
 ) {
 
     fun start() {
-        port(1234)
 
+        staticFiles.location("/public")
+        staticFiles.expireTime(600)
+
+        port(1234)
         get("/") {
             templateLoader.loadTemplate(
                     "index.ftl",
