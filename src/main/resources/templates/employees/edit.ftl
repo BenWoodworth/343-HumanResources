@@ -17,11 +17,11 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://ritpedia.rit.edu/images/0/0f/KennethMartinez.jpg" class="img-circle img-responsive"> </div>
 
-
+                        <form type="put" action="profile/${employee.id}">
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">
                             <tbody>
-                            <form type="put">
+
                             <tr>
                                 <td>Title:</td>
                                 <td>
@@ -64,14 +64,15 @@
                                 </td>
                             </tr>
 
-                            </form>
+
                             </tbody>
                         </table>
 
 
                     </div>
 
-                    <A class="btn btn-primary btn-mid" role="button" type="submit" value="Save" href="../profile/${employee.id}">Save</A>
+                    <input class="btn btn-primary btn-mid" role="button" type="submit" value="Save" href="../profile/${employee.id}"/>
+                    </form>
                 </div>
             </div>
 

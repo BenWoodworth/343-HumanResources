@@ -69,7 +69,7 @@ class EmployeesController(
             response.redirect("/employees/profile/${employee.id}")
         }
 
-        put("/employees/edit/:id") {
+        put("/edit/:id") {
             val id = request.params("id").toIntOrNull()
             val employee = id?.let { employeeService.getEmployee(id) }
             if (employee != null) {
