@@ -37,6 +37,8 @@ class DummyEmployeeService : EmployeeService {
 
     override fun getEmployees() = employees.toList()
 
+    override fun getEmployee(id: Int) = employees.firstOrNull { it.id == id }
+
     override fun addEmployee(employee: Employee) {
         deleteEmployee(employee)
         employees.add(employee)

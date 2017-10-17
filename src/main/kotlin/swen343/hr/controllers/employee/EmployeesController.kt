@@ -19,7 +19,6 @@ class EmployeesController(
             templateLoader.loadTemplate(
                     "/employees/view-all.ftl"
 
-
             )
         }
 

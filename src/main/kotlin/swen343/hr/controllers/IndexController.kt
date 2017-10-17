@@ -16,9 +16,7 @@ class IndexController(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        staticFiles.location("/public")
-
-        path("/api", ApiController())
+        path("/api", ApiController(employeeService))
 
         path("/employees", EmployeesController(templateLoader, employeeService))
 

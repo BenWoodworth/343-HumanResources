@@ -6,6 +6,8 @@ interface EmployeeService {
 
     fun getEmployees(): List<Employee>
 
+    fun getEmployee(id: Int): Employee?
+
     fun addEmployee(employee: Employee)
 
     fun editEmployee(employee: Employee)
