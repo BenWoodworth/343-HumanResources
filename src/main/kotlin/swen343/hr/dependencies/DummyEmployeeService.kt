@@ -10,7 +10,7 @@ class DummyEmployeeService : EmployeeService {
     private val employees = mutableListOf<Employee>()
 
     init {
-        employees.add(Employee(
+        addEmployee(Employee(
                 id = 0,
                 firstName = "John",
                 lastName = "Doe",
@@ -22,7 +22,7 @@ class DummyEmployeeService : EmployeeService {
                 address = "123 Fake Ave."
         ))
 
-        employees.add(Employee(
+        addEmployee(Employee(
                 id = 1,
                 firstName = "Jane",
                 lastName = "Doe",
