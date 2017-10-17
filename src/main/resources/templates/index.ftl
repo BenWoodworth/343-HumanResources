@@ -6,7 +6,7 @@
 <div class="container">
     <h2>Kennuware Employee Table</h2>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>
         <tr>
             <th>Firstname</th>
@@ -14,17 +14,17 @@
             <th>Email</th>
         </tr>
         </thead>
-        <tbody>
-            <#list employees as employee>
-            <tr>
-                <button>-</button>
-                <td>${employee.firstName}</td>
-                <td>${employee.lastName}</td>
-                <td>${employee.email}</td>
-            </tr>
-            </#list>
+        <tbody data-link="row" class="rowlink">
+        <#list employees as employee>
+        <tr>
+            <td><a href="employees/profile">${employee.firstName}</a></td>
+            <td><a href="employees/profile">${employee.lastName}</a></td>
+            <td><a href="employees/profile">${employee.email}</a></td>
+        </tr>
+        </#list>
         </tbody>
     </table>
+    <A class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</A>
 </div>
 </body>
 </html>
