@@ -23,7 +23,7 @@ class IndexController(
         get("/") {
             templateLoader.loadTemplate(
                     "index.ftl",
-                    IndexViewModel(request.ip())
+                    IndexViewModel(request.ip(), employeeService.getEmployees())
             )
         }
     }
