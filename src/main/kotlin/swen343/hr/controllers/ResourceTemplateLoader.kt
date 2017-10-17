@@ -1,5 +1,6 @@
-package swen343.hr.dependencies
+package swen343.hr.controllers
 
+import swen343.hr.dependencies.TemplateLoader
 import java.io.File
 
 /**
