@@ -5,7 +5,7 @@
 <body>
 <div class="container">
     <h2>Kennuware Employee Table</h2>
-
+    <A class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</A>
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>
         <tr>
@@ -26,7 +26,6 @@
         </#list>
         </tbody>
     </table>
-    <A class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</A>
 </div>
 </body>
 </html>
