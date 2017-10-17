@@ -26,5 +26,10 @@ class IndexController(
                     IndexViewModel(request.ip())
             )
         }
+        get("employee-info") {
+            templateLoader.loadTemplate(
+                    "employee-info.ftl"
+            )
+        }
     }
 }

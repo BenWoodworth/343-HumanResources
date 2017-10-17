@@ -19,14 +19,14 @@ DROP TABLE IF EXISTS `Employees`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Employees` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(100) DEFAULT NULL,
-  `lastName` varchar(100) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `department` varchar(100) DEFAULT NULL,
-  `salary` int(11) DEFAULT NULL,
-  `phoneNumber` varchar(10) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `department` varchar(100) NOT NULL,
+  `salary` int(11) NOT NULL,
+  `phoneNumber` varchar(10) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FOREIGN` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
