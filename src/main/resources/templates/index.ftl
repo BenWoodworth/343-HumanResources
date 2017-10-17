@@ -12,6 +12,7 @@
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Email</th>
+            <th></th>
         </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
@@ -20,6 +21,7 @@
             <td><a href="employees/profile">${employee.firstName}</a></td>
             <td><a href="employees/profile">${employee.lastName}</a></td>
             <td><a href="employees/profile">${employee.email}</a></td>
+            <td><button>-</button></td>
         </tr>
         </#list>
         </tbody>
