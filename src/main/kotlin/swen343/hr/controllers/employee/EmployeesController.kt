@@ -61,7 +61,15 @@ class EmployeesController(
         post("/employees/add") {
             val employee = request.params("employee").toIntOrNull()
             employeeService.addEmployee(Employee(
-                    id=request.
+                    id=0,
+                    firstName=request.queryParams("firstName"),
+                    lastName=request.queryParams("lastName"),
+                    title=request.queryParams("title"),
+                    department=request.queryParams("department"),
+                    salary=request.queryParams("salary").toInt(),
+                    phoneNumber=request.queryParams("phoneNumber"),
+                    email=request.queryParams("email"),
+                    address= request.queryParams("address")
             ))
         }
 

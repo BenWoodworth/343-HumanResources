@@ -19,7 +19,7 @@
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
-
+                                <form type="post">
                                 <tr>
                                     <td>Title:</td>
                                     <td>
@@ -44,25 +44,25 @@
                                 <tr>
                                     <td>Address:</td>
                                     <td>
-                                        <input type="text" name="title"><br>
+                                        <input type="text" name="address"><br>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>Phone Number:</td>
                                     <td>
-                                        <input type="text" name="title"><br>
+                                        <input type="text" name="phoneNumber"><br>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>Email:</td>
                                     <td>
-                                        <input type="text" name="title"><br>
+                                        <input type="text" name="email"><br>
                                     </td>
                                 </tr>
 
-
+                                </form>
                                 </tbody>
                             </table>
 
