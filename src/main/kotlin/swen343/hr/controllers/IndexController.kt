@@ -8,7 +8,6 @@ import swen343.hr.controllers.api.ApiController
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.viewmodels.IndexViewModel
 
-
 class IndexController(
         private val templateLoader: TemplateLoader
 ) : RouteGroup {
