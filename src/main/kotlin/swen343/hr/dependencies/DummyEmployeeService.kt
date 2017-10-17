@@ -33,6 +33,62 @@ class DummyEmployeeService : EmployeeService {
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
         ))
+
+        addEmployee(Employee(
+                id = 2,
+                firstName = "John",
+                lastName = "Ahn",
+                title = "Professional Memer",
+                department = "HR",
+                salary = 0,
+                phoneNumber = "5555555556",
+                email = "jka1284@example.com",
+                address = "123 Meme."
+        ))
+        addEmployee(Employee(
+                id = 3,
+                firstName = "Ben",
+                lastName = "Woodworth",
+                title = "Development",
+                department = "HR",
+                salary = 80_020,
+                phoneNumber = "5555555558",
+                email = "benwoodworth@ben.woodworth",
+                address = "123 Fake Ave."
+        ))
+        addEmployee(Employee(
+                id = 4,
+                firstName = "Dan",
+                lastName = "Swootmin",
+                title = "Senior Citizen",
+                department = "HR",
+                salary = 80_000,
+                phoneNumber = "5555555559",
+                email = "DadSweetmin@Sweemin.cam",
+                address = "123 Fake Ave."
+        ))
+        addEmployee(Employee(
+                id = 5,
+                firstName = "Beltran",
+                lastName = "Caliz",
+                title = "Team Dad",
+                department = "HR",
+                salary = 80_000,
+                phoneNumber = "5555555560",
+                email = "Beltrin@Beltrain.com",
+                address = "123 Fake Ave."
+        ))
+        addEmployee(Employee(
+                id = 6,
+                firstName = "Sammi",
+                lastName = "Bun",
+                title = "Civie",
+                department = "HR",
+                salary = 80_000,
+                phoneNumber = "5555555554",
+                email = "ech@ech.com",
+                address = "123 Fake Ave."
+        ))
     }
 
     override fun getEmployees() = employees.toList()
