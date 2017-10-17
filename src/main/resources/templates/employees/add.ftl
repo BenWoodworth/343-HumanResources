@@ -17,9 +17,21 @@
 
 
                         <div class=" col-md-9 col-lg-9 ">
-                            <form action="." method="post">
+                            <form method="post">
                                 <table class="table table-user-information">
                                     <tbody>
+                                    <tr>
+                                        <td>First name:</td>
+                                        <td>
+                                            <input type="text" name="firstName"><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last name:</td>
+                                        <td>
+                                            <input type="text" name="lastName"><br>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>Title:</td>
                                         <td>
@@ -42,13 +54,6 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Address:</td>
-                                        <td>
-                                            <input type="text" name="address"><br>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
                                         <td>Phone Number:</td>
                                         <td>
                                             <input type="text" name="phoneNumber"><br>
@@ -59,6 +64,13 @@
                                         <td>Email:</td>
                                         <td>
                                             <input type="text" name="email"><br>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td>
+                                            <input type="text" name="address"><br>
                                         </td>
                                     </tr>
 
