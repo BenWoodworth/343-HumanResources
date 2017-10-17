@@ -55,9 +55,8 @@ class EmployeesController(
 
         }
 
-        post("/employees/add") {
-            val employee = request.params("employee").toIntOrNull()
-            employeeService.addEmployee(
+        post("/add") {
+            val employee = employeeService.addEmployee(
                     firstName = request.queryParams("firstName"),
                     lastName = request.queryParams("lastName"),
                     title = request.queryParams("title"),
@@ -67,6 +66,7 @@ class EmployeesController(
                     email = request.queryParams("email"),
                     address = request.queryParams("address")
             )
+            response.redirect("/employees/profile/${employee.id}")
         }
 
         put("/edit/:id") {

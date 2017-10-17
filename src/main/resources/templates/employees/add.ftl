@@ -17,56 +17,68 @@
 
 
                         <div class=" col-md-9 col-lg-9 ">
-                            <table class="table table-user-information">
-                                <tbody>
-                                <form type="post">
-                                <tr>
-                                    <td>Title:</td>
-                                    <td>
-                                        <input type="text" name="title"><br>
-                                    </td>
-                                </tr>
+                            <form method="post">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td>First name:</td>
+                                        <td>
+                                            <input type="text" name="firstName"><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last name:</td>
+                                        <td>
+                                            <input type="text" name="lastName"><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title:</td>
+                                        <td>
+                                            <input type="text" name="title"><br>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td>Department:</td>
-                                    <td>
-                                        <input type="text" name="department"><br>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>Department:</td>
+                                        <td>
+                                            <input type="text" name="department"><br>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td>Salary</td>
-                                    <td>
-                                        <input type="text" name="salary"><br>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>Salary</td>
+                                        <td>
+                                            <input type="text" name="salary"><br>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td>Address:</td>
-                                    <td>
-                                        <input type="text" name="address"><br>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>Phone Number:</td>
+                                        <td>
+                                            <input type="text" name="phoneNumber"><br>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td>Phone Number:</td>
-                                    <td>
-                                        <input type="text" name="phoneNumber"><br>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>
+                                            <input type="text" name="email"><br>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td>Email:</td>
-                                    <td>
-                                        <input type="text" name="email"><br>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td>
+                                            <input type="text" name="address"><br>
+                                        </td>
+                                    </tr>
 
-                                </form>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
 
-                            <A class="btn btn-primary btn-mid" role="button" type="submit" value="Submit" href="/">Save</A>
+                                <input type="submit" class="btn btn-primary btn-mid" value="Save">
+                            </form>
                         </div>
 
                     </div>
