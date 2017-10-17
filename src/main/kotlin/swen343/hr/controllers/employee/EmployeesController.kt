@@ -6,6 +6,7 @@ import spark.kotlin.post
 import spark.kotlin.put
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
+import swen343.hr.models.Employee
 import swen343.hr.viewmodels.EmployeeViewModel
 
 /**
@@ -69,17 +70,20 @@ class EmployeesController(
             response.redirect("/employees/profile/${employee.id}")
         }
 
-        put("/edit/:id") {
-            val id = request.params("id").toIntOrNull()
-            val employee = id?.let { employeeService.getEmployee(id) }
-            if (employee != null) {
-                employeeService.editEmployee(employee)
-                templateLoader.loadTemplate(
-                        "/employees/edit.ftl",
-                        EmployeeViewModel(employee)
-
-                )
-            }
+        post("/edit/submit") {
+            val employee = Employee(
+                    id = request.queryParams("id").toInt(),
+                    firstName = request.queryParams("firstName"),
+                    lastName = request.queryParams("lastName"),
+                    title = request.queryParams("title"),
+                    department = request.queryParams("department"),
+                    salary = request.queryParams("salary").replace(",", "").toInt(), //TODO
+                    phoneNumber = request.queryParams("phoneNumber"),
+                    email = request.queryParams("email"),
+                    address = request.queryParams("address")
+            )
+            employeeService.editEmployee(employee)
+            response.redirect("/employees/profile/${employee.id}")
         }
 
         get("/profile/:id") {
