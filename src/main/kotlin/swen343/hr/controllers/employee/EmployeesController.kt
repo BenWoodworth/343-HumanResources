@@ -3,8 +3,11 @@ package swen343.hr.controllers.employee
 import spark.RouteGroup
 import spark.kotlin.delete
 import spark.kotlin.get
+import spark.kotlin.post
+import spark.kotlin.put
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
+import swen343.hr.models.Employee
 import swen343.hr.viewmodels.EmployeeViewModel
 
 /**
@@ -53,6 +56,26 @@ class EmployeesController(
             }
             response.redirect("/")
 
+        }
+
+        post("/employees/add") {
+            val employee = request.params("employee").toIntOrNull()
+            employeeService.addEmployee(Employee(
+                    id=request.
+            ))
+        }
+
+        put("/employees/edit/:id") {
+            val id = request.params("id").toIntOrNull()
+            val employee = id?.let { employeeService.getEmployee(id) }
+            if (employee!=null){
+                employeeService.editEmployee(employee)
+                templateLoader.loadTemplate(
+                        "/employees/edit.ftl",
+                        EmployeeViewModel(employee)
+
+                )
+            }
         }
 
         get("/profile/:id") {
