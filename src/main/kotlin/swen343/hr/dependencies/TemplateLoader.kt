@@ -1,4 +1,4 @@
-package swen343.hr
+package swen343.hr.dependencies
 
 /**
  * Loads FreeMarker templates.
@@ -8,5 +8,5 @@ interface TemplateLoader {
     /**
      * Load a FreeMarker template.
      */
-    fun loadTemplate(file: String, model: Map<String, Any>): String
+    fun loadTemplate(file: String, model: Any? = null): String
 }

@@ -7,7 +7,7 @@ buildscript {
     ext {
         java_target = '1.8'
 
-        version_kotlin = '1.1.4-2'
+        version_kotlin = '1.1.51'
         version_ktlint = '0.8.1'
         version_spark = '1.0.0-alpha'
         version_freemarker = '2.3.14'
