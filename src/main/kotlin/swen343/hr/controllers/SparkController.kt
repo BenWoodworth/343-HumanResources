@@ -4,13 +4,15 @@ import spark.Spark.path
 import spark.kotlin.port
 import spark.kotlin.staticFiles
 import swen343.hr.dependencies.Controller
+import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
 
 /**
  * Created by ben on 10/16/17.
  */
 class SparkController(
-        private val templateLoader: TemplateLoader
+        private val templateLoader: TemplateLoader,
+        private val employeeService: EmployeeService
 ) : Controller {
 
     override fun initialize() {
@@ -18,6 +20,6 @@ class SparkController(
 
         staticFiles.location("/public")
 
-        path("", IndexController(templateLoader))
+        path("", IndexController(templateLoader, employeeService))
     }
 }

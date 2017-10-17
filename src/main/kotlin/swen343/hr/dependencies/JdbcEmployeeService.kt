@@ -7,6 +7,9 @@ import java.sql.SQLException
 import java.sql.Statement
 
 class JdbcEmployeeService : EmployeeService {
+    override fun getEmployees(): List<Employee> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun addEmployee(employee: Employee) {
 

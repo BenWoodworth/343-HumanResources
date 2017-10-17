@@ -35,14 +35,14 @@ class DummyEmployeeService : EmployeeService {
         ))
     }
 
+    override fun getEmployees() = employees.toList()
+
     override fun addEmployee(employee: Employee) {
         deleteEmployee(employee)
         employees.add(employee)
     }
 
-    override fun editEmployee(employee: Employee) {
-        addEmployee(employee)
-    }
+    override fun editEmployee(employee: Employee) = addEmployee(employee)
 
     override fun deleteEmployee(employee: Employee) {
         employees.removeIf {

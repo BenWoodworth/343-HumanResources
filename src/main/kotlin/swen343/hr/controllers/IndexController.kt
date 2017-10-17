@@ -6,11 +6,13 @@ import spark.kotlin.get
 import spark.kotlin.staticFiles
 import swen343.hr.controllers.api.ApiController
 import swen343.hr.controllers.employee.EmployeesController
+import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.viewmodels.IndexViewModel
 
 class IndexController(
-        private val templateLoader: TemplateLoader
+        private val templateLoader: TemplateLoader,
+        private val employeeService: EmployeeService
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -18,7 +20,7 @@ class IndexController(
 
         path("/api", ApiController())
 
-        path("/employees", EmployeesController(templateLoader))
+        path("/employees", EmployeesController(templateLoader, employeeService))
 
         get("/") {
             templateLoader.loadTemplate(
