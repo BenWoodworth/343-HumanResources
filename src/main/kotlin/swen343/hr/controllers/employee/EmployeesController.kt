@@ -7,24 +7,30 @@ import swen343.hr.dependencies.TemplateLoader
 /**
  * Created by ben on 10/16/17.
  */
-class EmployeeController(
+class EmployeesController(
         private val templateLoader: TemplateLoader
 ) : RouteGroup {
 
     override fun addRoutes() {
 
+        get("") {
+            templateLoader.loadTemplate(
+                    "/employees/view-all.ftl"
 
+
+            )
+        }
 
         get("/add") {
             templateLoader.loadTemplate(
-                    "/employee/add.ftl"
+                    "/employees/add.ftl"
 
             )
         }
 
         get("/edit") {
             templateLoader.loadTemplate(
-                    "/employee/edit.ftl"
+                    "/employees/edit.ftl"
 
 
             )
@@ -32,19 +38,10 @@ class EmployeeController(
 
         get("/profile") {
             templateLoader.loadTemplate(
-                    "/employee/profile.ftl"
+                    "/employees/profile.ftl"
 
 
             )
         }
-
-        get("/") {
-            templateLoader.loadTemplate(
-                    "/employee/view-all.ftl"
-
-
-            )
-        }
-
     }
 }

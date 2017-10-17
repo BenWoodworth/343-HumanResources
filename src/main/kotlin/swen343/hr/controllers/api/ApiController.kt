@@ -13,17 +13,12 @@ class ApiController : RouteGroup {
     override fun addRoutes() {
         path("/v1", V1Controller())
 
-        get("employee/:id/salary") {
+        get("employees/:id/salary") {
             val id = request.params("id")
 
-            """|{
-               |
-               |
-               |
-               |
-               |
-               |
-               |""".trimMargin()
+            """
+
+            """.trimIndent()
         }
     }
 }
