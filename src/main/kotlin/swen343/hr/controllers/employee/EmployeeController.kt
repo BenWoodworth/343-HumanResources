@@ -13,20 +13,20 @@ class EmployeeController(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        /*
-        get("/add") {
+
+        get("/employee-info") {
             templateLoader.loadTemplate(
-                    "index.ftl",
+                    "employee-info.ftl",
                     IndexViewModel(request.ip())
             )
         }
 
-        get("/edit") {
+        get("/create-employee") {
             templateLoader.loadTemplate(
-                    "index.ftl",
+                    "create-employee.ftl",
                     IndexViewModel(request.ip())
             )
         }
-        */
+
     }
 }
