@@ -10,28 +10,23 @@
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>First</th>
+            <th>Last</th>
             <th>Email</th>
-            <th></th>
+            <th>Remove</th>
         </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
         <#list employees as employee>
         <tr>
-
             <td><a href="employees/profile/${employee.id}">${employee.firstName}</a></td>
             <td><a href="employees/profile/${employee.id}">${employee.lastName}</a></td>
             <td><a href="employees/profile/${employee.id}">${employee.email}</a></td>
-            <td><a href="employees/profile">${employee.firstName}</a></td>
-            <td><a href="employees/profile">${employee.lastName}</a></td>
-            <td><a href="employees/profile">${employee.email}</a></td>
             <td>
                 <form action="employees/delete/${employee.id}" type="get">
                     <input type="submit" value="-" />
                 </form>
             </td>
-
         </tr>
         </#list>
         </tbody>

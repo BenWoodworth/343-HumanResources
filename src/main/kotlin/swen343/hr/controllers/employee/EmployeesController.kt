@@ -49,7 +49,7 @@ class EmployeesController(
             }
         }
 
-        get("/employees/delete/:id") {
+        get("/delete/:id") {
             val id = request.params("id").toIntOrNull()
             if (id!=null) {
                 employeeService.deleteEmployee(id)
