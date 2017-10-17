@@ -3,12 +3,11 @@ package swen343.hr.datasource
 import java.sql.*
 import java.util.Properties
 
-
 object MySQLDatabase {
 
-    internal var conn: Connection? = null
-    internal var username = "username" // provide the username
-    internal var password = "password" // provide the corresponding password
+    private var conn: Connection? = null
+    private var username = "username" // provide the username
+    private var password = "password" // provide the corresponding password
 
     @JvmStatic fun main(args: Array<String>) {
         // make a connection to MySQL Server
@@ -23,14 +22,14 @@ object MySQLDatabase {
 
         try {
             stmt = conn!!.createStatement()
-            resultset = stmt!!.executeQuery("SHOW DATABASES;")
+            resultset = stmt!!.executeQuery("SELECT * FROM Employees;")
 
-            if (stmt.execute("SHOW DATABASES;")) {
+            if (stmt.execute("SELECT * FROM Employees;")) {
                 resultset = stmt.resultSet
             }
 
             while (resultset!!.next()) {
-                println(resultset.getString("Database"))
+                println(resultset.getString("Employees"))
             }
         } catch (ex: SQLException) {
             // handle any errors

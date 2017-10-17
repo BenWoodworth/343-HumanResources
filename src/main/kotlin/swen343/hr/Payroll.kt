@@ -1,6 +1,6 @@
 package swen343.hr
 
-interface Payroll{
+interface Payroll {
     /**
      * Function dedicated to viewing an employee's payroll. Takes in an employee
      *
@@ -21,6 +21,5 @@ interface Payroll{
      * @param employee - The employee of subject has a set bonus for their next paycheck
      */
     fun bonusPay()
-
 
 }

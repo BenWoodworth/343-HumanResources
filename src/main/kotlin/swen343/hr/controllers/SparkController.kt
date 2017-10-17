@@ -18,6 +18,6 @@ class SparkController(
 
         staticFiles.location("/public")
 
-        path("", IndexRoutes(templateLoader))
+        path("", IndexController(templateLoader))
     }
 }
