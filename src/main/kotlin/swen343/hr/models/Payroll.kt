@@ -1,4 +1,6 @@
-package swen343.hr
+package swen343.hr.models
+
+import swen343.hr.models.Employee
 
 interface Payroll {
     /**

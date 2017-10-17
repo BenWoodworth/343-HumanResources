@@ -2,13 +2,15 @@ package swen343.hr.controllers.employee
 
 import spark.RouteGroup
 import spark.kotlin.get
+import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
 
 /**
  * Created by ben on 10/16/17.
  */
 class EmployeesController(
-        private val templateLoader: TemplateLoader
+        private val templateLoader: TemplateLoader,
+        private val employeeService: EmployeeService
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -16,7 +18,6 @@ class EmployeesController(
         get("") {
             templateLoader.loadTemplate(
                     "/employees/view-all.ftl"
-
 
             )
         }

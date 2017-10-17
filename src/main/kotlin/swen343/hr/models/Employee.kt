@@ -1,4 +1,4 @@
-package swen343.hr
+package swen343.hr.models
 
 import java.util.*
 
