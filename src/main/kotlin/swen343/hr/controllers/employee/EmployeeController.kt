@@ -1,30 +1,32 @@
-package swen343.hr.controllers
+package swen343.hr.controllers.employee
 
 import spark.RouteGroup
-import spark.Spark.path
 import spark.kotlin.get
-import spark.kotlin.staticFiles
-import swen343.hr.controllers.api.ApiController
-import swen343.hr.controllers.employee.EmployeeController
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.viewmodels.IndexViewModel
 
-class IndexController(
+/**
+ * Created by ben on 10/16/17.
+ */
+class EmployeeController(
         private val templateLoader: TemplateLoader
 ) : RouteGroup {
 
     override fun addRoutes() {
-        staticFiles.location("/public")
-
-        path("/api", ApiController())
-
-        path("/employee", EmployeeController(templateLoader))
-
-        get("/") {
+        /*
+        get("/add") {
             templateLoader.loadTemplate(
                     "index.ftl",
                     IndexViewModel(request.ip())
             )
         }
+
+        get("/edit") {
+            templateLoader.loadTemplate(
+                    "index.ftl",
+                    IndexViewModel(request.ip())
+            )
+        }
+        */
     }
 }
