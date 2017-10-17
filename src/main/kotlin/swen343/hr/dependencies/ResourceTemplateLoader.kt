@@ -1,11 +1,13 @@
 package swen343.hr.dependencies
 
+import java.io.File
+
 /**
  * Load FreeMarker template from resources.
  */
 class ResourceTemplateLoader : TemplateLoader {
 
-    private val templatesDir = java.io.File(javaClass.getResource("/templates").toURI())
+    private val templatesDir = File(javaClass.getResource("/templates").toURI())
 
     private val freemarkerConf = freemarker.template.Configuration().apply {
         setDirectoryForTemplateLoading(templatesDir)
