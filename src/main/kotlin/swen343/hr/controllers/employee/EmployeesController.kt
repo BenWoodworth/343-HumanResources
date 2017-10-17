@@ -1,13 +1,11 @@
 package swen343.hr.controllers.employee
 
 import spark.RouteGroup
-import spark.kotlin.delete
 import spark.kotlin.get
 import spark.kotlin.post
 import spark.kotlin.put
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
-import swen343.hr.models.Employee
 import swen343.hr.viewmodels.EmployeeViewModel
 
 /**
@@ -37,21 +35,20 @@ class EmployeesController(
         get("/edit/:id") {
             val id = request.params("id").toIntOrNull()
             val employee = id?.let { employeeService.getEmployee(id) }
-            if (employee!=null){
+            if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
                         EmployeeViewModel(employee)
 
                 )
-            }
-            else {
+            } else {
 
             }
         }
 
         get("/delete/:id") {
             val id = request.params("id").toIntOrNull()
-            if (id!=null) {
+            if (id != null) {
                 employeeService.deleteEmployee(id)
             }
             response.redirect("/")
@@ -60,23 +57,22 @@ class EmployeesController(
 
         post("/employees/add") {
             val employee = request.params("employee").toIntOrNull()
-            employeeService.addEmployee(Employee(
-                    id=0,
-                    firstName=request.queryParams("firstName"),
-                    lastName=request.queryParams("lastName"),
-                    title=request.queryParams("title"),
-                    department=request.queryParams("department"),
-                    salary=request.queryParams("salary").toInt(),
-                    phoneNumber=request.queryParams("phoneNumber"),
-                    email=request.queryParams("email"),
-                    address= request.queryParams("address")
-            ))
+            employeeService.addEmployee(
+                    firstName = request.queryParams("firstName"),
+                    lastName = request.queryParams("lastName"),
+                    title = request.queryParams("title"),
+                    department = request.queryParams("department"),
+                    salary = request.queryParams("salary").toInt(),
+                    phoneNumber = request.queryParams("phoneNumber"),
+                    email = request.queryParams("email"),
+                    address = request.queryParams("address")
+            )
         }
 
         put("/employees/edit/:id") {
             val id = request.params("id").toIntOrNull()
             val employee = id?.let { employeeService.getEmployee(id) }
-            if (employee!=null){
+            if (employee != null) {
                 employeeService.editEmployee(employee)
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
@@ -89,14 +85,13 @@ class EmployeesController(
         get("/profile/:id") {
             val id = request.params("id").toIntOrNull()
             val employee = id?.let { employeeService.getEmployee(id) }
-            if (employee!=null){
+            if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/profile.ftl",
                         EmployeeViewModel(employee)
 
                 )
-            }
-            else {
+            } else {
 
             }
 

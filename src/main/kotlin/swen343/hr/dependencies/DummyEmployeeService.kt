@@ -13,11 +13,41 @@ class DummyEmployeeService : EmployeeService {
 
     override fun getEmployee(id: Int) = employees.firstOrNull { it.id == id }
 
-    override fun addEmployee(employee: Employee) {
+    override fun addEmployee(
+            firstName: String,
+            lastName: String,
+            title: String,
+            department: String,
+            salary: Int,
+            phoneNumber: String,
+            email: String,
+            address: String
+    ): Employee {
+        val maxId = employees
+                .map { it.id }
+                .max() ?: -1
+
+        val employee = Employee(
+                id = maxId + 1,
+                firstName = firstName,
+                lastName = lastName,
+                title = title,
+                department = department,
+                salary = salary,
+                phoneNumber = phoneNumber,
+                email = email,
+                address = address
+        )
+
         employees.add(employee)
+
+        return employee
     }
 
-    override fun editEmployee(employee: Employee) = addEmployee(employee)
+    override fun editEmployee(employee: Employee) {
+        deleteEmployee(employee.id)
+        employees.add(employee)
+    }
 
     override fun deleteEmployee(id: Int) {
         employees.removeIf {
@@ -26,8 +56,7 @@ class DummyEmployeeService : EmployeeService {
     }
 
     init {
-        addEmployee(Employee(
-                id = 0,
+        addEmployee(
                 firstName = "Kenn",
                 lastName = "Martinez",
                 title = "CEO",
@@ -36,10 +65,9 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555555",
                 email = "john_doe@example.com",
                 address = "123 Fake Ave."
-        ))
+        )
 
-        addEmployee(Employee(
-                id = 1,
+        addEmployee(
                 firstName = "Jane",
                 lastName = "Doe",
                 title = "Sales Rep",
@@ -48,10 +76,9 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
+        )
 
-        addEmployee(Employee(
-                id = 2,
+        addEmployee(
                 firstName = "John",
                 lastName = "Ahn",
                 title = "Professional Memer",
@@ -60,9 +87,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555556",
                 email = "jka1284@example.com",
                 address = "123 Meme."
-        ))
-        addEmployee(Employee(
-                id = 3,
+        )
+        addEmployee(
                 firstName = "Ben",
                 lastName = "Woodworth",
                 title = "Development",
@@ -71,9 +97,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555558",
                 email = "benwoodworth@ben.woodworth",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 4,
+        )
+        addEmployee(
                 firstName = "Dan",
                 lastName = "Swootmin",
                 title = "Senior Citizen",
@@ -82,9 +107,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555559",
                 email = "DadSweetmin@Sweemin.cam",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 5,
+        )
+        addEmployee(
                 firstName = "Beltran",
                 lastName = "Caliz",
                 title = "Team Dad",
@@ -93,9 +117,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555560",
                 email = "Beltrin@Beltrain.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 6,
+        )
+        addEmployee(
                 firstName = "Sammi",
                 lastName = "Bun",
                 title = "Civie",
@@ -104,9 +127,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "ech@ech.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 7,
+        )
+        addEmployee(
                 firstName = "Jack",
                 lastName = "Acacia",
                 title = "Arty. Officer",
@@ -115,9 +137,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 8,
+        )
+        addEmployee(
                 firstName = "John",
                 lastName = "Lennon",
                 title = "Legendary Guitar-man",
@@ -126,9 +147,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 9,
+        )
+        addEmployee(
                 firstName = "Bruce",
                 lastName = "Wayne",
                 title = "Batmin",
@@ -137,9 +157,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 10,
+        )
+        addEmployee(
                 firstName = "Jonathan",
                 lastName = "Dang",
                 title = "Sales Rep",
@@ -148,9 +167,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 11,
+        )
+        addEmployee(
                 firstName = "Gordon",
                 lastName = "Freedude",
                 title = "Crowbar enthuisast",
@@ -159,9 +177,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 12,
+        )
+        addEmployee(
                 firstName = "Donald",
                 lastName = "Troomp",
                 title = "Cheeto Man",
@@ -170,9 +187,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 13,
+        )
+        addEmployee(
                 firstName = "Clark",
                 lastName = "Kant",
                 title = "Not Supermin",
@@ -181,9 +197,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 14,
+        )
+        addEmployee(
                 firstName = "Bojack",
                 lastName = "Horseman",
                 title = "Depressed",
@@ -192,9 +207,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 15,
+        )
+        addEmployee(
                 firstName = "Martin",
                 lastName = "Walker",
                 title = "Dead Man",
@@ -203,9 +217,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 16,
+        )
+        addEmployee(
                 firstName = "James",
                 lastName = "Gordin",
                 title = "Detective man",
@@ -214,9 +227,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 17,
+        )
+        addEmployee(
                 firstName = "Frank",
                 lastName = "Castle",
                 title = "The Discipliner",
@@ -225,9 +237,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 18,
+        )
+        addEmployee(
                 firstName = "Chris",
                 lastName = "Doe",
                 title = "Sales Rep",
@@ -236,9 +247,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 19,
+        )
+        addEmployee(
                 firstName = "Solid",
                 lastName = "Snake",
                 title = "Philantrophist",
@@ -247,9 +257,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 20,
+        )
+        addEmployee(
                 firstName = "Big",
                 lastName = "Boss",
                 title = "Big Dad",
@@ -258,9 +267,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 21,
+        )
+        addEmployee(
                 firstName = "Ruby",
                 lastName = "Rose",
                 title = "Reaper",
@@ -269,9 +277,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 22,
+        )
+        addEmployee(
                 firstName = "Ben",
                 lastName = "Doo",
                 title = "Hoomin",
@@ -280,9 +287,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 23,
+        )
+        addEmployee(
                 firstName = "Charlie",
                 lastName = "November",
                 title = "CN",
@@ -291,9 +297,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 24,
+        )
+        addEmployee(
                 firstName = "Victor",
                 lastName = "Zulu",
                 title = "VZ",
@@ -302,9 +307,8 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
-        addEmployee(Employee(
-                id = 25,
+        )
+        addEmployee(
                 firstName = "Juliet",
                 lastName = "Papa",
                 title = "JP",
@@ -313,6 +317,6 @@ class DummyEmployeeService : EmployeeService {
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
-        ))
+        )
     }
 }

@@ -16,7 +16,16 @@ class JdbcEmployeeService : EmployeeService {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun addEmployee(employee: Employee) {
+    override fun addEmployee(
+            firstName: String,
+            lastName: String,
+            title: String,
+            department: String,
+            salary: Int,
+            phoneNumber: String,
+            email: String,
+            address: String
+    ): Employee {
 
         var stmt: Statement? = null
         var resultset: ResultSet? = null
@@ -65,6 +74,7 @@ class JdbcEmployeeService : EmployeeService {
             }
         }
 
+        TODO()
     }
 
     override fun editEmployee(employee: Employee) {

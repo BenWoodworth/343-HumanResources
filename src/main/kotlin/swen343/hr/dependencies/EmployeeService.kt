@@ -8,7 +8,16 @@ interface EmployeeService {
 
     fun getEmployee(id: Int): Employee?
 
-    fun addEmployee(employee: Employee)
+    fun addEmployee(
+            firstName: String,
+            lastName: String,
+            title: String,
+            department: String,
+            salary: Int,
+            phoneNumber: String,
+            email: String,
+            address: String
+    ): Employee
 
     fun editEmployee(employee: Employee)
 
