@@ -1,12 +1,17 @@
 package swen343.hr
 
-import swen343.hr.dependencies.ResourceTemplateLoader
+import swen343.hr.controllers.ResourceTemplateLoader
+import swen343.hr.controllers.SparkController
 
 fun main(args: Array<String>) {
 
-    val hr = HumanResources(
+    val controller = SparkController(
             templateLoader = ResourceTemplateLoader()
     )
 
-    hr.start()
+    val humanResources = HumanResources(
+            controller = controller
+    )
+
+    humanResources.start()
 }
