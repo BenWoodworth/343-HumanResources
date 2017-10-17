@@ -69,7 +69,7 @@ class EmployeesController(
             )
         }
 
-        put("/employees/edit/:id") {
+        put("/edit/:id") {
             val id = request.params("id").toIntOrNull()
             val employee = id?.let { employeeService.getEmployee(id) }
             if (employee != null) {
