@@ -1,11 +1,10 @@
+<#import "lib/utils.ftl" as u>
+
 <html>
-<head>
-    <title>Welcome to HR!</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-</head>
+<@u.head/>
 <body>
-    Hello, world!<br>
+    <p>Hello! Welcome to HR index <br>
     Your IP is ${ip}<br>
-    How are you doing today?
+    How are you doing today?</p>
 </body>
 </html>
