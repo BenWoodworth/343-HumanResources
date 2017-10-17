@@ -18,7 +18,7 @@ class IndexController(
 
         path("/api", ApiController())
 
-        path("/employee", EmployeeController(templateLoader))
+
 
         get("/") {
             templateLoader.loadTemplate(
@@ -26,10 +26,6 @@ class IndexController(
                     IndexViewModel(request.ip())
             )
         }
-        get("employee-info") {
-            templateLoader.loadTemplate(
-                    "employee-info.ftl"
-            )
-        }
+
     }
 }

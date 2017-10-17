@@ -1,4 +1,4 @@
-<#import "lib/utils.ftl" as u>
+<#import "../lib/utils.ftl" as u>
 <html>
     <@u.head/>
     <Title>Kenneth Martinez</Title>

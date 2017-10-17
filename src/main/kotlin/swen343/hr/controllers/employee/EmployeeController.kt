@@ -13,17 +13,36 @@ class EmployeeController(
 
     override fun addRoutes() {
 
-        get("/employee-info") {
+
+
+        get("/add") {
             templateLoader.loadTemplate(
-                    "employee-info.ftl",
-                    IndexViewModel(request.ip())
+                    "/employee/add.ftl"
+
             )
         }
 
-        get("/create-employee") {
+        get("/edit") {
             templateLoader.loadTemplate(
-                    "create-employee.ftl",
-                    IndexViewModel(request.ip())
+                    "/employee/edit.ftl"
+
+
+            )
+        }
+
+        get("/profile") {
+            templateLoader.loadTemplate(
+                    "/employee/profile.ftl"
+
+
+            )
+        }
+
+        get("/") {
+            templateLoader.loadTemplate(
+                    "/employee/view-all.ftl"
+
+
             )
         }
 
