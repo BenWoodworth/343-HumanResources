@@ -2,9 +2,9 @@ package swen343.hr.dependencies
 
 import swen343.hr.models.Employee
 
-interface EmployeeServiceInt {
+interface EmployeeService {
 
-    fun addEmployee()
+    fun addEmployee(employee: Employee)
 
     fun editEmployee(employee: Employee)
 

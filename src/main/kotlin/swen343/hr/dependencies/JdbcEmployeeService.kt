@@ -6,9 +6,9 @@ import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
 
-class EmployeeServiceImpl : EmployeeServiceInt {
+class JdbcEmployeeService : EmployeeService {
 
-    override fun addEmployee() {
+    override fun addEmployee(employee: Employee) {
 
         var stmt: Statement? = null
         var resultset: ResultSet? = null
