@@ -21,38 +21,50 @@
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">
                             <tbody>
-
+                            <form type="put">
                             <tr>
                                 <td>Title:</td>
-                                <td>CEO</td>
+                                <td>
+                                    <input type="text" name="title" value="${employee.title}">
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Department:</td>
-                                <td>Human Resources</td>
+                                <td>
+                                    <input type="text" name="department" value="${employee.department}">
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Salary</td>
-                                <td>$1,000,000</td>
+                                <td>
+                                    <input type="text" name="salary" value="${employee.salary}">
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Address:</td>
-                                <td>Somewhere</td>
+                                <td>
+                                    <input type="text" name="address" value="${employee.address}">
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Phone Number:</td>
-                                <td>123-456-789</td>
+                                <td>
+                                    <input type="text" name="phoneNumber" value="${employee.phoneNumber}">
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Email:</td>
-                                <td><a href="mailto:bla@rit.edu">bla@rit.edu</a></td>
+                                <td>
+                                    <input type="text" name="email" value="${employee.email}"><br>
+                                </td>
                             </tr>
 
-
+                            </form>
                             </tbody>
                         </table>
 
