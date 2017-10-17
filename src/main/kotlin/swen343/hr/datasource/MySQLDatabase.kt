@@ -5,9 +5,9 @@ import java.util.Properties
 
 object MySQLDatabase {
 
-    private var conn: Connection? = null
-    private var username = "username" // provide the username
-    private var password = "password" // provide the corresponding password
+     var conn: Connection? = null
+     var username = "username" // provide the username
+     var password = "password" // provide the corresponding password
 
     @JvmStatic fun main(args: Array<String>) {
         // make a connection to MySQL Server
