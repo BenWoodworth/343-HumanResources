@@ -1,7 +1,7 @@
 <#import "../lib/utils.ftl" as u>
 <html>
 <@u.head/>
-<Title>Edit Kenneth Martinez</Title>
+<Title>Edit ${employee.firstName} ${employee.lastName}</Title>
 <div class="container">
     <div class="row">
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -11,7 +11,7 @@
 
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Kenneth Martinez</h3>
+                <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
