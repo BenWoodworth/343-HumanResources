@@ -1,5 +1,6 @@
 <#import "lib/utils.ftl" as u>
 
+
 <html>
 <title>Welcome to HR!</title>
 <@u.head/>
@@ -27,12 +28,12 @@
             <td><a href="employees/profile/${employee.id}">${employee.lastName}</a></td>
             <td><a href="employees/profile/${employee.id}">${employee.email}</a></td>
             <td>
-                <form action="employees/delete/${employee.id}" type="get">
-                        <input type="submit" value="-" />
+
+                <button onclick="removeEmployee(${employee.id})">-</button>
                     <A class="btn icon" role="button" href="employees/edit/${employee.id}" >
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </A>
-                </form>
+
 
 
             </td>
@@ -41,5 +42,6 @@
         </tbody>
     </table>
 </div>
+<script src="/js/employeeList.js"></script>
 </body>
 </html>
