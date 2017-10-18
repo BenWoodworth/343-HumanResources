@@ -28,8 +28,13 @@
             <td><a href="employees/profile/${employee.id}">${employee.email}</a></td>
             <td>
                 <form action="employees/delete/${employee.id}" type="get">
-                    <input type="submit" value="-" />
+                        <input type="submit" value="-" />
+                    <A class="btn icon" role="button" href="employees/edit/${employee.id}" >
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </A>
                 </form>
+
+
             </td>
         </tr>
         </#list>

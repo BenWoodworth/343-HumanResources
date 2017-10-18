@@ -12,3 +12,12 @@ h1 {
     color:white;
     border-color: black;
 }
+
+.delete-button {
+    background-color: red;
+    color:white;
+}
+
+.icon {
+    display: inline-block;
+}
