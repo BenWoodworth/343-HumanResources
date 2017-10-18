@@ -7,6 +7,10 @@
 <div class="container">
     <h2>Kennuware Employee Table</h2>
     <A class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</A>
+    <A class="btn github-button" role="button" href="https://github.com/BenWoodworth/343-HumanResources">
+        <i class="fa fa-github" aria-hidden="true"></i>
+        Repository
+    </A>
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>
         <tr>

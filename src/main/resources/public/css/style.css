@@ -6,3 +6,9 @@ h1 {
     color: navy;
     margin-left: 20px;
 }
+
+.github-button {
+    background-color: black;
+    color:white;
+    border-color: black;
+}
