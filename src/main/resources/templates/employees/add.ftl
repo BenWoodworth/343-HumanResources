@@ -17,17 +17,17 @@
 
 
                         <div class=" col-md-9 col-lg-9 ">
-                            <form method="post">
+                            <form method="post" name="addUserForm" onsubmit="return validateForm()">
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <td>First name:</td>
+                                        <td>*First name:</td>
                                         <td>
                                             <input type="text" name="firstName"><br>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Last name:</td>
+                                        <td>*Last name:</td>
                                         <td>
                                             <input type="text" name="lastName"><br>
                                         </td>
@@ -40,9 +40,17 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Department:</td>
+                                        <td>*Department:</td>
                                         <td>
-                                            <input type="text" name="department"><br>
+                                            <input type="text" name="department" list="departments" >
+                                            <datalist id="departments">
+                                                <option value="Human Resources">
+                                                <option value="Sales">
+                                                <option value="Accounting">
+                                                <option value="Manufacturing">
+                                                <option value="Customer Support">
+                                            </datalist>
+                                            <br>
                                         </td>
                                     </tr>
 
@@ -89,4 +97,5 @@
         </div>
     </div>
 </div>
+<script src="/js/validation.js"></script>
 </html>

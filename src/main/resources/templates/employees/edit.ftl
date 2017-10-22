@@ -18,11 +18,11 @@
                                                                         src="https://ritpedia.rit.edu/images/0/0f/KennethMartinez.jpg"
                                                                         class="img-circle img-responsive"></div>
 
-                    <form action="submit" method="post">
+                    <form action="submit" method="post" name="addUserForm" onsubmit="return validateForm()">
                         <input type="hidden" name="id" value="${employee.id}">
                         <input type="hidden" name="firstName" value="${employee.firstName}">
                         <input type="hidden" name="lastName" value="${employee.lastName}">
-                        <input type="hidden" name="salary" value="${employee.salary}">
+                        <#--<input type="hidden" name="salary" value="${employee.salary}">-->
 
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
@@ -88,4 +88,5 @@
     </div>
 </div>
 </div>
+<script src="/js/validation.js"></script>
 </html>

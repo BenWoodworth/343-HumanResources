@@ -26,3 +26,8 @@ h2 {
 .icon {
     display: inline-block;
 }
+
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+}
