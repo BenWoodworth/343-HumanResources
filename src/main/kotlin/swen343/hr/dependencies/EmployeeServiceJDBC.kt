@@ -6,7 +6,7 @@ import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
 
-class JdbcEmployeeService : EmployeeService {
+class EmployeeServiceJDBC : EmployeeService {
 
     override fun getEmployee(id: Int): Employee? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -24,7 +24,8 @@ class JdbcEmployeeService : EmployeeService {
             salary: String,
             phoneNumber: String,
             email: String,
-            address: String
+            address: String,
+            picture:String
     ): Employee {
 
         var stmt: Statement? = null

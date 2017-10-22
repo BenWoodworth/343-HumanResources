@@ -5,7 +5,7 @@ import swen343.hr.models.Employee
 /**
  * Created by ben on 10/16/17.
  */
-class DummyEmployeeService : EmployeeService {
+class EmployeeServiceDummy : EmployeeService {
 
     private val employees = mutableListOf<Employee>()
 
@@ -21,7 +21,8 @@ class DummyEmployeeService : EmployeeService {
             salary: String,
             phoneNumber: String,
             email: String,
-            address: String
+            address: String,
+            picture: String
     ): Employee {
         val maxId = employees
                 .map { it.id }
@@ -36,7 +37,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = salary,
                 phoneNumber = phoneNumber,
                 email = email,
-                address = address
+                address = address,
+                picture = picture
         )
 
         employees.add(employee)
@@ -66,7 +68,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "100,000",
                 phoneNumber = "5555555555",
                 email = "john_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://www.rit.edu/gccis//sites/rit.edu.gccis/files//Martinez.jpeg"
         )
 
         addEmployee(
@@ -77,7 +80,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
 
         addEmployee(
@@ -88,7 +92,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "0",
                 phoneNumber = "5555555556",
                 email = "jka1284@example.com",
-                address = "123 Meme."
+                address = "123 Meme.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Ben",
@@ -98,7 +103,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_020",
                 phoneNumber = "5555555558",
                 email = "benwoodworth@ben.woodworth",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Dan",
@@ -108,7 +114,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555559",
                 email = "DadSweetmin@Sweemin.cam",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Beltran",
@@ -118,7 +125,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555560",
                 email = "Beltrin@Beltrain.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Sammi",
@@ -128,7 +136,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "ech@ech.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Jack",
@@ -138,7 +147,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "John",
@@ -148,7 +158,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Bruce",
@@ -158,7 +169,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Jonathan",
@@ -168,7 +180,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Gordon",
@@ -178,7 +191,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Donald",
@@ -188,7 +202,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Clark",
@@ -198,7 +213,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Bojack",
@@ -208,7 +224,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Martin",
@@ -218,7 +235,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "James",
@@ -228,7 +246,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Frank",
@@ -238,7 +257,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Chris",
@@ -248,7 +268,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Solid",
@@ -258,7 +279,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Big",
@@ -268,7 +290,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Ruby",
@@ -278,7 +301,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Ben",
@@ -288,7 +312,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Charlie",
@@ -298,7 +323,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Victor",
@@ -308,7 +334,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
         addEmployee(
                 firstName = "Juliet",
@@ -318,7 +345,8 @@ class DummyEmployeeService : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave."
+                address = "123 Fake Ave.",
+                picture = "https://thumb1.shutterstock.com/display_pic_with_logo/3038285/538707310/stock-vector-empty-photo-of-male-profile-gray-person-picture-isolated-on-white-background-good-unknown-empty-538707310.jpg"
         )
     }
 }
