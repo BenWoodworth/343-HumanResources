@@ -7,10 +7,10 @@ import swen343.hr.dependencies.WebFramework
  * Created by ben on 10/16/17.
  */
 class HumanResources @Inject constructor(
-        private val controller: WebFramework
+        private val webFramework: WebFramework
 ) {
 
     fun start() {
-        controller.initialize()
+        webFramework.initialize()
     }
 }

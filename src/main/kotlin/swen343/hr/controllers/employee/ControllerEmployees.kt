@@ -4,16 +4,15 @@ import com.google.inject.Inject
 import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
-import spark.kotlin.put
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.Employee
-import swen343.hr.viewmodels.EmployeeViewModel
+import swen343.hr.viewmodels.ViewModelEmployee
 
 /**
  * Created by ben on 10/16/17.
  */
-class EmployeesController @Inject constructor(
+class ControllerEmployees @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService
 ) : RouteGroup {
@@ -40,7 +39,7 @@ class EmployeesController @Inject constructor(
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
-                        EmployeeViewModel(employee)
+                        ViewModelEmployee(employee)
 
                 )
             } else {
@@ -97,7 +96,7 @@ class EmployeesController @Inject constructor(
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/profile.ftl",
-                        EmployeeViewModel(employee)
+                        ViewModelEmployee(employee)
 
                 )
             } else {

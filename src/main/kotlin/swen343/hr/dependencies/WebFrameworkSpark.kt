@@ -4,7 +4,7 @@ import com.google.inject.Inject
 import spark.Spark.path
 import spark.kotlin.port
 import spark.kotlin.staticFiles
-import swen343.hr.controllers.IndexController
+import swen343.hr.controllers.ControllerIndex
 
 /**
  * Created by ben on 10/16/17.
@@ -19,6 +19,6 @@ class WebFrameworkSpark @Inject constructor(
 
         staticFiles.location("/public")
 
-        path("", IndexController(templateLoader, employeeService))
+        path("", ControllerIndex(templateLoader, employeeService))
     }
 }

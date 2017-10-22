@@ -10,7 +10,7 @@ import swen343.hr.dependencies.EmployeeService
 /**
  * Created by ben on 10/16/17.
  */
-class ApiController(
+class ControllerApi(
         private val employeeService: EmployeeService
 ) : RouteGroup {
 

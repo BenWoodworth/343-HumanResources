@@ -4,27 +4,26 @@ import com.google.inject.Inject
 import spark.RouteGroup
 import spark.Spark.path
 import spark.kotlin.get
-import spark.kotlin.staticFiles
-import swen343.hr.controllers.api.ApiController
-import swen343.hr.controllers.employee.EmployeesController
+import swen343.hr.controllers.api.ControllerApi
+import swen343.hr.controllers.employee.ControllerEmployees
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
-import swen343.hr.viewmodels.IndexViewModel
+import swen343.hr.viewmodels.ViewModelIndex
 
-class IndexController @Inject constructor(
+class ControllerIndex @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService
 ) : RouteGroup {
 
     override fun addRoutes() {
-        path("/api", ApiController(employeeService))
+        path("/api", ControllerApi(employeeService))
 
-        path("/employees", EmployeesController(templateLoader, employeeService))
+        path("/employees", ControllerEmployees(templateLoader, employeeService))
 
         get("/") {
             templateLoader.loadTemplate(
                     "index.ftl",
-                    IndexViewModel(request.ip(), employeeService.getEmployees())
+                    ViewModelIndex(request.ip(), employeeService.getEmployees())
             )
         }
     }
