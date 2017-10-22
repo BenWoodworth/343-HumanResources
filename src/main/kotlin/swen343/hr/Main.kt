@@ -6,13 +6,13 @@ import swen343.hr.dependencies.EmployeeServiceDummy
 
 fun main(args: Array<String>) {
 
-    val controller = WebFrameworkSpark(
+    val webFramework = WebFrameworkSpark(
             templateLoader = TemplateLoaderResource(),
             employeeService = EmployeeServiceDummy()
     )
 
     val humanResources = HumanResources(
-            controller = controller
+            webFramework = webFramework
     )
 
     humanResources.start()
