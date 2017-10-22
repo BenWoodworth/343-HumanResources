@@ -66,7 +66,8 @@ class EmployeesController(
                     salary = request.queryParams("salary"),
                     phoneNumber = request.queryParams("phoneNumber"),
                     email = request.queryParams("email"),
-                    address = request.queryParams("address")
+                    address = request.queryParams("address"),
+                    picture = request.queryParams("picture")
             )
             response.redirect("/employees/profile/${employee.id}")
         }
@@ -82,7 +83,8 @@ class EmployeesController(
                     salary = request.queryParams("salary"),
                     phoneNumber = request.queryParams("phoneNumber"),
                     email = request.queryParams("email"),
-                    address = request.queryParams("address")
+                    address = request.queryParams("address"),
+                    picture = request.queryParams("picture")
             )
             employeeService.editEmployee(employee)
             response.redirect("/employees/profile/${employee.id}")

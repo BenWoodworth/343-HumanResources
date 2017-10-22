@@ -11,5 +11,6 @@ data class Employee(
         val salary: String,
         val phoneNumber: String,
         val email: String,
-        val address: String
+        val address: String,
+        val picture: String
 )
