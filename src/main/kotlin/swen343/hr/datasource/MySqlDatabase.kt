@@ -3,7 +3,7 @@ package swen343.hr.datasource
 import java.sql.*
 import java.util.Properties
 
-object MySQLDatabase {
+object MySqlDatabase {
 
      var conn: Connection? = null
      var username = "username" // provide the username

@@ -12,6 +12,7 @@ buildscript {
         version_spark = '1.0.0-alpha'
         version_freemarker = '2.3.14'
         version_slf4j = '1.6.1'
+        version_guice = '4.0'
     }
 
     repositories {
@@ -45,6 +46,8 @@ dependencies {
 
     compile "org.slf4j:slf4j-simple:$version_slf4j"
     compile "org.slf4j:slf4j-api:$version_slf4j"
+
+    compile "com.google.inject:guice:$version_guice"
 }
 
 task ktlint(type: JavaExec) {

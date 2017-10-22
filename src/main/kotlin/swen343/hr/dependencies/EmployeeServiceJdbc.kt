@@ -1,12 +1,12 @@
 package swen343.hr.dependencies
 
 import swen343.hr.models.Employee
-import swen343.hr.datasource.MySQLDatabase
+import swen343.hr.datasource.MySqlDatabase
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
 
-class EmployeeServiceJDBC : EmployeeService {
+class EmployeeServiceJdbc : EmployeeService {
 
     override fun getEmployee(id: Int): Employee? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -32,7 +32,7 @@ class EmployeeServiceJDBC : EmployeeService {
         var resultset: ResultSet? = null
 
         try {
-            stmt = MySQLDatabase.conn!!.createStatement()
+            stmt = MySqlDatabase.conn!!.createStatement()
             resultset = stmt!!.executeQuery("INSERT INTO employees(id,firstName,lastName,title,department,salary,phoneNumber,email,address) VALUE(?,?,?,?,?,?,?,?,?);")
 
             if (stmt.execute("INSERT INTO employees(id,firstName,lastName,title,department,salary,phoneNumber,email,address) VALUE(?,?,?,?,?,?,?,?,?);")) {
@@ -65,13 +65,13 @@ class EmployeeServiceJDBC : EmployeeService {
                 stmt = null
             }
 
-            if (MySQLDatabase.conn != null) {
+            if (MySqlDatabase.conn != null) {
                 try {
-                    MySQLDatabase.conn!!.close()
+                    MySqlDatabase.conn!!.close()
                 } catch (sqlEx: SQLException) {
                 }
 
-                MySQLDatabase.conn = null
+                MySqlDatabase.conn = null
             }
         }
 
@@ -84,7 +84,7 @@ class EmployeeServiceJDBC : EmployeeService {
         var resultset: ResultSet? = null
 
         try {
-            stmt = MySQLDatabase.conn!!.createStatement()
+            stmt = MySqlDatabase.conn!!.createStatement()
             resultset = stmt!!.executeQuery("UPDATE employees SET id =employee.id, firstName = ?, lastName = ?, title = ?, department = ?, salary = ?, phoneNumber = ?, email = ?, address = ? ")
 
             if (stmt.execute("UPDATE employees SET id =employee.id, firstName = ?, lastName = ?, title = ?, department = ?, salary = ?, phoneNumber = ?, email = ?, address = ?")) {
@@ -117,13 +117,13 @@ class EmployeeServiceJDBC : EmployeeService {
                 stmt = null
             }
 
-            if (MySQLDatabase.conn != null) {
+            if (MySqlDatabase.conn != null) {
                 try {
-                    MySQLDatabase.conn!!.close()
+                    MySqlDatabase.conn!!.close()
                 } catch (sqlEx: SQLException) {
                 }
 
-                MySQLDatabase.conn = null
+                MySqlDatabase.conn = null
             }
         }
     }
@@ -133,7 +133,7 @@ class EmployeeServiceJDBC : EmployeeService {
         var resultset: ResultSet? = null
 
         try {
-            stmt = MySQLDatabase.conn!!.createStatement()
+            stmt = MySqlDatabase.conn!!.createStatement()
             resultset = stmt!!.executeQuery("DELETE FROM employee [WHERE id=employee.id]")
 
             if (stmt.execute("DELETE FROM employee [WHERE id=employee.id]")) {
@@ -166,13 +166,13 @@ class EmployeeServiceJDBC : EmployeeService {
                 stmt = null
             }
 
-            if (MySQLDatabase.conn != null) {
+            if (MySqlDatabase.conn != null) {
                 try {
-                    MySQLDatabase.conn!!.close()
+                    MySqlDatabase.conn!!.close()
                 } catch (sqlEx: SQLException) {
                 }
 
-                MySQLDatabase.conn = null
+                MySqlDatabase.conn = null
             }
         }
     }

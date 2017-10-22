@@ -1,12 +1,9 @@
-package swen343.hr.controllers
-
-import swen343.hr.dependencies.TemplateLoader
-import java.io.File
+package swen343.hr.dependencies
 
 /**
  * Load FreeMarker template from resources.
  */
-class ResourceTemplateLoader : TemplateLoader {
+class TemplateLoaderResource : TemplateLoader {
 
     private val freemarkerConf = freemarker.template.Configuration().apply {
         setClassForTemplateLoading(javaClass, "/templates")

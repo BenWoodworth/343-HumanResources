@@ -1,5 +1,6 @@
 package swen343.hr.controllers
 
+import com.google.inject.Inject
 import spark.RouteGroup
 import spark.Spark.path
 import spark.kotlin.get
@@ -10,7 +11,7 @@ import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.viewmodels.IndexViewModel
 
-class IndexController(
+class IndexController @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService
 ) : RouteGroup {

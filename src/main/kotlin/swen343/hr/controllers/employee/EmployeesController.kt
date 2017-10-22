@@ -1,5 +1,6 @@
 package swen343.hr.controllers.employee
 
+import com.google.inject.Inject
 import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
@@ -12,7 +13,7 @@ import swen343.hr.viewmodels.EmployeeViewModel
 /**
  * Created by ben on 10/16/17.
  */
-class EmployeesController(
+class EmployeesController @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService
 ) : RouteGroup {

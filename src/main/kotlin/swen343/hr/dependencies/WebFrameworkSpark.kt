@@ -1,19 +1,18 @@
-package swen343.hr.controllers
+package swen343.hr.dependencies
 
+import com.google.inject.Inject
 import spark.Spark.path
 import spark.kotlin.port
 import spark.kotlin.staticFiles
-import swen343.hr.dependencies.Controller
-import swen343.hr.dependencies.EmployeeService
-import swen343.hr.dependencies.TemplateLoader
+import swen343.hr.controllers.IndexController
 
 /**
  * Created by ben on 10/16/17.
  */
-class SparkController(
+class WebFrameworkSpark @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService
-) : Controller {
+) : WebFramework {
 
     override fun initialize() {
         port(1234)
