@@ -25,7 +25,7 @@ class EmployeeServiceJdbc : EmployeeService {
             phoneNumber: String,
             email: String,
             address: String,
-            picture:String
+            picture: String
     ): Employee {
 
         var stmt: Statement? = null

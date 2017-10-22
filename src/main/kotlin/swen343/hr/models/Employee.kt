@@ -1,7 +1,5 @@
 package swen343.hr.models
 
-import java.util.*
-
 data class Employee(
         val id: Int,
         val firstName: String,
