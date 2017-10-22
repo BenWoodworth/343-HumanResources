@@ -16,7 +16,8 @@ interface EmployeeService {
             salary: String,
             phoneNumber: String,
             email: String,
-            address: String
+            address: String,
+            picture: String
     ): Employee
 
     fun editEmployee(employee: Employee)
