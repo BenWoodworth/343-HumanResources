@@ -8,7 +8,7 @@ data class Employee(
         val lastName: String,
         val title: String,
         val department: String,
-        val salary: Int,
+        val salary: String,
         val phoneNumber: String,
         val email: String,
         val address: String

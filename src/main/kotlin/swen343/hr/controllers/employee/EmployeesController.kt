@@ -62,7 +62,8 @@ class EmployeesController(
                     lastName = request.queryParams("lastName"),
                     title = request.queryParams("title"),
                     department = request.queryParams("department"),
-                    salary = request.queryParams("salary").toInt(),
+//                    salary = request.queryParams("salary").toInt(),
+                    salary = request.queryParams("salary"),
                     phoneNumber = request.queryParams("phoneNumber"),
                     email = request.queryParams("email"),
                     address = request.queryParams("address")
@@ -77,7 +78,8 @@ class EmployeesController(
                     lastName = request.queryParams("lastName"),
                     title = request.queryParams("title"),
                     department = request.queryParams("department"),
-                    salary = request.queryParams("salary").replace(",", "").toInt(), //TODO
+//                    salary = request.queryParams("salary").replace(",", "").toInt(),
+                    salary = request.queryParams("salary"),
                     phoneNumber = request.queryParams("phoneNumber"),
                     email = request.queryParams("email"),
                     address = request.queryParams("address")

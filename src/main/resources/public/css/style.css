@@ -7,6 +7,11 @@ h1 {
     margin-left: 20px;
 }
 
+h2 {
+    text-align: center;
+    padding: 20px;
+}
+
 .github-button {
     background-color: black;
     color:white;

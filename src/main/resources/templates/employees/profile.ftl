@@ -5,9 +5,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                <A class="btn btn-primary btn-mid" role="button" href="../edit/${employee.id}" >Edit Profile</A>
-                <A class="btn btn-primary btn-mid" role="button" href="/" >Back</A>
             </div>
+
 
 
 
@@ -61,12 +60,14 @@
 
                             </div>
                         </div>
+
                     </div>
 
-
+                    <A class="btn btn-primary btn-mid" role="button" href="../edit/${employee.id}" >Edit Profile</A>
+                    <A class="btn btn-primary btn-mid" role="button" href="/" >Back</A>
                 </div>
 
-            </div>
+
         </div>
     </div>
 </html>

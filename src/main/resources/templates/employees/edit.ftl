@@ -78,6 +78,7 @@
                         </div>
 
                         <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
+                        <A class="btn github-button" role="button" href="../profile/${employee.id}">Cancel</A>
                     </form>
                 </div>
             </div>

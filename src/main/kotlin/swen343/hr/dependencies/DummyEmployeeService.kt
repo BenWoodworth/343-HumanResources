@@ -18,7 +18,7 @@ class DummyEmployeeService : EmployeeService {
             lastName: String,
             title: String,
             department: String,
-            salary: Int,
+            salary: String,
             phoneNumber: String,
             email: String,
             address: String
@@ -63,7 +63,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Martinez",
                 title = "CEO",
                 department = "IT",
-                salary = 100_000,
+                salary = "100,000",
                 phoneNumber = "5555555555",
                 email = "john_doe@example.com",
                 address = "123 Fake Ave."
@@ -74,7 +74,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Doe",
                 title = "Sales Rep",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -85,7 +85,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Ahn",
                 title = "Professional Memer",
                 department = "HR",
-                salary = 0,
+                salary = "0",
                 phoneNumber = "5555555556",
                 email = "jka1284@example.com",
                 address = "123 Meme."
@@ -95,7 +95,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Woodworth",
                 title = "Development",
                 department = "HR",
-                salary = 80_020,
+                salary = "80_020",
                 phoneNumber = "5555555558",
                 email = "benwoodworth@ben.woodworth",
                 address = "123 Fake Ave."
@@ -105,7 +105,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Swootmin",
                 title = "Senior Citizen",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555559",
                 email = "DadSweetmin@Sweemin.cam",
                 address = "123 Fake Ave."
@@ -115,7 +115,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Caliz",
                 title = "Team Dad",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555560",
                 email = "Beltrin@Beltrain.com",
                 address = "123 Fake Ave."
@@ -125,7 +125,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Bun",
                 title = "Civie",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "ech@ech.com",
                 address = "123 Fake Ave."
@@ -135,7 +135,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Acacia",
                 title = "Arty. Officer",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -145,7 +145,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Lennon",
                 title = "Legendary Guitar-man",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -155,7 +155,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Wayne",
                 title = "Batmin",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -165,7 +165,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Dang",
                 title = "Sales Rep",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -175,7 +175,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Freedude",
                 title = "Crowbar enthuisast",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -185,7 +185,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Troomp",
                 title = "Cheeto Man",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -195,7 +195,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Kant",
                 title = "Not Supermin",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -205,7 +205,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Horseman",
                 title = "Depressed",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -215,7 +215,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Walker",
                 title = "Dead Man",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -225,7 +225,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Gordin",
                 title = "Detective man",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -235,7 +235,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Castle",
                 title = "The Discipliner",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -245,7 +245,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Doe",
                 title = "Sales Rep",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -255,7 +255,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Snake",
                 title = "Philantrophist",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -265,7 +265,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Boss",
                 title = "Big Dad",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -275,7 +275,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Rose",
                 title = "Reaper",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -285,7 +285,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Doo",
                 title = "Hoomin",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -295,7 +295,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "November",
                 title = "CN",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -305,7 +305,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Zulu",
                 title = "VZ",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."
@@ -315,7 +315,7 @@ class DummyEmployeeService : EmployeeService {
                 lastName = "Papa",
                 title = "JP",
                 department = "HR",
-                salary = 80_000,
+                salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
                 address = "123 Fake Ave."

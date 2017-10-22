@@ -13,7 +13,7 @@ interface EmployeeService {
             lastName: String,
             title: String,
             department: String,
-            salary: Int,
+            salary: String,
             phoneNumber: String,
             email: String,
             address: String
