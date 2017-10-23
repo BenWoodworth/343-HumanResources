@@ -1,10 +1,12 @@
 package swen343.hr.dependencies
 
+import com.google.inject.Singleton
 import swen343.hr.models.Employee
 
 /**
  * Created by ben on 10/16/17.
  */
+@Singleton
 class EmployeeServiceDummy : EmployeeService {
 
     private val employees = mutableListOf<Employee>()

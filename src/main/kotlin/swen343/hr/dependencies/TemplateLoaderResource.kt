@@ -1,8 +1,11 @@
 package swen343.hr.dependencies
 
+import com.google.inject.Singleton
+
 /**
  * Load FreeMarker template from resources.
  */
+@Singleton
 class TemplateLoaderResource : TemplateLoader {
 
     private val freemarkerConf = freemarker.template.Configuration().apply {

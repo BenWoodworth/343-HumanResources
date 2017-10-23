@@ -1,7 +1,9 @@
 package swen343.hr.dependencies
 
+import com.google.inject.ImplementedBy
 import swen343.hr.models.Employee
 
+@ImplementedBy(EmployeeServiceJdbc::class)
 interface EmployeeService {
 
     fun getEmployees(): List<Employee>

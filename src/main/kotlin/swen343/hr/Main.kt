@@ -12,21 +12,7 @@ fun main(args: Array<String>) {
 
 private class ModuleHumanResources : Module {
 
-    override fun configure(binder: Binder?) {
-        binder!!
-
-        binder.bind(HrProperties::class.java)
-                .to(HrPropertiesFile::class.java)
-                .asEagerSingleton()
-
-        binder.bind(WebFramework::class.java)
-                .to(WebFrameworkSpark::class.java)
-                .asEagerSingleton()
-
-        binder.bind(TemplateLoader::class.java)
-                .to(TemplateLoaderResource::class.java)
-                .asEagerSingleton()
-    }
+    override fun configure(binder: Binder?) {}
 
     @Provides
     @Singleton

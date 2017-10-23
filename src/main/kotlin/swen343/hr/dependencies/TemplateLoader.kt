@@ -1,8 +1,11 @@
 package swen343.hr.dependencies
 
+import com.google.inject.ImplementedBy
+
 /**
  * Loads FreeMarker templates.
  */
+@ImplementedBy(TemplateLoaderResource::class)
 interface TemplateLoader {
 
     /**

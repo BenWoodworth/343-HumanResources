@@ -1,11 +1,13 @@
 package swen343.hr.dependencies
 
+import com.google.inject.Singleton
 import swen343.hr.models.Employee
 import swen343.hr.datasource.MySqlDatabase
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
 
+@Singleton
 class EmployeeServiceJdbc : EmployeeService {
 
     override fun getEmployee(id: Int): Employee? {
