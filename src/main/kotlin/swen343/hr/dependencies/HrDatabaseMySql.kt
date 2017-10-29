@@ -17,9 +17,9 @@ class HrDatabaseMySql @Inject constructor(
         Class.forName("com.mysql.jdbc.Driver")
 
         connection = DriverManager.getConnection(
-                hrProperties.dbUrl,
-                hrProperties.dbUser,
-                hrProperties.dbPass
+                hrProperties.databaseUrl,
+                hrProperties.databaseUser,
+                hrProperties.databasePass
         )
     }
 }

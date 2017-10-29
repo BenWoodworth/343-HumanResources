@@ -12,7 +12,7 @@ interface HrProperties {
 
     val port: Int
 
-    val dbUrl: String
-    val dbUser: String
-    val dbPass: String
+    val databaseUrl: String
+    val databaseUser: String
+    val databasePass: String
 }
