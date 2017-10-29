@@ -19,7 +19,7 @@
                                                                         class="img-circle img-responsive"></div>
 
                     <form action="submit" method="post" name="addUserForm" onsubmit="return validateForm()">
-                        <input type="hidden" name="id" value="${employee.id}">
+                        <input type="hidden" name="username" value="${employee.usernam}">
                         <input type="hidden" name="firstName" value="${employee.firstName}">
                         <input type="hidden" name="lastName" value="${employee.lastName}">
                         <#--<input type="hidden" name="salary" value="${employee.salary}">-->
@@ -78,7 +78,7 @@
                         </div>
 
                         <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <A class="btn github-button" role="button" href="../profile/${employee.id}">Cancel</A>
+                        <A class="btn github-button" role="button" href="../profile/${employee.username}">Cancel</A>
                     </form>
                 </div>
             </div>

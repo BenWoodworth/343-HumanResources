@@ -25,13 +25,13 @@
         <tbody data-link="row" class="rowlink">
         <#list employees as employee>
         <tr>
-            <td><a href="employees/profile/${employee.id}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.firstName}</a></td>
-            <td><a href="employees/profile/${employee.id}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.lastName}</a></td>
-            <td><a href="employees/profile/${employee.id}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.email}</a></td>
+            <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.firstName}</a></td>
+            <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.lastName}</a></td>
+            <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.email}</a></td>
             <td>
 
-                <button title="Delete employee" onclick="removeEmployee(${employee.id})">-</button>
-                    <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.id}" >
+                <button title="Delete employee" onclick="removeEmployee(${employee.username})">-</button>
+                    <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.username}" >
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </A>
 
