@@ -48,15 +48,16 @@ class EmployeeServiceDummy : EmployeeService {
         return employee
     }
 
-    override fun editEmployee(employee: Employee) {
-        deleteEmployee(employee.id)
-        employees.add(employee)
-    }
 
     override fun deleteEmployee(id: Int) {
         employees.removeIf {
             it.id == id
         }
+    }
+
+    override fun editEmployee(employee: Employee) {
+        deleteEmployee(employee.id)
+        employees.add(employee)
     }
 
     init {
