@@ -10,7 +10,7 @@ import java.sql.Statement
 @Singleton
 class EmployeeServiceJdbc : EmployeeService {
 
-    override fun getEmployee(id: Int): Employee? {
+    override fun getEmployee(username: String): Employee? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -18,17 +18,7 @@ class EmployeeServiceJdbc : EmployeeService {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun addEmployee(
-            firstName: String,
-            lastName: String,
-            title: String,
-            department: String,
-            salary: String,
-            phoneNumber: String,
-            email: String,
-            address: String,
-            picture: String
-    ): Employee {
+    override fun updateEmployee(employee: Employee) {
 
         var stmt: Statement? = null
         var resultset: ResultSet? = null
@@ -80,7 +70,7 @@ class EmployeeServiceJdbc : EmployeeService {
         TODO()
     }
 
-    override fun editEmployee(employee: Employee) {
+    fun editEmployee(employee: Employee) {
 
         var stmt: Statement? = null
         var resultset: ResultSet? = null
@@ -130,7 +120,7 @@ class EmployeeServiceJdbc : EmployeeService {
         }
     }
 
-    override fun deleteEmployee(id: Int) {
+    override fun deleteEmployee(username: String) {
         var stmt: Statement? = null
         var resultset: ResultSet? = null
 

@@ -13,26 +13,7 @@ class V1Controller(
 
     override fun addRoutes() {
 
-        get("/employees/:id") {
-            val id = request.params("id").toIntOrNull()
-            val employee = id?.let { employeeService.getEmployee(id) }
-
-            if (employee == null) {
-                """
-                {
-                    "employee": null
-                }
-                """.trimIndent()
-            } else {
-                """
-                {
-                    "employee": {
-                        "id": ${employee.id},
-                        "salary": ${employee.salary}
-                    }
-                }
-                """.trimIndent()
-            }
+        get("/employees") {
 
         }
     }

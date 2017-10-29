@@ -6,23 +6,29 @@ import swen343.hr.models.Employee
 @ImplementedBy(EmployeeServiceJdbc::class)
 interface EmployeeService {
 
+    /**
+     * Get all the employees.
+     *
+     * @return all the employees
+     */
     fun getEmployees(): List<Employee>
 
-    fun getEmployee(id: Int): Employee?
+    /**
+     * Get an employee.
+     *
+     * @param username the employee's username
+     * @return the employee with the given username, or `null` if it doesn't exist
+     */
+    fun getEmployee(username: String): Employee?
 
-    fun addEmployee(
-            firstName: String,
-            lastName: String,
-            title: String,
-            department: String,
-            salary: String,
-            phoneNumber: String,
-            email: String,
-            address: String,
-            picture: String
-    ): Employee
+    /**
+     * Updates an employee's info, or adds the
+     * employee if it doesn't exist.
+     */
+    fun updateEmployee(employee: Employee)
 
-    fun editEmployee(employee: Employee)
-
-    fun deleteEmployee(id: Int)
+    /**
+     * Deletes an employee.
+     */
+    fun deleteEmployee(username: String)
 }
