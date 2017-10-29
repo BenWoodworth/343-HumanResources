@@ -32,7 +32,7 @@ class EmployeeServiceDummy : EmployeeService {
 
     init {
         updateEmployee(Employee(
-                username = "",
+                username = "kmartinez",
                 firstName = "Kenn",
                 lastName = "Martinez",
                 title = "CEO",
@@ -45,7 +45,7 @@ class EmployeeServiceDummy : EmployeeService {
         ))
 
         updateEmployee(Employee(
-                username = "",
+                username = "janedoe",
                 firstName = "Jane",
                 lastName = "Doe",
                 title = "Sales Rep",
@@ -58,7 +58,7 @@ class EmployeeServiceDummy : EmployeeService {
         ))
 
         updateEmployee(Employee(
-                username = "",
+                username = "jahn",
                 firstName = "John",
                 lastName = "Ahn",
                 title = "Professional Memer",
@@ -71,7 +71,7 @@ class EmployeeServiceDummy : EmployeeService {
         ))
         
         updateEmployee(Employee(
-                username = "",
+                username = "ban",
                 firstName = "Ben",
                 lastName = "Woodworth",
                 title = "Development",
@@ -84,7 +84,7 @@ class EmployeeServiceDummy : EmployeeService {
         ))
         
         updateEmployee(Employee(
-                username = "",
+                username = "dswootman",
                 firstName = "Dan",
                 lastName = "Swootmin",
                 title = "Senior Citizen",
