@@ -44,8 +44,7 @@ class ControllerEmployees @Inject constructor(
                     salary = request.queryParams("salary"),
                     phoneNumber = request.queryParams("phoneNumber"),
                     email = request.queryParams("email"),
-                    address = request.queryParams("address"),
-                    picture = request.queryParams("picture")
+                    address = request.queryParams("address")
             )
             employeeService.updateEmployee(employee)
             response.redirect("/employees/profile/${employee.username}")
@@ -84,8 +83,7 @@ class ControllerEmployees @Inject constructor(
                     salary = request.queryParams("salary"),
                     phoneNumber = request.queryParams("phoneNumber"),
                     email = request.queryParams("email"),
-                    address = request.queryParams("address"),
-                    picture = request.queryParams("picture")
+                    address = request.queryParams("address")
             )
             employeeService.updateEmployee(employee)
             response.redirect("/employees/profile/${employee.username}")
