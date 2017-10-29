@@ -33,31 +33,9 @@ class ControllerEmployees @Inject constructor(
             )
         }
 
-        get("/edit/:id") {
-            val id = request.params("id").toIntOrNull()
-            val employee = id?.let { employeeService.getEmployee(id) }
-            if (employee != null) {
-                templateLoader.loadTemplate(
-                        "/employees/edit.ftl",
-                        ViewModelEmployee(employee)
-
-                )
-            } else {
-
-            }
-        }
-
-        get("/delete/:id") {
-            val id = request.params("id").toIntOrNull()
-            if (id != null) {
-                employeeService.deleteEmployee(id)
-            }
-            response.redirect("/")
-
-        }
-
         post("/add") {
-            val employee = employeeService.addEmployee(
+            val employee = Employee(
+                    username = request.queryParams("username"),
                     firstName = request.queryParams("firstName"),
                     lastName = request.queryParams("lastName"),
                     title = request.queryParams("title"),
@@ -69,12 +47,35 @@ class ControllerEmployees @Inject constructor(
                     address = request.queryParams("address"),
                     picture = request.queryParams("picture")
             )
-            response.redirect("/employees/profile/${employee.id}")
+            employeeService.updateEmployee(employee)
+            response.redirect("/employees/profile/${employee.username}")
+        }
+
+        get("/edit/:username") {
+            val username = request.params("username")
+            val employee = employeeService.getEmployee(username)
+            if (employee != null) {
+                templateLoader.loadTemplate(
+                        "/employees/edit.ftl",
+                        ViewModelEmployee(employee)
+                )
+            } else {
+
+            }
+        }
+
+        get("/delete/:username") {
+            val username = request.params("username")
+            if (username != null) {
+                employeeService.deleteEmployee(username)
+            }
+            response.redirect("/")
+
         }
 
         post("/edit/submit") {
             val employee = Employee(
-                    id = request.queryParams("id").toInt(),
+                    username = request.queryParams("username"),
                     firstName = request.queryParams("firstName"),
                     lastName = request.queryParams("lastName"),
                     title = request.queryParams("title"),
@@ -86,13 +87,14 @@ class ControllerEmployees @Inject constructor(
                     address = request.queryParams("address"),
                     picture = request.queryParams("picture")
             )
-            employeeService.editEmployee(employee)
-            response.redirect("/employees/profile/${employee.id}")
+            employeeService.updateEmployee(employee)
+            response.redirect("/employees/profile/${employee.username}")
         }
 
-        get("/profile/:id") {
-            val id = request.params("id").toIntOrNull()
-            val employee = id?.let { employeeService.getEmployee(id) }
+        get("/profile/:username") {
+            val username = request.params("username")
+            val employee = employeeService.getEmployee(username)
+
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/profile.ftl",
@@ -100,9 +102,8 @@ class ControllerEmployees @Inject constructor(
 
                 )
             } else {
-
+                // TODO (Error page)
             }
-
         }
     }
 }
