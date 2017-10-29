@@ -40,7 +40,7 @@ class EmployeeServiceDummy : EmployeeService {
                 salary = "100,000",
                 phoneNumber = "5555555555",
                 email = "john_doe@example.com",
-                address = "123 Fake Ave.",
+                address = "123 Fake Ave."
         ))
 
         updateEmployee(Employee(
@@ -52,7 +52,7 @@ class EmployeeServiceDummy : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555554",
                 email = "jane_doe@example.com",
-                address = "123 Fake Ave.",
+                address = "123 Fake Ave."
         ))
 
         updateEmployee(Employee(
@@ -64,7 +64,7 @@ class EmployeeServiceDummy : EmployeeService {
                 salary = "0",
                 phoneNumber = "5555555556",
                 email = "jka1284@example.com",
-                address = "123 Meme.",
+                address = "123 Meme."
         ))
         
         updateEmployee(Employee(
@@ -76,7 +76,7 @@ class EmployeeServiceDummy : EmployeeService {
                 salary = "80_020",
                 phoneNumber = "5555555558",
                 email = "benwoodworth@ben.woodworth",
-                address = "123 Fake Ave.",
+                address = "123 Fake Ave."
         ))
         
         updateEmployee(Employee(
@@ -88,7 +88,7 @@ class EmployeeServiceDummy : EmployeeService {
                 salary = "80_000",
                 phoneNumber = "5555555559",
                 email = "DadSweetmin@Sweemin.cam",
-                address = "123 Fake Ave.",
+                address = "123 Fake Ave."
         ))
     }
 }
