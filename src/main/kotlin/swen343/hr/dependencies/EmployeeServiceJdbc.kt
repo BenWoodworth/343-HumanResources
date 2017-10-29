@@ -1,5 +1,6 @@
 package swen343.hr.dependencies
 
+import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.Employee
 import swen343.hr.datasource.MySqlDatabase
@@ -8,7 +9,9 @@ import java.sql.SQLException
 import java.sql.Statement
 
 @Singleton
-class EmployeeServiceJdbc : EmployeeService {
+class EmployeeServiceJdbc @Inject constructor(
+        private val hrDbConnection: HrDbConnection
+) : EmployeeService {
 
     override fun getEmployee(username: String): Employee? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
