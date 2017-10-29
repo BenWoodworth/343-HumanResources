@@ -30,7 +30,7 @@
             <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.email}</a></td>
             <td>
 
-                <button title="Delete employee" onclick="removeEmployee(${employee.username})">-</button>
+                <button title="Delete employee" onclick="removeEmployee('${employee.username}')">-</button>
                     <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.username}" >
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </A>
@@ -40,7 +40,7 @@
             </td>
         </tr>
         </#list>
-        </tbody>
+        </tbody>0
     </table>
 </div>
 <script src="/js/employeeList.js"></script>
