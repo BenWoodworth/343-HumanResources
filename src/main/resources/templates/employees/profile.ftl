@@ -16,7 +16,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=${employee.picture} class="img-circle img-responsive" href="css/style.css"> </div>
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=${employee.picture} width="140" height="180"> </div>
 
 
                             <div class=" col-md-9 col-lg-9 ">
