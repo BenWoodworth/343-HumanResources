@@ -11,4 +11,8 @@ interface HrProperties {
     val development: Boolean
 
     val port: Int
+
+    val databaseUrl: String
+    val databaseUser: String
+    val databasePass: String
 }
