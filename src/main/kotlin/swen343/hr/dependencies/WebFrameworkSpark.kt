@@ -22,6 +22,6 @@ class WebFrameworkSpark @Inject constructor(
 
         staticFiles.location("/public")
 
-        path("", ControllerIndex(templateLoader, employeeService))
+        path("/", ControllerIndex(templateLoader, employeeService))
     }
 }
