@@ -21,6 +21,12 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
+                                        <td>*Username:</td>
+                                        <td>
+                                            <input type="text" name="username"><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>*First name:</td>
                                         <td>
                                             <input type="text" name="firstName"><br>
