@@ -1,9 +1,7 @@
 package swen343.hr
 
 import com.google.inject.*
-import com.google.inject.name.Named
 import swen343.hr.dependencies.*
-import java.sql.Connection
 
 fun main(args: Array<String>) {
     val injector = Guice.createInjector(ModuleHumanResources())
@@ -18,18 +16,14 @@ private class ModuleHumanResources : Module {
 
     @Provides
     @Singleton
-    fun provideEmployeeService(hrProperties: HrProperties): EmployeeService {
+    fun provideEmployeeService(
+            hrProperties: HrProperties
+    ): EmployeeService {
         return if (hrProperties.development) {
             EmployeeServiceDummy()
         } else {
-            EmployeeServiceJdbc()
+            TODO()
+            //EmployeeServiceDatabase(hrDatabase)
         }
     }
-
-//    @Provides
-//    @Singleton
-//    @Named("db-hr")
-//    fun provideConnection(hrProperties: HrProperties): Connection {
-//
-//    }
 }

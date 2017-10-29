@@ -9,7 +9,7 @@ import java.sql.SQLException
 import java.sql.Statement
 
 @Singleton
-class EmployeeServiceJdbc @Inject constructor(
+class EmployeeServiceDatabase @Inject constructor(
         private val hrDatabase: HrDatabase
 ) : EmployeeService {
 
