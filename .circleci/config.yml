@@ -28,6 +28,7 @@ jobs:
     docker:
     - image: circleci/openjdk:8-jdk
     steps:
+    - run: ssh-keyscan hr.kennuware.com >> ~/.ssh/config
     - run: ssh circleci@hr.kennuware.com './deploy.sh' $CIRCLE_BRANCH
 
 workflows:
