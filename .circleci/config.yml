@@ -42,6 +42,8 @@ jobs:
       - run: gradle test
 
   deploy:
+    docker:
+      - image: circleci/openjdk:8-jdk
     steps:
       - run: ssh circleci@hr.kennuware.com './deploy.sh $CIRCLE_BRANCH'
       - run: ssh circleci@hr.kennuware.com 'echo $CIRCLE_BRANCH >> branches.txt'
