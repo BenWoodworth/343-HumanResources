@@ -49,3 +49,4 @@ deployment:
     commands:
       - ssh circleci@hr.kennuware.com './deploy.sh $CIRCLE_BRANCH'
       - ssh circleci@hr.kennuware.com 'echo $CIRCLE_BRANCH >> branches.txt'
+      - echo Deployed!!
