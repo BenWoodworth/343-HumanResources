@@ -41,12 +41,17 @@ jobs:
       # run tests!
       - run: gradle test
 
-    deployment:
-      production:
-        branch:
-          - production
-          - stable
-        commands:
-          - ssh circleci@hr.kennuware.com './deploy.sh $CIRCLE_BRANCH'
-          - ssh circleci@hr.kennuware.com 'echo $CIRCLE_BRANCH >> branches.txt'
-          - echo Deployed!!
+  deploy:
+    steps:
+      - run: ssh circleci@hr.kennuware.com './deploy.sh $CIRCLE_BRANCH'
+      - run: ssh circleci@hr.kennuware.com 'echo $CIRCLE_BRANCH >> branches.txt'
+      - run: echo Deployed!!
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
