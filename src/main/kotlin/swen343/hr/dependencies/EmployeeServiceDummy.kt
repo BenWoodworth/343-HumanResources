@@ -66,7 +66,7 @@ class EmployeeServiceDummy : EmployeeService {
                 email = "jka1284@example.com",
                 address = "123 Meme."
         ))
-        
+
         updateEmployee(Employee(
                 username = "ban",
                 firstName = "Ben",
@@ -78,7 +78,7 @@ class EmployeeServiceDummy : EmployeeService {
                 email = "benwoodworth@ben.woodworth",
                 address = "123 Fake Ave."
         ))
-        
+
         updateEmployee(Employee(
                 username = "dswootman",
                 firstName = "Dan",
