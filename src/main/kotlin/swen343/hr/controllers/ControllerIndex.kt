@@ -22,8 +22,20 @@ class ControllerIndex @Inject constructor(
 
         get("/login") {
             templateLoader.loadTemplate(
-                    "employees/login.ftl",
+                    "index.ftl",
                     ViewModelIndex(request.ip(), employeeService.getEmployees())
+            )
+        }
+        get("/register") {
+            templateLoader.loadTemplate(
+                    "register.ftl",
+                    ViewModelIndex(request.ip(), employeeService.getEmployees())
+            )
+        }
+        get("/router") {
+            templateLoader.loadTemplate(
+                    "employees/router.ftl",
+                    null
             )
         }
         get("/") {

@@ -20,7 +20,7 @@ private class ModuleHumanResources : Module {
             hrProperties: HrProperties,
             employeeServiceJdbcProvider: Provider<EmployeeServiceJdbc>
     ): EmployeeService {
-        return if (hrProperties.dummyServices) {
+        return if (true) { //TODO
             EmployeeServiceDummy()
         } else {
             employeeServiceJdbcProvider.get()
