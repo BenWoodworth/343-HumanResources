@@ -19,6 +19,7 @@
             <th>First</th>
             <th>Last</th>
             <th>Email</th>
+            <th>Department</th>
             <th>Options</th>
         </tr>
         </thead>
@@ -28,6 +29,7 @@
             <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.firstName}</a></td>
             <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.lastName}</a></td>
             <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.email}</a></td>
+            <td><a href="employees/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.department}</a></td>
             <td>
 
                 <button title="Delete employee" onclick="removeEmployee('${employee.username}')">-</button>

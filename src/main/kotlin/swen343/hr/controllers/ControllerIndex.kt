@@ -20,12 +20,6 @@ class ControllerIndex @Inject constructor(
 
         path("/employees", ControllerEmployees(templateLoader, employeeService))
 
-        get("/login") {
-            templateLoader.loadTemplate(
-                    "index.ftl",
-                    null
-            )
-        }
         get("/register") {
             templateLoader.loadTemplate(
                     "register.ftl",
