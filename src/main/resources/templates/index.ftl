@@ -12,8 +12,9 @@
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <A href="/"><button class="btn btn-lg btn-primary btn-block" type="button">Sign in</button></A>
-    </form>
 
+    </form>
+    <A href="register">Need an Account?</A>
 </div>
 </body>
 </html>

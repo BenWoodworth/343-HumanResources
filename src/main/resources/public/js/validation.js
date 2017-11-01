@@ -20,3 +20,25 @@ function validateForm() {
         return false;
     }
 }
+
+function validateRegistration() {
+    var email = document.forms["registrationForm"]["email"].value;
+    var password = document.forms["registrationForm"]["password"].value;
+    var department = document.forms["registrationForm"]["department"].value;
+    if (email == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+    else if (email.indexOf('@') < 0) {
+        alert("Invalid email");
+        return false;
+    }
+    else if (password == "") {
+        alert("Password must be filled out");
+        return false;
+    }
+    else if (department == "") {
+        alert("Please enter a valid department");
+        return false;
+    }
+}
