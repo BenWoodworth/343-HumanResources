@@ -12,7 +12,7 @@ import swen343.hr.models.User
 /**
  * Created by beltran on 11/01/17.
  */
-class ControllerAuthenicate @Inject constructor(
+class ControllerAuthenticate @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val userService: UserService
 ) : RouteGroup {
