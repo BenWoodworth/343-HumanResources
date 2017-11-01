@@ -8,7 +8,11 @@ import com.google.inject.ImplementedBy
 @ImplementedBy(HrPropertiesFile::class)
 interface HrProperties {
 
-    val development: Boolean
-
     val port: Int
+
+    val useDummyServices: Boolean
+
+    val databaseUrl: String
+    val databaseUser: String
+    val databasePass: String
 }
