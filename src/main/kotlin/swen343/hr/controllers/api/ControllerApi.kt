@@ -2,8 +2,7 @@ package swen343.hr.controllers.api
 
 import spark.RouteGroup
 import spark.Spark.path
-import spark.kotlin.get
-import swen343.hr.controllers.api.v1.V1Controller
+import swen343.hr.controllers.api.v1.ControllerV1
 import swen343.hr.dependencies.EmployeeService
 
 /**
@@ -14,6 +13,6 @@ class ControllerApi(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        path("/v1", V1Controller(employeeService))
+        path("/v1", ControllerV1(employeeService))
     }
 }
