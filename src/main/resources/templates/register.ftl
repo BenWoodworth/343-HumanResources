@@ -1,7 +1,7 @@
 <#import "../lib/utils.ftl" as u>
 <html>
 <@u.head/>
-<Title>Create an employee</Title>
+<Title>Registration</Title>
 <div class="container">
     <div class="row">
 
@@ -10,7 +10,7 @@
 
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Create a new employee</h3>
+                    <h3 class="panel-title">Register</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
