@@ -7,15 +7,14 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HrDatabaseMySql @Inject constructor(
-        hrProperties: Config
-) : HrDatabase, Updatable {
+class DatabaseMySql @Inject constructor(
+        hrProperties: Config,
+        databaseMySqlUpdater: DatabaseMySqlUpdater
+) : Database, Updatable {
 
     override val connection: Connection
 
-    override var revision: Int?
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        set(value) {}
+    override var revision: Int? = null
 
     init {
         Class.forName("com.mysql.jdbc.Driver")
@@ -25,5 +24,7 @@ class HrDatabaseMySql @Inject constructor(
                 hrProperties.databaseUser,
                 hrProperties.databasePass
         )
+
+        databaseMySqlUpdater.update(this)
     }
 }

@@ -10,7 +10,7 @@ import java.sql.Statement
 
 @Singleton
 class EmployeeServiceDatabase @Inject constructor(
-        private val hrDatabase: HrDatabase
+        private val database: Database
 ) : EmployeeService {
 
     override fun getEmployee(username: String): Employee? {
@@ -35,7 +35,7 @@ class EmployeeServiceDatabase @Inject constructor(
             }
 
             while (resultset!!.next()) {
-                println(resultset.getString("HrDatabase"))
+                println(resultset.getString("Database"))
             }
         } catch (ex: SQLException) {
             // handle any errors
@@ -87,7 +87,7 @@ class EmployeeServiceDatabase @Inject constructor(
             }
 
             while (resultset!!.next()) {
-                println(resultset.getString("HrDatabase"))
+                println(resultset.getString("Database"))
             }
         } catch (ex: SQLException) {
             // handle any errors
@@ -136,7 +136,7 @@ class EmployeeServiceDatabase @Inject constructor(
             }
 
             while (resultset!!.next()) {
-                println(resultset.getString("HrDatabase"))
+                println(resultset.getString("Database"))
             }
         } catch (ex: SQLException) {
             // handle any errors

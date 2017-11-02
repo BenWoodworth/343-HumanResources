@@ -1,13 +1,14 @@
 package swen343.hr.dependencies
 
 import com.google.inject.ImplementedBy
+import swen343.hr.util.Updatable
 import java.sql.Connection
 
 /**
  * Created by ben on 10/29/17.
  */
-@ImplementedBy(HrDatabaseMySql::class)
-interface HrDatabase {
+@ImplementedBy(DatabaseMySql::class)
+interface Database {
 
     val connection: Connection
 }
