@@ -14,7 +14,7 @@ import swen343.hr.controllers.ControllerIndex
 class WebFrameworkSpark @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
-        private val hrProperties: HrProperties
+        private val hrProperties: Config
 ) : WebFramework {
 
     override fun initialize() {
