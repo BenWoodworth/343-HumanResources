@@ -23,13 +23,21 @@ interface UserService {
     fun getUser(username: String): User?
 
     /**
-     * Updates an [User]'s info. If the provided
-     * [User]'s `id` is null, registers a new [User]
+     * Adds a new [User]. The ID of the provided [User]
+     * will be disregarded, and a new ID will be created.
      *
-     * @param user the [User] to update
+     * @param user the [User] to add
+     * @return the added [User]
+     */
+    fun addUser(user: User): User
+
+    /**
+     * Edits a [User]'s info.
+     *
+     * @param user the [User] to edit
      * @return the updated [User]
      */
-    fun updateUser(user: User): Employee
+    fun editUser(user: User)
 
     /**
      * Deletes a [User].

@@ -17,19 +17,26 @@ interface EmployeeService {
     /**
      * Get an [Employee].
      *
-     * @param user the [Employee]'s user
+     * @param username the [Employee]'s username
      * @return the [Employee] with the given user, or `null` if it doesn't exist
      */
-    fun getEmployee(user: User): Employee?
+    fun getEmployee(username: String): Employee?
 
     /**
-     * Updates an [Employee]'s info. If the provided
-     * [Employee]'s `id` is null, registers a new [Employee]
+     * Adds a new [Employee]. The ID of the provided [Employee]
+     * will be disregarded, and a new ID will be created.
      *
-     * @param employee the [Employee] to update
-     * @return the updated [Employee]
+     * @param employee the [Employee] to add
+     * @return the added [Employee]
      */
-    fun updateEmployee(employee: Employee): Employee
+    fun addEmployee(employee: Employee): Employee
+
+    /**
+     * Edits an [Employee]'s info.
+     *
+     * @param employee the [Employee] to edit
+     */
+    fun editEmployee(employee: Employee)
 
     /**
      * Deletes an [Employee].

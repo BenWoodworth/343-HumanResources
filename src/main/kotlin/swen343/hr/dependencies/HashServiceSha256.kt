@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets
 /**
  * Created by ben on 11/3/17.
  */
-class PasswordHashServiceSha256 : PasswordHashService {
+class HashServiceSha256 : HashService {
 
     private val messageDigest = MessageDigest.getInstance("SHA-256")
 
@@ -15,8 +15,8 @@ class PasswordHashServiceSha256 : PasswordHashService {
     private val salt: String = "j4cKd4dDy" // PASSWORDS WILL
     ///////////////////////////////////////// BE INVALIDATED
 
-    override fun hashPassword(password: String): List<Byte> {
-        val salted = "$salt$password"
+    override fun hash(string: String): List<Byte> {
+        val salted = "$salt$string"
 
         return messageDigest
                 .digest(salted.toByteArray(StandardCharsets.UTF_8))
