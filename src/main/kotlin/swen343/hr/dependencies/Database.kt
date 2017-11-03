@@ -8,7 +8,10 @@ import java.sql.Connection
  * Created by ben on 10/29/17.
  */
 @ImplementedBy(DatabaseMySql::class)
-interface Database {
+interface Database : Connection {
 
+    /**
+     * The connection to the database.
+     */
     val connection: Connection
 }

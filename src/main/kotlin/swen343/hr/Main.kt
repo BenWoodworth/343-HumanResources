@@ -18,7 +18,7 @@ private class ModuleHumanResources : Module {
     @Singleton
     fun provideEmployeeService(
             hrProperties: Config,
-            employeeServiceJdbcProvider: Provider<EmployeeServiceDatabase>
+            employeeServiceJdbcProvider: Provider<EmployeeServiceMySql>
     ): EmployeeService {
         return if (hrProperties.useDummyServices) {
             EmployeeServiceDummy()

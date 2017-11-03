@@ -3,7 +3,7 @@ package swen343.hr.dependencies
 import com.google.inject.ImplementedBy
 import swen343.hr.models.Employee
 
-@ImplementedBy(EmployeeServiceDatabase::class)
+@ImplementedBy(EmployeeServiceMySql::class)
 interface EmployeeService {
 
     /**
