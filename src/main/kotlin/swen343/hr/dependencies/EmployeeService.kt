@@ -2,6 +2,7 @@ package swen343.hr.dependencies
 
 import com.google.inject.ImplementedBy
 import swen343.hr.models.Employee
+import swen343.hr.models.User
 
 @ImplementedBy(EmployeeServiceMySql::class)
 interface EmployeeService {
@@ -19,7 +20,7 @@ interface EmployeeService {
      * @param username the employee's username
      * @return the employee with the given username, or `null` if it doesn't exist
      */
-    fun getEmployee(username: String): Employee?
+    fun getEmployee(user: User): Employee?
 
     /**
      * Updates an employee's info, or adds the

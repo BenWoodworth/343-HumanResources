@@ -33,8 +33,7 @@ class UserServiceDummy : UserService {
     init {
         updateUser(User(
                 username = "admin",
-                password = "admin",
-                employee = null
+                password = "admin"
         ))
     }
 }
