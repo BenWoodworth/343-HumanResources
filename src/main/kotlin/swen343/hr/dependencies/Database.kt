@@ -6,8 +6,11 @@ import java.sql.Connection
 /**
  * Created by ben on 10/29/17.
  */
-@ImplementedBy(HrDatabaseMySql::class)
-interface HrDatabase {
+@ImplementedBy(DatabaseMySql::class)
+interface Database {
 
+    /**
+     * The connection to the database.
+     */
     val connection: Connection
 }
