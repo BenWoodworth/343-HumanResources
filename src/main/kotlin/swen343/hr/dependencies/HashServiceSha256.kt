@@ -1,5 +1,6 @@
 package swen343.hr.dependencies
 
+import com.google.inject.Singleton
 import java.security.MessageDigest
 import java.nio.charset.StandardCharsets
 
@@ -7,6 +8,7 @@ import java.nio.charset.StandardCharsets
 /**
  * Created by ben on 11/3/17.
  */
+@Singleton
 class HashServiceSha256 : HashService {
 
     private val messageDigest = MessageDigest.getInstance("SHA-256")

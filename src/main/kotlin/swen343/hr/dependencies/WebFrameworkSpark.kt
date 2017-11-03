@@ -14,7 +14,8 @@ import swen343.hr.controllers.ControllerIndex
 class WebFrameworkSpark @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
-        private val hrProperties: Config
+        private val hrProperties: Config,
+        private val controllerIndex: ControllerIndex
 ) : WebFramework {
 
     override fun initialize() {
@@ -22,6 +23,6 @@ class WebFrameworkSpark @Inject constructor(
 
         staticFiles.location("/public")
 
-        path("/", ControllerIndex(templateLoader, employeeService))
+        path("/", controllerIndex)
     }
 }

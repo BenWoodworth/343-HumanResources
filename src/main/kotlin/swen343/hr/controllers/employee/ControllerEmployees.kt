@@ -1,6 +1,7 @@
 package swen343.hr.controllers.employee
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
@@ -15,6 +16,7 @@ import swen343.hr.viewmodels.ViewModelEmployee
 /**
  * Created by ben on 10/16/17.
  */
+@Singleton
 class ControllerEmployees @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
@@ -84,7 +86,9 @@ class ControllerEmployees @Inject constructor(
 
         post("/edit/submit") {
             val username = request.queryParams("username")
-            val employee = employeeService.getEmployee(username)
+            val employee = username?.let {
+                employeeService.getEmployee(it)
+            }
 
             if (employee != null) {
                 employeeService.editEmployee(Employee(
@@ -107,7 +111,9 @@ class ControllerEmployees @Inject constructor(
 
         get("/profile/:username") {
             val username = request.params("username")
-            val employee = employeeService.getEmployee(username)
+            val employee = username?.let {
+                employeeService.getEmployee(it)
+            }
 
             if (employee != null) {
                 templateLoader.loadTemplate(
