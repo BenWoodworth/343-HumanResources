@@ -23,13 +23,22 @@ interface EmployeeService {
     fun getEmployee(user: User): Employee?
 
     /**
-     * Updates an employee's info, or adds the
-     * employee if it doesn't exist.
+     * Register a new employee. The ID of the provided employee
+     * will be ignored, and a new ID will be used.
+     * created.
+     *
+     * @param employee the employee to add
+     * @return a the registered employee
+     */
+    fun addEmployee(employee: Employee): Employee
+
+    /**
+     * Updates an employee's info.
      */
     fun updateEmployee(employee: Employee)
 
     /**
      * Deletes an employee.
      */
-    fun deleteEmployee(username: String)
+    fun deleteEmployee(employee: Employee)
 }
