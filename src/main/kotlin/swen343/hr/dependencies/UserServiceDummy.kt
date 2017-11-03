@@ -15,26 +15,26 @@ class UserServiceDummy : UserService {
 
     override fun getUser(username: String): User? {
         return users.firstOrNull {
-            it.email == username
+            it.username == username
         }
     }
 
     override fun updateUser(user: User) {
-        deleteUser(user.email)
+        deleteUser(user.username)
         users.add(user)
     }
 
     override fun deleteUser(username: String) {
         users.removeIf {
-            it.email == username
+            it.username == username
         }
     }
 
     init {
         updateUser(User(
-                email = "admin@kennuware.com",
+                username = "admin",
                 password = "admin",
-                department = "sales"
+                employee = null
         ))
     }
 }
