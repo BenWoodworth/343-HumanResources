@@ -8,7 +8,6 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.User
 
-
 /**
  * Created by beltran on 11/01/17.
  */

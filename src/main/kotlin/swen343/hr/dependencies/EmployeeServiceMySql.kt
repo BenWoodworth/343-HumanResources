@@ -11,9 +11,7 @@ class EmployeeServiceMySql @Inject constructor(
 
     override fun getEmployees(): List<Employee> {
         database.connection.createStatement().executeQuery(
-                """
-                    SELECT * FROM Employees;
-                """
+                "SELECT * FROM Employees;"
         ).use {
             val employees = mutableListOf<Employee>()
             while (it.next()) {
@@ -35,9 +33,7 @@ class EmployeeServiceMySql @Inject constructor(
 
     override fun getEmployee(username: String): Employee? {
         database.connection.prepareStatement(
-                """
-                    SELECT * FROM Employees WHERE username=?;
-                """
+                "SELECT * FROM Employees WHERE username=?;"
         ).apply {
             setString(0, username)
         }.executeQuery().use {
@@ -89,9 +85,7 @@ class EmployeeServiceMySql @Inject constructor(
 
     override fun deleteEmployee(username: String) {
         database.connection.prepareStatement(
-                """
-                    DELETE FROM Employees WHERE username=?;
-                """
+                "DELETE FROM Employees WHERE username=?;"
         ).apply {
             setString(0, username)
         }.execute()
