@@ -17,7 +17,7 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                 CREATE TABLE Users (
                   id            INT           NOT NULL AUTO_INCREMENT,
                   username      VARCHAR(20)   NOT NULL UNIQUE,
-                  passwordHash  VARCHAR(20)   NOT NULL,
+                  passwordHash  BIT(256)      NOT NULL,
                   PRIMARY KEY (id)
                 );
 
