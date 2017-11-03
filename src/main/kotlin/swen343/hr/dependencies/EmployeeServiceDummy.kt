@@ -11,7 +11,7 @@ import swen343.hr.models.User
 @Singleton
 class EmployeeServiceDummy @Inject constructor(
         userService: UserService,
-        hashService: HashService
+        hashProvider: HashProvider
 ) : EmployeeService {
 
     private val employees = mutableListOf<Employee>()
@@ -62,7 +62,7 @@ class EmployeeServiceDummy @Inject constructor(
         addEmployee(Employee(
                 user = userService.addUser(User(
                         username = "kmartinez",
-                        passwordHash = hashService.hash("password")
+                        passwordHash = hashProvider.hash("password")
                 )),
                 firstName = "Kenn",
                 lastName = "Martinez",
@@ -78,7 +78,7 @@ class EmployeeServiceDummy @Inject constructor(
         addEmployee(Employee(
                 user = userService.addUser(User(
                         username = "jacacia",
-                        passwordHash = hashService.hash("password")
+                        passwordHash = hashProvider.hash("password")
                 )),
                 firstName = "Jack",
                 lastName = "Acacia",

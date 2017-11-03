@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets
  * Created by ben on 11/3/17.
  */
 @Singleton
-class HashServiceSha256 : HashService {
+class HashProviderSha256 : HashProvider {
 
     private val messageDigest = MessageDigest.getInstance("SHA-256")
 
