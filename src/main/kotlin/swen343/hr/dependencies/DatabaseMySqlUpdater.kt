@@ -5,33 +5,31 @@ import swen343.hr.util.Updater
 class DatabaseMySqlUpdater : Updater<DatabaseMySql>(
         {
             it.connection.createStatement().executeQuery("""
-                    CREATE TABLE `Employees` (
-                      `username`    varchar(20)   NOT NULL,
-                      `firstName`   varchar(100)  NOT NULL,
-                      `lastName`    varchar(100)  NOT NULL,
-                      `title`       varchar(100)  NOT NULL,
-                      `department`  varchar(100)  NOT NULL,
-                      `salary`      int           NOT NULL,
-                      `phoneNumber` varchar(10)   NOT NULL,
-                      `email`       varchar(100)  NOT NULL,
-                      `address`     varchar(250)  NOT NULL,
-                      PRIMARY KEY (`username`)
-                    );
+                DROP TABLE IF EXISTS `Attributes`;
+                CREATE TABLE Attributes (
+                  attribute   VARCHAR(20)   NOT NULL,
+                  value       VARCHAR(20)   NOT NULL,
+                  PRIMARY KEY (attribute)
+                );
+
+                DROP TABLE IF EXISTS Employees;
+                CREATE TABLE Employees (
+                  username    VARCHAR(20)   NOT NULL,
+                  firstName   VARCHAR(100)  NOT NULL,
+                  lastName    VARCHAR(100)  NOT NULL,
+                  title       VARCHAR(100)  NOT NULL,
+                  department  VARCHAR(100)  NOT NULL,
+                  salary      INT           NOT NULL,
+                  phoneNumber VARCHAR(10)   NOT NULL,
+                  email       VARCHAR(100)  NOT NULL,
+                  address     VARCHAR(250)  NOT NULL,
+                  PRIMARY KEY (username)
+                );
             """)
         }
 ) {
 
-    override fun initialize(updatable: DatabaseMySql) {
-        // Drop all the tables
-
-        val statement = updatable.connection.createStatement()
-
-        val results = statement.executeQuery("""
-            SELECT table_name FROM information_schema.tables;
-        """)
-
-        results // TODO
-    }
+    override fun initialize(updatable: DatabaseMySql) {}
 
     override fun finalize(updatable: DatabaseMySql) {}
 }

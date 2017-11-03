@@ -26,7 +26,7 @@ class ConfigProperties @Inject constructor(
     override var revision: Int?
         get() = properties.getProperty("config-revision")?.toIntOrNull()
         set(value) {
-            properties.setProperty("configRevision", value.toString())
+            properties.setProperty("config-revision", value.toString())
         }
 
     init {
