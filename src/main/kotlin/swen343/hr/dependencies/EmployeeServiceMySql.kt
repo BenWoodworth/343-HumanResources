@@ -6,7 +6,8 @@ import swen343.hr.models.Employee
 
 @Singleton
 class EmployeeServiceMySql @Inject constructor(
-        private val database: DatabaseMySql
+        private val database: DatabaseMySql,
+        private val userService: UserService
 ) : EmployeeService {
 
     override fun getEmployees(): List<Employee> {
@@ -16,12 +17,13 @@ class EmployeeServiceMySql @Inject constructor(
             val employees = mutableListOf<Employee>()
             while (it.next()) {
                 employees += Employee(
-                        username = it.getString("username"),
+                        id = it.getInt("id"),
+                        user = userService.getUser(it.getInt("userId"))!!,
                         firstName = it.getString("firstName"),
                         lastName = it.getString("lastName"),
                         title = it.getString("title"),
                         department = it.getString("department"),
-                        salary = it.getString("salary"),
+                        salary = it.getInt("salary"),
                         phoneNumber = it.getString("phoneNumber"),
                         email = it.getString("email"),
                         address = it.getString("address")
@@ -39,12 +41,13 @@ class EmployeeServiceMySql @Inject constructor(
         }.executeQuery().use {
             return if (!it.next()) {
                 Employee(
-                        username = it.getString("username"),
+                        id = it.getInt("id"),
+                        user = userService.getUser(it.getInt("userId"))!!,
                         firstName = it.getString("firstName"),
                         lastName = it.getString("lastName"),
                         title = it.getString("title"),
                         department = it.getString("department"),
-                        salary = it.getString("salary"),
+                        salary = it.getInt("salary"),
                         phoneNumber = it.getString("phoneNumber"),
                         email = it.getString("email"),
                         address = it.getString("address")
@@ -55,11 +58,16 @@ class EmployeeServiceMySql @Inject constructor(
         }
     }
 
-    override fun updateEmployee(employee: Employee) {
+    override fun addEmployee(employee: Employee): Employee {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun editEmployee(employee: Employee) {
         database.connection.prepareStatement(
                 """
                     REPLACE INTO Employees (
-                      username,
+                      id,
+                      userId,
                       firstName,
                       lastName,
                       title,
@@ -68,26 +76,27 @@ class EmployeeServiceMySql @Inject constructor(
                       phoneNumber,
                       email,
                       address
-                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """
         ).apply {
-            setString(0, employee.username)
-            setString(1, employee.firstName)
-            setString(2, employee.lastName)
-            setString(3, employee.title)
-            setString(4, employee.department)
-            setString(5, employee.salary)
-            setString(6, employee.phoneNumber)
-            setString(7, employee.email)
-            setString(8, employee.address)
+            setInt(0, employee.id)
+            setInt(1, employee.user.id)
+            setString(2, employee.firstName)
+            setString(3, employee.lastName)
+            setString(4, employee.title)
+            setString(5, employee.department)
+            setInt(6, employee.salary)
+            setString(7, employee.phoneNumber)
+            setString(8, employee.email)
+            setString(9, employee.address)
         }.execute()
     }
 
-    override fun deleteEmployee(username: String) {
+    override fun deleteEmployee(employee: Employee) {
         database.connection.prepareStatement(
-                "DELETE FROM Employees WHERE username=?;"
+                "DELETE FROM Employees WHERE id=?;"
         ).apply {
-            setString(0, username)
+            setInt(0, employee.id)
         }.execute()
     }
 }

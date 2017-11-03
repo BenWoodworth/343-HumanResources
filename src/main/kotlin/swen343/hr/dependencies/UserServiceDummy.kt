@@ -21,9 +21,12 @@ class UserServiceDummy @Inject constructor(
                 .toList()
     }
 
+    override fun getUser(id: Int): User? {
+        return users.firstOrNull { it.id == id }
+    }
+
     override fun getUser(username: String): User? {
-        return users
-                .firstOrNull { it.username == username }
+        return users.firstOrNull { it.username == username }
     }
 
     override fun addUser(user: User): User {

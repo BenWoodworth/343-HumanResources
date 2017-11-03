@@ -17,6 +17,14 @@ interface UserService {
     /**
      * Get a [User].
      *
+     * @param id the [User]'s id
+     * @return the [User] with the given id, or `null` if it doesn't exist
+     */
+    fun getUser(id: Int): User?
+
+    /**
+     * Get a [User].
+     *
      * @param username the [User]'s username
      * @return the [User] with the given username, or `null` if it doesn't exist
      */

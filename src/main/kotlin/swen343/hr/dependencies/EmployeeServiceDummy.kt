@@ -23,8 +23,7 @@ class EmployeeServiceDummy @Inject constructor(
     }
 
     override fun getEmployee(username: String): Employee? {
-        return employees
-                .firstOrNull { it.user.username == username }
+        return employees.firstOrNull { it.user.username == username }
     }
 
     override fun addEmployee(employee: Employee): Employee {
