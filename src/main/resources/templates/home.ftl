@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <h2>Kennuware Employee Table</h2>
-    <A class="btn btn-primary btn-mid" role="button"  href="users/add">Add Employee</A>
+    <A class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</A>
     <A class="btn github-button" role="button" href="https://github.com/BenWoodworth/343-HumanResources" style="float: right">
         <i class="fa fa-github" aria-hidden="true"></i>
         Repository
@@ -24,16 +24,16 @@
         </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
-        <#list users as employee>
+        <#list employees as employee>
         <tr>
-            <td><a href="users/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.firstName}</a></td>
-            <td><a href="users/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.lastName}</a></td>
-            <td><a href="users/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.email}</a></td>
-            <td><a href="users/profile/${employee.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.department}</a></td>
+            <td><a href="employees/profile/${employee.user.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.firstName}</a></td>
+            <td><a href="employees/profile/${employee.user.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.lastName}</a></td>
+            <td><a href="employees/profile/${employee.user.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.email}</a></td>
+            <td><a href="employees/profile/${employee.user.username}" title="${employee.firstName} ${employee.lastName}'s profile" >${employee.department}</a></td>
             <td>
 
-                <button title="Delete employee" onclick="removeEmployee('${employee.username}')">-</button>
-                    <A class="btn icon" title="Edit employee" role="button" href="users/edit/${employee.username}" >
+                <button title="Delete employee" onclick="removeEmployee('${employee.user.username}')">-</button>
+                    <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.user.username}" >
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </A>
 

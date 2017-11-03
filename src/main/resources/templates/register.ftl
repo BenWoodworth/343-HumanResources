@@ -21,15 +21,15 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <td>Email:</td>
+                                        <td>Username:</td>
                                         <td>
-                                            <input type="text" name="email"><br>
+                                            <input type="text" name="username"><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Password:</td>
                                         <td>
-                                            <input type="text" name="password"><br>
+                                            <input type="password" name="password"><br>
                                         </td>
                                     </tr>
                                     <tr>

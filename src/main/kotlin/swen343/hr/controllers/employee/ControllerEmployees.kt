@@ -78,7 +78,7 @@ class ControllerEmployees @Inject constructor(
 
             if (employee != null) {
                 employeeService.deleteEmployee(employee)
-                response.redirect("/")
+                response.redirect("/home")
             } else {
                 TODO("Error")
             }
