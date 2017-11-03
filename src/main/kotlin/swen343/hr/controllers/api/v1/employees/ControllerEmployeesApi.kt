@@ -22,4 +22,5 @@ class ControllerEmployeesApi @Inject constructor(
             response.redirect("https://www.rit.edu/gccis/sites/rit.edu.gccis/files/Martinez.jpeg")
         }
     }
+
 }

@@ -14,5 +14,7 @@ class ControllerV1(
 
     override fun addRoutes() {
         Spark.path("/employees", ControllerEmployeesApi(employeeService))
+        Spark.path("/totalBudget", ControllerEmployeesApi(employeeService))
     }
+
 }

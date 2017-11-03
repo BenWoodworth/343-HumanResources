@@ -2,6 +2,7 @@ group 'swen343.hr'
 version '1.0'
 
 apply plugin: 'kotlin'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 buildscript {
     ext {
@@ -14,6 +15,8 @@ buildscript {
         version_slf4j = '1.6.1'
         version_guice = '4.0'
         version_mysql_connector = '5.1.13'
+        version_spek = '1.1.5'
+        version_mockito = '1.10.19'
     }
 
     repositories {
@@ -24,12 +27,15 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
+
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
     }
 }
 
 repositories {
     mavenCentral()
     jcenter()
+    maven { url "http://dl.bintray.com/jetbrains/spek" }
 }
 
 configurations {
@@ -51,6 +57,10 @@ dependencies {
     compile "com.google.inject:guice:$version_guice"
 
     compile "mysql:mysql-connector-java:$version_mysql_connector"
+
+    testCompile "org.jetbrains.spek:spek-api:$version_spek"
+    testRuntime "org.jetbrains.spek:spek-junit-platform-engine:$version_spek"
+    testCompile "org.mockito:mockito-all:$version_mockito"
 }
 
 task ktlint(type: JavaExec) {
@@ -82,4 +92,12 @@ jar {
     }
 
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+junitPlatform {
+    filters {
+        engines {
+            include 'spek'
+        }
+    }
 }
