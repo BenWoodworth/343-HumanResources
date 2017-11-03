@@ -13,9 +13,9 @@ class UserServiceDummy : UserService {
 
     override fun getUsers() = users.toList()
 
-    override fun getUser(email: String): User? {
+    override fun getUser(username: String): User? {
         return users.firstOrNull {
-            it.email == email
+            it.email == username
         }
     }
 
@@ -24,9 +24,9 @@ class UserServiceDummy : UserService {
         users.add(user)
     }
 
-    override fun deleteUser(email: String) {
+    override fun deleteUser(username: String) {
         users.removeIf {
-            it.email == email
+            it.email == username
         }
     }
 
