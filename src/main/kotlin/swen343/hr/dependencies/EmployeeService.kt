@@ -8,37 +8,31 @@ import swen343.hr.models.User
 interface EmployeeService {
 
     /**
-     * Get all the employees.
+     * Get all the [Employee]s.
      *
-     * @return all the employees
+     * @return all the [Employee]s
      */
     fun getEmployees(): List<Employee>
 
     /**
-     * Get an employee.
+     * Get an [Employee].
      *
-     * @param username the employee's username
-     * @return the employee with the given username, or `null` if it doesn't exist
+     * @param user the [Employee]'s user
+     * @return the [Employee] with the given user, or `null` if it doesn't exist
      */
     fun getEmployee(user: User): Employee?
 
     /**
-     * Register a new employee. The ID of the provided employee
-     * will be ignored, and a new ID will be used.
-     * created.
+     * Updates an [Employee]'s info. If the provided
+     * [Employee]'s `id` is null, registers a new [Employee]
      *
-     * @param employee the employee to add
-     * @return a the registered employee
+     * @param employee the [Employee] to update
+     * @return the updated [Employee]
      */
-    fun addEmployee(employee: Employee): Employee
+    fun updateEmployee(employee: Employee): Employee
 
     /**
-     * Updates an employee's info.
-     */
-    fun updateEmployee(employee: Employee)
-
-    /**
-     * Deletes an employee.
+     * Deletes an [Employee].
      */
     fun deleteEmployee(employee: Employee)
 }

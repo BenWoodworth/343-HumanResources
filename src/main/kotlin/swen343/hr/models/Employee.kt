@@ -1,7 +1,7 @@
 package swen343.hr.models
 
 data class Employee(
-        val id: Int = -1,
+        val id: Int?,
         val user: User,
         val firstName: String,
         val lastName: String,

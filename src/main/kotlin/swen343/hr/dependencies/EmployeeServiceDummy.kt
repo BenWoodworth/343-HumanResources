@@ -15,7 +15,7 @@ class EmployeeServiceDummy : EmployeeService {
 
     override fun getEmployee(username: String): Employee? {
         return employees.firstOrNull {
-            it.username == username
+            it.user.username == username
         }
     }
 
