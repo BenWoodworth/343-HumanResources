@@ -13,6 +13,7 @@ buildscript {
         version_freemarker = '2.3.14'
         version_slf4j = '1.6.1'
         version_guice = '4.0'
+        version_mysql_connector = '5.1.13'
     }
 
     repositories {
@@ -48,6 +49,8 @@ dependencies {
     compile "org.slf4j:slf4j-api:$version_slf4j"
 
     compile "com.google.inject:guice:$version_guice"
+
+    compile "mysql:mysql-connector-java:$version_mysql_connector"
 }
 
 task ktlint(type: JavaExec) {

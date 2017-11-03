@@ -1,4 +1,4 @@
-<#import "../lib/utils.ftl" as u>
+<#import "lib/utils.ftl" as u>
 <html>
 <@u.head/>
 <Title>Registration</Title>
@@ -10,83 +10,35 @@
 
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Register</h3>
+                    <h3 class="panel-title">Register to KennUWare</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
 
 
                         <div class=" col-md-9 col-lg-9 ">
-                            <form method="post" name="addUserForm" onsubmit="return validateForm()">
+                            <form method="post" name="registrationForm" onsubmit="return validateRegistration()">
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <td>*Username:</td>
+                                        <td>Username:</td>
                                         <td>
                                             <input type="text" name="username"><br>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>*First name:</td>
+                                        <td>Password:</td>
                                         <td>
-                                            <input type="text" name="firstName"><br>
+                                            <input type="password" name="password"><br>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>*Last name:</td>
+                                        <td>Department:</td>
                                         <td>
-                                            <input type="text" name="lastName"><br>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Title:</td>
-                                        <td>
-                                            <input type="text" name="title"><br>
+                                            <input type="text" name="department"><br>
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td>*Department:</td>
-                                        <td>
-                                            <input type="text" name="department" list="departments" >
-                                            <datalist id="departments">
-                                                <option value="Human Resources">
-                                                <option value="Sales">
-                                                <option value="Accounting">
-                                                <option value="Manufacturing">
-                                                <option value="Customer Support">
-                                            </datalist>
-                                            <br>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Salary</td>
-                                        <td>
-                                            <input type="text" name="salary"><br>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Phone Number:</td>
-                                        <td>
-                                            <input type="text" name="phoneNumber"><br>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Email:</td>
-                                        <td>
-                                            <input type="text" name="email"><br>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Address:</td>
-                                        <td>
-                                            <input type="text" name="address"><br>
-                                        </td>
-                                    </tr>
 
                                     </tbody>
                                 </table>

@@ -12,25 +12,11 @@ fun main(args: Array<String>) {
 
 private class ModuleHumanResources : Module {
 
-    override fun configure(binder: Binder?) {}
-
-    @Provides
-    @Singleton
-    fun provideEmployeeService(
-            hrProperties: HrProperties,
-            employeeServiceJdbcProvider: Provider<EmployeeServiceJdbc>
-    ): EmployeeService {
-        return if (hrProperties.useDummyServices) {
-            EmployeeServiceDummy()
-        } else {
-            employeeServiceJdbcProvider.get()
+    override fun configure(binder: Binder?) {
+        binder?.apply {
+            // TODO Bind based off the "useDummyServices" config option
+            bind(EmployeeService::class.java).to(EmployeeServiceDummy::class.java)
+            bind(UserService::class.java).to(UserServiceDummy::class.java)
         }
     }
-
-//    @Provides
-//    @Singleton
-//    @Named("db-hr")
-//    fun provideConnection(hrProperties: HrProperties): Connection {
-//
-//    }
 }

@@ -1,93 +1,92 @@
 package swen343.hr.dependencies
 
+import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.Employee
+import swen343.hr.models.User
 
 /**
  * Created by ben on 10/16/17.
  */
 @Singleton
-class EmployeeServiceDummy : EmployeeService {
+class EmployeeServiceDummy @Inject constructor(
+        userService: UserService,
+        hashProvider: HashProvider
+) : EmployeeService {
 
     private val employees = mutableListOf<Employee>()
 
-    override fun getEmployees() = employees.toList()
+    override fun getEmployees(): List<Employee> {
+        return employees
+                .sortedBy { it.id }
+                .toList()
+    }
 
     override fun getEmployee(username: String): Employee? {
-        return employees.firstOrNull {
-            it.username == username
-        }
+        return employees.firstOrNull { it.user.username == username }
     }
 
-    override fun updateEmployee(employee: Employee) {
-        deleteEmployee(employee.username)
-        employees.add(employee)
+    override fun addEmployee(employee: Employee): Employee {
+        val maxId = employees
+                .maxBy { it.id }
+                ?.id ?: -1
+
+        val newEmployee = Employee(
+                id = maxId + 1,
+                user = employee.user,
+                firstName = employee.firstName,
+                lastName = employee.lastName,
+                title = employee.title,
+                department = employee.department,
+                salary = employee.salary,
+                phoneNumber = employee.phoneNumber,
+                email = employee.email,
+                address = employee.address
+        )
+
+        employees += newEmployee
+
+        return newEmployee
     }
 
-    override fun deleteEmployee(username: String) {
-        employees.removeIf {
-            it.username == username
-        }
+    override fun editEmployee(employee: Employee) {
+        employees.removeIf { it.id == employee.id }
+        employees += employee
+    }
+
+    override fun deleteEmployee(employee: Employee) {
+        employees.removeIf { it.id == employee.id }
     }
 
     init {
-        updateEmployee(Employee(
-                username = "kmartinez",
+        addEmployee(Employee(
+                user = userService.addUser(User(
+                        username = "kmartinez",
+                        passwordHash = hashProvider.hash("password")
+                )),
                 firstName = "Kenn",
                 lastName = "Martinez",
                 title = "CEO",
                 department = "IT",
-                salary = "100,000",
+                salary = 100_000,
                 phoneNumber = "5555555555",
                 email = "john_doe@example.com",
                 address = "123 Fake Ave."
         ))
 
-        updateEmployee(Employee(
-                username = "janedoe",
-                firstName = "Jane",
-                lastName = "Doe",
-                title = "Sales Rep",
-                department = "HR",
-                salary = "80_000",
-                phoneNumber = "5555555554",
-                email = "jane_doe@example.com",
-                address = "123 Fake Ave."
-        ))
 
-        updateEmployee(Employee(
-                username = "jahn",
-                firstName = "John",
-                lastName = "Ahn",
-                title = "Professional Memer",
-                department = "HR",
-                salary = "0",
-                phoneNumber = "5555555556",
-                email = "jka1284@example.com",
-                address = "123 Meme."
-        ))
-
-        updateEmployee(Employee(
-                username = "ban",
-                firstName = "Ben",
-                lastName = "Woodworth",
-                title = "Development",
-                department = "HR",
-                salary = "80_020",
-                phoneNumber = "5555555558",
-                email = "benwoodworth@ben.woodworth",
-                address = "123 Fake Ave."
-        ))
-
-        updateEmployee(Employee(
-                username = "dswootman",
-                firstName = "Dan",
-                lastName = "Swootmin",
-                title = "Senior Citizen",
-                department = "HR",
-                salary = "80_000",
-                phoneNumber = "5555555559",
-                email = "DadSweetmin@Sweemin.cam",
+        addEmployee(Employee(
+                user = userService.addUser(User(
+                        username = "jacacia",
+                        passwordHash = hashProvider.hash("password")
+                )),
+                firstName = "Jack",
+                lastName = "Acacia",
+                title = "Dad",
+                department = "Dadology",
+                salary = 10_000_000,
+                phoneNumber = "5555555555",
+                email = "john_doe@example.com",
                 address = "123 Fake Ave."
         ))
     }
