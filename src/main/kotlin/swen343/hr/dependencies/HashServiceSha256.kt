@@ -4,7 +4,6 @@ import com.google.inject.Singleton
 import java.security.MessageDigest
 import java.nio.charset.StandardCharsets
 
-
 /**
  * Created by ben on 11/3/17.
  */

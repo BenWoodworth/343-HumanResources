@@ -7,7 +7,6 @@ import spark.kotlin.get
 import spark.kotlin.post
 import swen343.hr.dependencies.HashService
 import swen343.hr.dependencies.UserService
-import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.User
 
 /**

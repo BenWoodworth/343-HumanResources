@@ -74,7 +74,6 @@ class EmployeeServiceDummy @Inject constructor(
                 address = "123 Fake Ave."
         ))
 
-
         addEmployee(Employee(
                 user = userService.addUser(User(
                         username = "jacacia",
