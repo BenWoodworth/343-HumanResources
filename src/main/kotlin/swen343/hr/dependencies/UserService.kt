@@ -3,7 +3,7 @@ package swen343.hr.dependencies
 import com.google.inject.ImplementedBy
 import swen343.hr.models.User
 
-@ImplementedBy(UserServiceDummy::class)
+@ImplementedBy(UserServiceMySql::class)
 interface UserService {
 
     /**

@@ -22,7 +22,7 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                 CREATE TABLE Users (
                   id            INT           NOT NULL AUTO_INCREMENT,
                   username      VARCHAR(20)   NOT NULL UNIQUE,
-                  passwordHash  VARCHAR(44)    NOT NULL,
+                  passwordHash  VARCHAR(44)   NOT NULL,
                   PRIMARY KEY (id)
                 );
             """

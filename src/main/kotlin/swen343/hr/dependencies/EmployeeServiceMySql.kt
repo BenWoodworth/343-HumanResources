@@ -41,7 +41,7 @@ class EmployeeServiceMySql @Inject constructor(
         ).apply {
             setString(1, username)
         }.executeQuery().use {
-            return if (!it.next()) {
+            return if (it.next()) {
                 Employee(
                         id = it.getInt("id"),
                         user = userService.getUser(it.getInt("userId"))!!,
