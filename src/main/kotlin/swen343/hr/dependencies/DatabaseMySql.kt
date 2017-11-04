@@ -21,7 +21,7 @@ class DatabaseMySql @Inject constructor(
                 connection.createStatement().executeQuery(
                         "SELECT value FROM Attributes WHERE attribute='revision';"
                 ).use {
-                    if (!it.next()) {
+                    if (it.next()) {
                         return it.getString("value").toInt()
                     }
                 }

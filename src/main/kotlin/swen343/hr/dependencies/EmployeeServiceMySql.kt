@@ -37,7 +37,11 @@ class EmployeeServiceMySql @Inject constructor(
 
     override fun getEmployee(username: String): Employee? {
         database.connection.prepareStatement(
-                "SELECT * FROM Employees WHERE username=?;"
+                """
+                        SELECT Employees.* FROM Employees
+                          JOIN Users ON Employees.userId=Users.id
+                          WHERE Users.username=?;
+                """
         ).apply {
             setString(1, username)
         }.executeQuery().use {
