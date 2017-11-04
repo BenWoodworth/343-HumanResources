@@ -7,21 +7,25 @@ import spark.Spark.path
 import spark.kotlin.get
 import swen343.hr.controllers.api.ControllerApi
 import swen343.hr.controllers.employees.ControllerEmployees
+import swen343.hr.controllers.login.ControllerLogin
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
+import swen343.hr.models.User
 
 @Singleton
 class ControllerIndex @Inject constructor(
         private val templateLoader: TemplateLoader,
-        private val employeeService: EmployeeService,
         private val controllerApi: ControllerApi,
-        private val controllerEmployees: ControllerEmployees
+        private val controllerEmployees: ControllerEmployees,
+        private val controllerLogin: ControllerLogin
 ) : RouteGroup {
 
     override fun addRoutes() {
         path("/api", controllerApi)
 
         path("/employees", controllerEmployees)
+
+        path("/login", controllerLogin)
 
         get("/silos") {
             templateLoader.loadTemplate(
@@ -38,10 +42,16 @@ class ControllerIndex @Inject constructor(
         }
 
         get("/") {
-            templateLoader.loadTemplate(
-                    "login.ftl",
-                    null
-            )
+            val user = session().attribute<User?>("user")
+
+            if (user == null) {
+                """
+                    You are not logged in!<br>
+                    Please <a href="/login">login</a>.
+                """
+            } else {
+                "Welcome back, ${user.username}!"
+            }
         }
     }
 }

@@ -31,7 +31,7 @@
 
                                     <tr>
                                         <td>Salary</td>
-                                        <td>${employee.salary}</td>
+                                        <td>${salary}</td>
                                     </tr>
 
                                     <tr>
