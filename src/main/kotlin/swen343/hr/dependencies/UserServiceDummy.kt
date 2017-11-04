@@ -9,7 +9,7 @@ import swen343.hr.models.User
  */
 @Singleton
 class UserServiceDummy @Inject constructor(
-        hashService: HashService
+        hashProvider: HashProvider
 ) : UserService {
 
     private val users = mutableListOf<User>()
@@ -56,12 +56,12 @@ class UserServiceDummy @Inject constructor(
     init {
         addUser(User(
                 username = "admin",
-                passwordHash = hashService.hash("password")
+                passwordHash = hashProvider.hash("password")
         ))
 
         addUser(User(
                 username = "dummy",
-                passwordHash = hashService.hash("password")
+                passwordHash = hashProvider.hash("password")
         ))
     }
 }

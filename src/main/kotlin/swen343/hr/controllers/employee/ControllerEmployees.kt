@@ -6,7 +6,7 @@ import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
 import swen343.hr.dependencies.EmployeeService
-import swen343.hr.dependencies.HashService
+import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
@@ -21,7 +21,7 @@ class ControllerEmployees @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
         private val userService: UserService,
-        private val hashService: HashService
+        private val hashProvider: HashProvider
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -43,7 +43,7 @@ class ControllerEmployees @Inject constructor(
             val employee = employeeService.addEmployee(Employee(
                     user = userService.addUser(User(
                             username = request.queryParams("username"),
-                            passwordHash = hashService.hash(request.queryParams("password"))
+                            passwordHash = hashProvider.hash(request.queryParams("password"))
                     )),
                     firstName = request.queryParams("firstName"),
                     lastName = request.queryParams("lastName"),
@@ -78,7 +78,7 @@ class ControllerEmployees @Inject constructor(
 
             if (employee != null) {
                 employeeService.deleteEmployee(employee)
-                response.redirect("/")
+                response.redirect("/home")
             } else {
                 TODO("Error")
             }

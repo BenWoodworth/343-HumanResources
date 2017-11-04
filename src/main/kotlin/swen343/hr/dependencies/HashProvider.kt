@@ -5,8 +5,8 @@ import com.google.inject.ImplementedBy
 /**
  * Created by ben on 11/3/17.
  */
-@ImplementedBy(HashServiceSha256::class)
-interface HashService {
+@ImplementedBy(HashProviderSha256::class)
+interface HashProvider {
 
     fun hash(string: String): String
 }

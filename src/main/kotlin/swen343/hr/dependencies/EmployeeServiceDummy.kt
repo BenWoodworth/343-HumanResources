@@ -31,9 +31,22 @@ class EmployeeServiceDummy @Inject constructor(
                 .map { it.id }
                 .maxBy { it + 1 } ?: 0
 
-        return employee.copy(id = id).also {
-            employees += it
-        }
+        val newEmployee = Employee(
+                id = id,
+                user = employee.user,
+                firstName = employee.firstName,
+                lastName = employee.lastName,
+                title = employee.title,
+                department = employee.department,
+                salary = employee.salary,
+                phoneNumber = employee.phoneNumber,
+                email = employee.email,
+                address = employee.address
+        )
+
+        employees += newEmployee
+
+        return newEmployee
     }
 
     override fun editEmployee(employee: Employee) {
@@ -60,6 +73,7 @@ class EmployeeServiceDummy @Inject constructor(
                 email = "john_doe@example.com",
                 address = "123 Fake Ave."
         ))
+
 
         addEmployee(Employee(
                 user = userService.addUser(User(
