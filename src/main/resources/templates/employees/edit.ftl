@@ -18,15 +18,26 @@
                                                                         src="https://ritpedia.rit.edu/images/0/0f/KennethMartinez.jpg"
                                                                         class="img-circle img-responsive"></div>
 
-                    <form action="submit" method="post" name="addUserForm" onsubmit="return validateForm()">
+                    <form action="submit" method="post" name="addUserForm" onsubmit="validateForm()">
                         <input type="hidden" name="username" value="${employee.user.username}">
-                        <input type="hidden" name="firstName" value="${employee.firstName}">
-                        <input type="hidden" name="lastName" value="${employee.lastName}">
-                        <#--<input type="hidden" name="salary" value="${employee.salary}">-->
 
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
+
+                                <tr>
+                                    <td>First name:</td>
+                                    <td>
+                                        <input type="text" name="firstName" value="${employee.firstName}">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Last name:</td>
+                                    <td>
+                                        <input type="text" name="lastName" value="${employee.lastName}">
+                                    </td>
+                                </tr>
 
                                 <tr>
                                     <td>Title:</td>
@@ -66,7 +77,7 @@
                                 <tr>
                                     <td>Email:</td>
                                     <td>
-                                        <input type="text" name="email" value="${employee.email}"><br>
+                                        <input type="email" name="email" value="${employee.email}"><br>
                                     </td>
                                 </tr>
 
@@ -78,7 +89,7 @@
                         </div>
 
                         <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <A class="btn github-button" role="button" href="../profile/${employee.user.username}">Cancel</A>
+                        <a class="btn github-button" role="button" href="../profile/${employee.user.username}">Cancel</a>
                     </form>
                 </div>
             </div>
