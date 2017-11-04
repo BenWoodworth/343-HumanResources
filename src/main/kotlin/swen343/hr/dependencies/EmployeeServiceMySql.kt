@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.Employee
 import java.sql.Statement
+import java.util.*
 
 @Singleton
 class EmployeeServiceMySql @Inject constructor(
@@ -38,7 +39,7 @@ class EmployeeServiceMySql @Inject constructor(
         database.connection.prepareStatement(
                 "SELECT * FROM Employees WHERE username=?;"
         ).apply {
-            setString(0, username)
+            setString(1, username)
         }.executeQuery().use {
             return if (!it.next()) {
                 Employee(
@@ -116,16 +117,16 @@ class EmployeeServiceMySql @Inject constructor(
                     ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """
         ).apply {
-            setInt(0, employee.id)
-            setInt(1, employee.user.id)
-            setString(2, employee.firstName)
-            setString(3, employee.lastName)
-            setString(4, employee.title)
-            setString(5, employee.department)
-            setInt(6, employee.salary)
-            setString(7, employee.phoneNumber)
-            setString(8, employee.email)
-            setString(9, employee.address)
+            setInt(1, employee.id)
+            setInt(2, employee.user.id)
+            setString(3, employee.firstName)
+            setString(4, employee.lastName)
+            setString(5, employee.title)
+            setString(6, employee.department)
+            setInt(7, employee.salary)
+            setString(8, employee.phoneNumber)
+            setString(9, employee.email)
+            setString(10, employee.address)
         }.execute()
     }
 
@@ -133,7 +134,7 @@ class EmployeeServiceMySql @Inject constructor(
         database.connection.prepareStatement(
                 "DELETE FROM Employees WHERE id=?;"
         ).apply {
-            setInt(0, employee.id)
+            setInt(1, employee.id)
         }.execute()
     }
 }

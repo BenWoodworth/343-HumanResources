@@ -3,6 +3,7 @@ package swen343.hr.dependencies
 import swen343.hr.util.Updatable
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.SQLException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,21 +17,26 @@ class DatabaseMySql @Inject constructor(
 
     override var revision: Int?
         get() {
-            connection.createStatement().executeQuery(
-                    "SELECT value FROM Attributes WHERE attribute=revision;"
-            ).use {
-                return if (!it.next()) {
-                    it.getString("value").toInt()
-                } else {
-                    null
+            try {
+                connection.createStatement().executeQuery(
+                        "SELECT value FROM Attributes WHERE attribute=revision;"
+                ).use {
+                    if (!it.next()) {
+                        return it.getString("value").toInt()
+                    }
                 }
-            }
+            } catch (exception: SQLException) {}
+
+            return null
         }
         set(value) {
             connection.prepareStatement(
-                    "SELECT * FROM Attributes WHERE username=?;"
+                    """
+                    REPLACE INTO Attributes (value)
+                      VALUES('revision', ?);
+                """
             ).apply {
-                setString(0, value?.toString())
+                setString(1, value?.toString())
             }.execute()
         }
 

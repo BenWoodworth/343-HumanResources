@@ -3,6 +3,7 @@ package swen343.hr.dependencies
 import com.google.inject.Singleton
 import java.security.MessageDigest
 import java.nio.charset.StandardCharsets
+import java.util.*
 
 /**
  * Created by ben on 11/3/17.
@@ -16,11 +17,13 @@ class HashServiceSha256 : HashService {
     private val salt: String = "j4cKd4dDy" // PASSWORDS WILL
     ///////////////////////////////////////// BE INVALIDATED
 
-    override fun hash(string: String): List<Byte> {
+    override fun hash(string: String): String {
         val salted = "$salt$string"
 
-        return messageDigest
-                .digest(salted.toByteArray(StandardCharsets.UTF_8))
-                .toList()
+        val digest =  messageDigest.digest(
+                salted.toByteArray(StandardCharsets.UTF_8)
+        )
+
+        return String(Base64.getEncoder().encode(digest))
     }
 }
