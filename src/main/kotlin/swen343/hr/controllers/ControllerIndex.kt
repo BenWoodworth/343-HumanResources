@@ -7,8 +7,7 @@ import spark.Spark.path
 import spark.kotlin.get
 import swen343.hr.controllers.api.ControllerApi
 import swen343.hr.controllers.employees.ControllerEmployees
-import swen343.hr.controllers.login.ControllerLogin
-import swen343.hr.dependencies.EmployeeService
+import swen343.hr.controllers.auth.ControllerAuth
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.User
 
@@ -17,7 +16,7 @@ class ControllerIndex @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val controllerApi: ControllerApi,
         private val controllerEmployees: ControllerEmployees,
-        private val controllerLogin: ControllerLogin
+        private val controllerAuth: ControllerAuth
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -25,7 +24,7 @@ class ControllerIndex @Inject constructor(
 
         path("/employees", controllerEmployees)
 
-        path("/login", controllerLogin)
+        path("/auth", controllerAuth)
 
         get("/silos") {
             templateLoader.loadTemplate(
@@ -47,10 +46,13 @@ class ControllerIndex @Inject constructor(
             if (user == null) {
                 """
                     You are not logged in!<br>
-                    Please <a href="/login">login</a>.
+                    Please <a href="/auth/login">login</a> or <a href="/auth/register">register</a>.
                 """
             } else {
-                "Welcome back, ${user.username}!"
+                """
+                    Welcome back, ${user.username}!<br>
+                    <a href="/auth/sign-out">Sign out</a>.
+                """
             }
         }
     }

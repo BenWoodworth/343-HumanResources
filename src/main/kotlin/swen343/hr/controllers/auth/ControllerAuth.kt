@@ -1,4 +1,4 @@
-package swen343.hr.controllers.login
+package swen343.hr.controllers.auth
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
@@ -14,7 +14,7 @@ import swen343.hr.models.User
  * Created by beltran on 11/01/17.
  */
 @Singleton
-class ControllerLogin @Inject constructor(
+class ControllerAuth @Inject constructor(
         private val userService: UserService,
         private val hashProvider: HashProvider,
         private val templateLoader: TemplateLoader
@@ -23,10 +23,14 @@ class ControllerLogin @Inject constructor(
     override fun addRoutes() {
 
         get("") {
+            response.redirect("./login")
+        }
+
+        get("/login") {
             templateLoader.loadTemplate("/login/login.ftl")
         }
 
-        post("") {
+        post("/login") {
             val username = request.queryParams("username")
             val password = request.queryParams("password")
 
@@ -34,21 +38,31 @@ class ControllerLogin @Inject constructor(
             val user = userService.getUser(username)
 
             if (user?.passwordHash != passwordHash) {
-                response.redirect("/login") // TODO Invalid login message
+                response.redirect("/auth") // TODO Invalid login message
             } else {
-                request.session(true).apply {
+                session().apply {
                     attribute("user", user)
                 }
                 response.redirect("/")
             }
         }
 
+        get("/sign-out") {
+            session().removeAttribute("user")
+            response.redirect("/")
+        }
+
+        get("/register") {
+            templateLoader.loadTemplate("/auth/register.ftl")
+        }
+
         post("/register") {
-            userService.addUser(User(
+            val user = userService.addUser(User(
                     username = request.queryParams("username"),
                     passwordHash = hashProvider.hash(request.queryParams("password"))
             ))
-            response.redirect("/home")
+            session().attribute("user", user)
+            response.redirect("/")
         }
     }
 }
