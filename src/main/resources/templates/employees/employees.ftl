@@ -1,4 +1,4 @@
-<#import "lib/utils.ftl" as u>
+<#import "../lib/utils.ftl" as u>
 
 
 <html>
@@ -7,12 +7,8 @@
 <body>
 <div class="container">
     <h2>Kennuware Employee Table</h2>
-    <A class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</A>
-    <A class="btn github-button" role="button" href="https://github.com/BenWoodworth/343-HumanResources" style="float: right">
-        <i class="fa fa-github" aria-hidden="true"></i>
-        Repository
-    </A>
-    <br></br>
+    <a class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</a>
+    <br>
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>
         <tr>
@@ -42,9 +38,9 @@
             </td>
         </tr>
         </#list>
-        </tbody>0
+        </tbody>
     </table>
 </div>
-<script src="/js/employeeList.js"></script>
+<script src="/js/employee-list.js"></script>
 </body>
 </html>

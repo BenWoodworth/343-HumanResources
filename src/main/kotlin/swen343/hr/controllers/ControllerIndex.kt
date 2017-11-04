@@ -6,10 +6,9 @@ import spark.RouteGroup
 import spark.Spark.path
 import spark.kotlin.get
 import swen343.hr.controllers.api.ControllerApi
-import swen343.hr.controllers.employee.ControllerEmployees
+import swen343.hr.controllers.employees.ControllerEmployees
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.TemplateLoader
-import swen343.hr.viewmodels.ViewModelIndex
 
 @Singleton
 class ControllerIndex @Inject constructor(
@@ -24,27 +23,23 @@ class ControllerIndex @Inject constructor(
 
         path("/employees", controllerEmployees)
 
-        get("/register") {
+        get("/silos") {
             templateLoader.loadTemplate(
-                    "register.ftl",
+                    "silos.ftl",
                     null
             )
         }
+
         get("/router") {
             templateLoader.loadTemplate(
-                    "router.ftl",
+                    "silos.ftl",
                     null
             )
         }
-        get("/home") {
-            templateLoader.loadTemplate(
-                    "home.ftl",
-                    ViewModelIndex(request.ip(), employeeService.getEmployees())
-            )
-        }
+
         get("/") {
             templateLoader.loadTemplate(
-                    "index.ftl",
+                    "login.ftl",
                     null
             )
         }

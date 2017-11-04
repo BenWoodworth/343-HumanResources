@@ -1,4 +1,4 @@
-package swen343.hr.controllers.employee
+package swen343.hr.controllers.employees
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
@@ -12,6 +12,7 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
 import swen343.hr.viewmodels.ViewModelEmployee
+import swen343.hr.viewmodels.ViewModelEmployeeList
 
 /**
  * Created by ben on 10/16/17.
@@ -28,8 +29,11 @@ class ControllerEmployees @Inject constructor(
 
         get("") {
             templateLoader.loadTemplate(
-                    "/employees/view-all.ftl"
-
+                    "/employees/employees.ftl",
+                    ViewModelEmployeeList(
+                            employeeService.getEmployees()
+                                    .sortedBy { it.lastName.toLowerCase() }
+                    )
             )
         }
 

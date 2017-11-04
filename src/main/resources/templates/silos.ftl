@@ -1,6 +1,5 @@
 <#import "lib/utils.ftl" as u>
 
-
 <html>
 <title>Welcome to KennUWare</title>
 <@u.head/>

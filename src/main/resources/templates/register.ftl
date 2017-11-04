@@ -32,12 +32,6 @@
                                             <input type="password" name="password"><br>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Department:</td>
-                                        <td>
-                                            <input type="text" name="department"><br>
-                                        </td>
-                                    </tr>
 
 
                                     </tbody>
