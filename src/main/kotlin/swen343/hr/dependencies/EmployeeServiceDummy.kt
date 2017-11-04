@@ -11,7 +11,7 @@ import swen343.hr.models.User
 @Singleton
 class EmployeeServiceDummy @Inject constructor(
         userService: UserService,
-        hashService: HashService
+        hashService: HashProvider
 ) : EmployeeService {
 
     private val employees = mutableListOf<Employee>()

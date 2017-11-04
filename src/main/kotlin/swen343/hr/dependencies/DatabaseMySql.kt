@@ -19,22 +19,20 @@ class DatabaseMySql @Inject constructor(
         get() {
             try {
                 connection.createStatement().executeQuery(
-                        "SELECT value FROM Attributes WHERE attribute=revision;"
+                        "SELECT value FROM Attributes WHERE attribute='revision';"
                 ).use {
                     if (!it.next()) {
                         return it.getString("value").toInt()
                     }
                 }
-            } catch (exception: SQLException) {}
+            } catch (exception: SQLException) {
+            }
 
             return null
         }
         set(value) {
             connection.prepareStatement(
-                    """
-                    REPLACE INTO Attributes (value)
-                      VALUES('revision', ?);
-                """
+                    "REPLACE INTO Attributes VALUES('revision', ?);"
             ).apply {
                 setString(1, value?.toString())
             }.execute()

@@ -64,7 +64,6 @@ class EmployeeServiceMySql @Inject constructor(
         database.connection.prepareStatement(
                 """
                     INSERT INTO Employees (
-                      id,
                       userId,
                       firstName,
                       lastName,
@@ -74,7 +73,7 @@ class EmployeeServiceMySql @Inject constructor(
                       phoneNumber,
                       email,
                       address
-                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """,
                 Statement.RETURN_GENERATED_KEYS
         ).apply {
@@ -88,7 +87,7 @@ class EmployeeServiceMySql @Inject constructor(
             setString(8, employee.email)
             setString(9, employee.address)
         }.apply {
-            executeQuery()
+            execute()
         }.generatedKeys.use {
             if (it.next()) {
                 return employee.copy(

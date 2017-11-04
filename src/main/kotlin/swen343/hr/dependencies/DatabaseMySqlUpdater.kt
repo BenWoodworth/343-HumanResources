@@ -3,20 +3,20 @@ package swen343.hr.dependencies
 import swen343.hr.util.Updater
 
 class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
+    it.connection.createStatement().execute(
+            "DROP TABLE IF EXISTS Attributes, Employees, Users;"
+    )
 
-    it.connection.createStatement().execute("DROP TABLE IF EXISTS Attributes;")
     it.connection.createStatement().execute(
             """
                 CREATE TABLE Attributes (
-                  id            INT           NOT NULL AUTO_INCREMENT,
-                  attribute     VARCHAR(20)   NOT NULL UNIQUE,
+                  attribute     VARCHAR(20)   NOT NULL,
                   value         VARCHAR(20)   NOT NULL,
-                  PRIMARY KEY (id)
+                  PRIMARY KEY (attribute)
                 );
             """
     )
 
-    it.connection.createStatement().execute("DROP TABLE IF EXISTS Users;")
     it.connection.createStatement().execute(
             """
                 CREATE TABLE Users (
@@ -28,7 +28,6 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
             """
     )
 
-    it.connection.createStatement().execute("DROP TABLE IF EXISTS Employees;")
     it.connection.createStatement().execute(
             """
                 CREATE TABLE Employees (
