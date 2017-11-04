@@ -3,6 +3,7 @@ package swen343.hr.dependencies
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.Employee
+import java.sql.Statement
 
 @Singleton
 class EmployeeServiceMySql @Inject constructor(
@@ -59,7 +60,43 @@ class EmployeeServiceMySql @Inject constructor(
     }
 
     override fun addEmployee(employee: Employee): Employee {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        database.connection.prepareStatement(
+                """
+                    INSERT INTO Employees (
+                      id,
+                      userId,
+                      firstName,
+                      lastName,
+                      title,
+                      department,
+                      salary,
+                      phoneNumber,
+                      email,
+                      address
+                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                """,
+                Statement.RETURN_GENERATED_KEYS
+        ).apply {
+            setInt(1, employee.user.id)
+            setString(2, employee.firstName)
+            setString(3, employee.lastName)
+            setString(4, employee.title)
+            setString(5, employee.department)
+            setInt(6, employee.salary)
+            setString(7, employee.phoneNumber)
+            setString(8, employee.email)
+            setString(9, employee.address)
+        }.apply {
+            executeQuery()
+        }.generatedKeys.use {
+            if (it.next()) {
+                return employee.copy(
+                        id = it.getInt(1)
+                )
+            } else {
+                TODO("Error")
+            }
+        }
     }
 
     override fun editEmployee(employee: Employee) {
