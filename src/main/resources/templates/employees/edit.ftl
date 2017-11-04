@@ -45,7 +45,7 @@
                                 <tr>
                                     <td>Salary</td>
                                     <td>
-                                        <input type="text" name="salary" value="${employee.salary}">
+                                        <input type="number" name="salary" value="${employee.salary?c}">
                                     </td>
                                 </tr>
 

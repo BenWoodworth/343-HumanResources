@@ -69,7 +69,7 @@
                                     <tr>
                                         <td>Salary</td>
                                         <td>
-                                            <input type="text" name="salary"><br>
+                                            <input type="number" name="salary"><br>
                                         </td>
                                     </tr>
 

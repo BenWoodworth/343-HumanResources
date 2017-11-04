@@ -6,10 +6,6 @@
         <div class="row">
             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
             </div>
-
-
-
-
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
