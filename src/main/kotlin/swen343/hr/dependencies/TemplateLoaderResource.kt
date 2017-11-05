@@ -16,7 +16,7 @@ class TemplateLoaderResource : TemplateLoader {
         templateExceptionHandler = freemarker.template.TemplateExceptionHandler.RETHROW_HANDLER
     }
 
-    override fun loadTemplate(file: String, model: ViewModel?): String {
+    override fun loadTemplate(file: String, model: ViewModel): String {
         val template = freemarkerConf.getTemplate(file)
 
         val writer = java.io.StringWriter()

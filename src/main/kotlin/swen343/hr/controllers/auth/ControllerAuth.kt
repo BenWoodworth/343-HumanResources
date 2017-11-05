@@ -11,6 +11,7 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.models.User
 import swen343.hr.util.Permission
 import swen343.hr.util.user
+import swen343.hr.viewmodels.ViewModelBasic
 
 /**
  * Created by beltran on 11/01/17.
@@ -29,7 +30,10 @@ class ControllerAuth @Inject constructor(
         }
 
         get("/login") {
-            templateLoader.loadTemplate("/auth/login.ftl")
+            templateLoader.loadTemplate(
+                    "/auth/login.ftl",
+                    ViewModelBasic(session().user())
+            )
         }
 
         post("/login") {
@@ -53,7 +57,10 @@ class ControllerAuth @Inject constructor(
         }
 
         get("/register") {
-            templateLoader.loadTemplate("/auth/register.ftl")
+            templateLoader.loadTemplate(
+                    "/auth/register.ftl",
+                    ViewModelBasic(session().user())
+            )
         }
 
         post("/register") {

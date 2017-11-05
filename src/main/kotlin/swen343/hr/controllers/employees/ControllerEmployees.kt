@@ -12,6 +12,7 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
 import swen343.hr.util.user
+import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelEmployee
 import swen343.hr.viewmodels.ViewModelEmployeeList
 
@@ -42,7 +43,8 @@ class ControllerEmployees @Inject constructor(
 
         get("/add") {
             templateLoader.loadTemplate(
-                    "/employees/add.ftl"
+                    "/employees/add.ftl",
+                    ViewModelBasic(session().user())
             )
         }
 

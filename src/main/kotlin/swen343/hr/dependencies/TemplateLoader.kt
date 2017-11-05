@@ -12,5 +12,5 @@ interface TemplateLoader {
     /**
      * Load a FreeMarker template.
      */
-    fun loadTemplate(file: String, model: ViewModel? = null): String
+    fun loadTemplate(file: String, model: ViewModel): String
 }
