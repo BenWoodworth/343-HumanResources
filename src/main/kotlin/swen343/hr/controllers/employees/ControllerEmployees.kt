@@ -11,6 +11,7 @@ import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
+import swen343.hr.util.user
 import swen343.hr.viewmodels.ViewModelEmployee
 import swen343.hr.viewmodels.ViewModelEmployeeList
 
@@ -31,7 +32,9 @@ class ControllerEmployees @Inject constructor(
             templateLoader.loadTemplate(
                     "/employees/employees.ftl",
                     ViewModelEmployeeList(
-                            employeeService.getEmployees()
+                            session().user(),
+                            employeeService
+                                    .getEmployees()
                                     .sortedBy { it.lastName.toLowerCase() }
                     )
             )
@@ -67,7 +70,10 @@ class ControllerEmployees @Inject constructor(
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
-                        ViewModelEmployee(employee)
+                        ViewModelEmployee(
+                                session().user(),
+                                employee
+                        )
                 )
             } else {
 
@@ -122,7 +128,10 @@ class ControllerEmployees @Inject constructor(
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/profile.ftl",
-                        ViewModelEmployee(employee)
+                        ViewModelEmployee(
+                                session().user(),
+                                employee
+                        )
 
                 )
             } else {

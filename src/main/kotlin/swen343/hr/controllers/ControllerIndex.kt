@@ -10,6 +10,8 @@ import swen343.hr.controllers.employees.ControllerEmployees
 import swen343.hr.controllers.auth.ControllerAuth
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.User
+import swen343.hr.util.user
+import swen343.hr.viewmodels.ViewModelBasic
 
 @Singleton
 class ControllerIndex @Inject constructor(
@@ -26,34 +28,19 @@ class ControllerIndex @Inject constructor(
 
         path("/auth", controllerAuth)
 
-        get("/silos") {
+        get("/") {
             templateLoader.loadTemplate(
-                    "silos.ftl",
-                    null
+                    "index.ftl",
+                    ViewModelBasic(session().user())
             )
+        }
+
+        get("/silos") {
+            templateLoader.loadTemplate("silos.ftl")
         }
 
         get("/router") {
-            templateLoader.loadTemplate(
-                    "silos.ftl",
-                    null
-            )
-        }
-
-        get("/") {
-            val user = session().attribute<User?>("user")
-
-            if (user == null) {
-                """
-                    You are not logged in!<br>
-                    Please <a href="/auth/login">login</a> or <a href="/auth/register">register</a>.
-                """
-            } else {
-                """
-                    Welcome back, ${user.username}!<br>
-                    <a href="/auth/sign-out">Sign out</a>.
-                """
-            }
+            templateLoader.loadTemplate("silos.ftl")
         }
     }
 }

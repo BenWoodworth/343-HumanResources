@@ -9,6 +9,7 @@ import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.User
+import swen343.hr.util.user
 
 /**
  * Created by beltran on 11/01/17.
@@ -27,7 +28,7 @@ class ControllerAuth @Inject constructor(
         }
 
         get("/login") {
-            templateLoader.loadTemplate("/login/login.ftl")
+            templateLoader.loadTemplate("/auth/login.ftl")
         }
 
         post("/login") {
@@ -40,15 +41,13 @@ class ControllerAuth @Inject constructor(
             if (user?.passwordHash != passwordHash) {
                 response.redirect("/auth") // TODO Invalid login message
             } else {
-                session().apply {
-                    attribute("user", user)
-                }
+                session().user(user)
                 response.redirect("/")
             }
         }
 
         get("/sign-out") {
-            session().removeAttribute("user")
+            session().user(null)
             response.redirect("/")
         }
 
@@ -61,7 +60,7 @@ class ControllerAuth @Inject constructor(
                     username = request.queryParams("username"),
                     passwordHash = hashProvider.hash(request.queryParams("password"))
             ))
-            session().attribute("user", user)
+            session().user(user)
             response.redirect("/")
         }
     }
