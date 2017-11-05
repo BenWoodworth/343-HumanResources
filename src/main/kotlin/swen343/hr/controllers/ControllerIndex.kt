@@ -36,11 +36,17 @@ class ControllerIndex @Inject constructor(
         }
 
         get("/silos") {
-            templateLoader.loadTemplate("silos.ftl")
+            templateLoader.loadTemplate(
+                    "silos.ftl",
+                    ViewModelBasic(session().user())
+            )
         }
 
         get("/router") {
-            templateLoader.loadTemplate("silos.ftl")
+            templateLoader.loadTemplate(
+                    "silos.ftl",
+                    ViewModelBasic(session().user())
+            )
         }
     }
 }
