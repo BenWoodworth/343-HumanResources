@@ -58,7 +58,8 @@ class ControllerAuth @Inject constructor(
         post("/register") {
             val user = userService.addUser(User(
                     username = request.queryParams("username"),
-                    passwordHash = hashProvider.hash(request.queryParams("password"))
+                    passwordHash = hashProvider.hash(request.queryParams("password")),
+                    permissions = listOf() // TODO
             ))
             session().user(user)
             response.redirect("/")

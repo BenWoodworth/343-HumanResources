@@ -3,6 +3,7 @@ package swen343.hr.dependencies
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.User
+import swen343.hr.util.Permission
 
 /**
  * Created by beltran on 11/01/17.
@@ -33,11 +34,7 @@ class UserServiceDummy @Inject constructor(
                 .map { it.id }
                 .maxBy { it + 1 } ?: 0
 
-        val newUser = User(
-                id = id,
-                username = user.username,
-                passwordHash = user.passwordHash
-        )
+        val newUser = user.copy(id = id)
 
         users += newUser
 
@@ -56,12 +53,16 @@ class UserServiceDummy @Inject constructor(
     init {
         addUser(User(
                 username = "admin",
-                passwordHash = hashProvider.hash("password")
+                passwordHash = hashProvider.hash("password"),
+                permissions = listOf(
+                        Permission("**")
+                )
         ))
 
         addUser(User(
                 username = "dummy",
-                passwordHash = hashProvider.hash("password")
+                passwordHash = hashProvider.hash("password"),
+                permissions = emptyList()
         ))
     }
 }

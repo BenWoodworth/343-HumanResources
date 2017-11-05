@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.Employee
 import swen343.hr.models.User
+import swen343.hr.util.Permission
 import java.sql.Statement
 
 @Singleton
@@ -17,10 +18,13 @@ class UserServiceMySql @Inject constructor(
         ).use {
             val users = mutableListOf<User>()
             while (it.next()) {
+                val id = it.getInt("id")
+
                 users += User(
-                        id = it.getInt("id"),
-                        username = it.getString("userId"),
-                        passwordHash = it.getString("passwordHash")
+                        id = id,
+                        username = it.getString("username"),
+                        passwordHash = it.getString("passwordHash"),
+                        permissions = getPermissions(id)
                 )
             }
             return users
@@ -34,10 +38,12 @@ class UserServiceMySql @Inject constructor(
             setInt(1, id)
         }.executeQuery().use {
             return if (it.next()) {
+                val id = it.getInt("id")
                 User(
-                        id = it.getInt("id"),
+                        id = id,
                         username = it.getString("username"),
-                        passwordHash = it.getString("passwordHash")
+                        passwordHash = it.getString("passwordHash"),
+                        permissions = getPermissions(id)
                 )
             } else {
                 null
@@ -52,10 +58,12 @@ class UserServiceMySql @Inject constructor(
             setString(1, username)
         }.executeQuery().use {
             return if (it.next()) {
+                val id = it.getInt("id")
                 User(
-                        id = it.getInt("id"),
+                        id = id,
                         username = it.getString("username"),
-                        passwordHash = it.getString("passwordHash")
+                        passwordHash = it.getString("passwordHash"),
+                        permissions = getPermissions(id)
                 )
             } else {
                 null
@@ -99,5 +107,21 @@ class UserServiceMySql @Inject constructor(
         ).apply {
             setInt(1, user.id)
         }.execute()
+    }
+
+    private fun getPermissions(userId: Int): List<Permission> {
+        database.connection.prepareStatement(
+                "SELECT (permission) FROM Permissions WHERE userId=?;"
+        ).apply {
+            setInt(1, userId)
+        }.executeQuery().use {
+            val permissions = mutableListOf<Permission>()
+            while (it.next()) {
+                permissions += Permission(
+                        it.getString("permission")
+                )
+            }
+            return permissions.toList()
+        }
     }
 }

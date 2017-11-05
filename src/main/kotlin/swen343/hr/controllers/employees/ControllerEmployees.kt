@@ -50,7 +50,8 @@ class ControllerEmployees @Inject constructor(
             val employee = employeeService.addEmployee(Employee(
                     user = userService.addUser(User(
                             username = request.queryParams("username"),
-                            passwordHash = hashProvider.hash(request.queryParams("password"))
+                            passwordHash = hashProvider.hash(request.queryParams("password")),
+                            permissions = listOf() // TODO
                     )),
                     firstName = request.queryParams("firstName"),
                     lastName = request.queryParams("lastName"),

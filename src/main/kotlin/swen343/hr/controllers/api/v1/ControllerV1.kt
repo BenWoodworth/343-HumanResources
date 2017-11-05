@@ -1,18 +1,21 @@
 package swen343.hr.controllers.api.v1
 
+import com.google.inject.Inject
 import spark.RouteGroup
-import spark.Spark
+import spark.Spark.path
 import swen343.hr.controllers.api.v1.employees.ControllerEmployeesApi
-import swen343.hr.dependencies.EmployeeService
+import swen343.hr.controllers.api.v1.employees.ControllerUsersApi
 
 /**
  * Created by ben on 10/16/17.
  */
-class ControllerV1(
-        private val employeeService: EmployeeService
+class ControllerV1 @Inject constructor(
+        private val controllerEmployeesApi: ControllerEmployeesApi,
+        private val controllerUsersApi: ControllerUsersApi
 ) : RouteGroup {
 
     override fun addRoutes() {
-        Spark.path("/employees", ControllerEmployeesApi(employeeService))
+        path("/employees", controllerEmployeesApi)
+        path("/users", controllerUsersApi)
     }
 }
