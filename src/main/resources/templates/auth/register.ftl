@@ -1,4 +1,4 @@
-<#import "lib/utils.ftl" as u>
+<#import "../lib/utils.ftl" as u>
 <html>
 <@u.head/>
 <Title>Registration</Title>
@@ -30,12 +30,6 @@
                                         <td>Password:</td>
                                         <td>
                                             <input type="password" name="password"><br>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Department:</td>
-                                        <td>
-                                            <input type="text" name="department"><br>
                                         </td>
                                     </tr>
 
