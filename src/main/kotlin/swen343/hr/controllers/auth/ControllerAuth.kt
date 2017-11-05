@@ -40,10 +40,10 @@ class ControllerAuth @Inject constructor(
             val user = userService.getUser(username)
 
             if (user?.passwordHash != passwordHash) {
-                response.redirect("/auth") // TODO Invalid login message
+                response.redirect("/auth/login") // TODO Invalid login message
             } else {
                 session().user(user)
-                response.redirect("/")
+                response.redirect("/silos   ")
             }
         }
 

@@ -6,7 +6,20 @@
 <@u.head/>
 <body>
 <div class="container">
+    <div class="span2 account-info">
+        <div class="btn-group">
+            <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                Account
+                <span class="icon-cog icon-white"></span><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#"><span class="icon-user"></span> Profile</a></li>
+                <li><a href="#"><span class="icon-log-out"></span> Sign out</a></li>
+            </ul>
+        </div>
+    </div>
     <h2>Kennuware Employee Table</h2>
+
     <a class="btn btn-primary btn-mid" role="button"  href="employees/add">Add Employee</a>
     <br>
     <table class="table table-striped table-bordered table-hover" data-link="row">
