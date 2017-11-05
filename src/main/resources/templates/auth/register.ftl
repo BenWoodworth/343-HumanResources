@@ -32,6 +32,12 @@
                                             <input type="password" name="password"><br>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>Permissions:</td>
+                                        <td>
+                                            <textarea name="permissions" cols="40" rows="10"></textarea>
+                                        </td>
+                                    </tr>
 
 
                                     </tbody>

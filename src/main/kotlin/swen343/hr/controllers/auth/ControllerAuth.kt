@@ -9,6 +9,7 @@ import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.User
+import swen343.hr.util.Permission
 import swen343.hr.util.user
 
 /**
@@ -56,11 +57,17 @@ class ControllerAuth @Inject constructor(
         }
 
         post("/register") {
+            val permissions = request
+                    .queryParams("permissions")
+                    .split(Regex("\\v+"))
+                    .map { Permission(it) }
+
             val user = userService.addUser(User(
                     username = request.queryParams("username"),
                     passwordHash = hashProvider.hash(request.queryParams("password")),
-                    permissions = listOf() // TODO
+                    permissions = permissions
             ))
+
             session().user(user)
             response.redirect("/")
         }

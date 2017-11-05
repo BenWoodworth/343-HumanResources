@@ -84,7 +84,9 @@ class UserServiceMySql @Inject constructor(
             if (it.next()) {
                 return user.copy(
                         id = it.getInt(1)
-                )
+                ).also {
+                    setPermissions(it.id, user.permissions)
+                }
             } else {
                 TODO("Error")
             }
@@ -99,6 +101,8 @@ class UserServiceMySql @Inject constructor(
             setString(2, user.username)
             setString(3, user.passwordHash)
         }.execute()
+
+        setPermissions(user.id, user.permissions)
     }
 
     override fun deleteUser(user: User) {
@@ -122,6 +126,28 @@ class UserServiceMySql @Inject constructor(
                 )
             }
             return permissions.toList()
+        }
+    }
+
+    private fun setPermissions(userId: Int, permissions: List<Permission>) {
+        database.connection.prepareStatement(
+                "DELETE FROM Permissions WHERE userId=?;"
+        ).apply {
+            setInt(1, userId)
+        }.execute()
+
+        permissions.forEach { permission ->
+            database.connection.prepareStatement(
+                    """
+                        INSERT INTO Permissions (
+                          userId,
+                          permission
+                        ) VALUES(?, ?);
+                    """
+            ).apply {
+                setInt(1, userId)
+                setString(2, permission.toString())
+            }.execute()
         }
     }
 }
