@@ -40,7 +40,10 @@
                                 <tr>
                                     <td>Permissions:</td>
                                     <td>
-                                        <input type="text" name="title" value="${user.permissions}">
+                                        <textarea type="text" name="title" name="permissions" cols="40" rows="10">
+                                            <#list permissions as permission>
+                                            </#list>
+                                        </textarea>
                                     </td>
                                 </tr>
 

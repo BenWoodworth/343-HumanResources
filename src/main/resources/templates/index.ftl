@@ -28,7 +28,7 @@
                         <input type="password" name="password" id="input-password" class="form-control" placeholder="Password" required>
                         <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
                     </form>
-                    <A href="auth/register">Need an Account?</A>
+                    <A href="users/register">Need an Account?</A>
                 </#if>
         </div>
 

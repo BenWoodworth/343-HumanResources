@@ -9,6 +9,7 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.User
+import swen343.hr.util.Permission
 import swen343.hr.util.user
 import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelUser
@@ -38,22 +39,28 @@ class ControllerUsers @Inject constructor(
             )
         }
 
-        get("/add") {
+        get("/register") {
             templateLoader.loadTemplate(
-                    "/users/add.ftl",
+                    "/users/register.ftl",
                     ViewModelBasic(session().user())
             )
         }
 
-//        post("/add") {
-//            val user = userService.addUser(User(
-//                            username = request.queryParams("username"),
-//                            passwordHash = hashProvider.hash(request.queryParams("password")),
-//                            permissions = listOf() // TODO
-//                    )),
-//                    )
-//            response.redirect("/users/profile/${user.user.username}")
-//        }
+        post("/register") {
+            val permissions = request
+                    .queryParams("permissions")
+                    .split(Regex("\\v+"))
+                    .map { Permission(it) }
+
+            val user = userService.addUser(User(
+                    username = request.queryParams("username"),
+                    passwordHash = hashProvider.hash(request.queryParams("password")),
+                    permissions = permissions
+            ))
+
+            session().user(user)
+            response.redirect("/")
+        }
 
         get("/edit/:username") {
             val username = request.params("username")
