@@ -1,10 +1,10 @@
 <#import "../lib/utils.ftl" as u>
 
-
 <html>
 <title>Welcome to HR!</title>
 <@u.head/>
 <body>
+<@u.nav_bar/>
 <div class="container">
     <div class="span2 account-info">
         <div class="btn-group">
