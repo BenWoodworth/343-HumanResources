@@ -29,20 +29,17 @@ class ControllerIndex @Inject constructor(
         path("/auth", controllerAuth)
 
         get("/") {
-            templateLoader.loadTemplate(
-                    "index.ftl",
-                    ViewModelBasic(session().user())
-            )
+            if (session().user() == null) {
+                response.redirect("/auth/login")
+            } else {
+                templateLoader.loadTemplate(
+                        "index.ftl",
+                        ViewModelBasic(session().user())
+                )
+            }
         }
 
         get("/silos") {
-            templateLoader.loadTemplate(
-                    "silos.ftl",
-                    ViewModelBasic(session().user())
-            )
-        }
-
-        get("/router") {
             templateLoader.loadTemplate(
                     "silos.ftl",
                     ViewModelBasic(session().user())
