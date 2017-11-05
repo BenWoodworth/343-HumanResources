@@ -8,6 +8,10 @@ class ConfigPropertiesUpdater : Updater<ConfigProperties>({
     it.properties["database.url"] = ""
     it.properties["database.user"] = ""
     it.properties["database.pass"] = ""
+}, {
+    if (it.properties["database-url"] == "") {
+        it.properties["database-url"] = "jdbc:mysql://<address>:3306/<database>"
+    }
 }) {
 
     override fun initialize(updatable: ConfigProperties) {

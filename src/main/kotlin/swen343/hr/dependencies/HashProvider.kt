@@ -8,5 +8,5 @@ import com.google.inject.ImplementedBy
 @ImplementedBy(HashProviderSha256::class)
 interface HashProvider {
 
-    fun hash(string: String): List<Byte>
+    fun hash(string: String): String
 }

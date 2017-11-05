@@ -1,6 +1,7 @@
 package swen343.hr.dependencies
 
 import com.google.inject.ImplementedBy
+import swen343.hr.viewmodels.ViewModel
 
 /**
  * Loads FreeMarker templates.
@@ -11,5 +12,5 @@ interface TemplateLoader {
     /**
      * Load a FreeMarker template.
      */
-    fun loadTemplate(file: String, model: Any? = null): String
+    fun loadTemplate(file: String, model: ViewModel? = null): String
 }

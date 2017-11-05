@@ -6,10 +6,6 @@
         <div class="row">
             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
             </div>
-
-
-
-
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
@@ -35,7 +31,7 @@
 
                                     <tr>
                                         <td>Salary</td>
-                                        <td>${employee.salary}</td>
+                                        <td>${salary}</td>
                                     </tr>
 
                                     <tr>
@@ -63,8 +59,8 @@
 
                     </div>
 
-                    <A class="btn btn-primary btn-mid" role="button" href="../edit/${employee.user.username}" >Edit Profile</A>
-                    <A class="btn btn-primary btn-mid" role="button" href="/home" >Back</A>
+                    <a class="btn btn-primary btn-mid" role="button" href="../edit/${employee.user.username}" >Edit Profile</a>
+                    <a class="btn btn-primary btn-mid" role="button" href="/employees" >Employees</a>
                 </div>
 
 
