@@ -4,11 +4,12 @@
 <@u.head/>
 <body>
         <div class="container">
-             <h2>Welcome to KennUware</h2>
+
                 <#if sessionUser??>
+                    <h2>Welcome back, ${sessionUser.username}!</h2>
                 <div class="container">
 
-                            <h2>Please choose a Silo</h2>
+                            <h3>Please choose a Silo:</h3>
 
                             <A class="btn btn-primary btn-mid" role="button"  href="http://sales.kennuware.com">Sales</A>
                             <A class="btn btn-primary btn-mid" role="button"  href="http://inventory.kennuware.com">Inventory</A>
@@ -19,6 +20,7 @@
 
                 </div>
                 <#else>
+                    <h2>Welcome to KennUware</h2>
                     <form class="form-signin" method="post" action="/auth/login">
                         <label for="input-username" class="sr-only">Username</label>
                         <input type="text" name="username" id="input-username" class="form-control" placeholder="Username" required autofocus>
@@ -26,7 +28,7 @@
                         <input type="password" name="password" id="input-password" class="form-control" placeholder="Password" required>
                         <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
                     </form>
-                    <A href="register">Need an Account?</A>
+                    <A href="auth/register">Need an Account?</A>
                 </#if>
         </div>
 
