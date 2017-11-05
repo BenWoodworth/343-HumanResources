@@ -1,7 +1,7 @@
 <#import "../lib/utils.ftl" as u>
 <html>
 <@u.head/>
-<Title>Edit ${employee.firstName} ${employee.lastName}</Title>
+<Title>Edit ${user.username} | ${employee.firstName} ${employee.lastName}</Title>
 <div class="container">
     <div class="row">
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -25,17 +25,18 @@
                             <table class="table table-user-information">
                                 <tbody>
 
+
                                 <tr>
-                                    <td>First name:</td>
+                                    <td>Username:</td>
                                     <td>
-                                        <input type="text" name="firstName" value="${employee.firstName}">
+                                        <input type="text" name="title" value="${user.username}">
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td>Last name:</td>
+                                    <td>Password:</td>
                                     <td>
-                                        <input type="text" name="lastName" value="${employee.lastName}">
+                                        <input type="text" name="title" value="${user.passwordHash}">
                                     </td>
                                 </tr>
 
@@ -54,34 +55,18 @@
                                 </tr>
 
                                 <tr>
-                                    <td>Salary</td>
+                                    <td>Permissions:</td>
                                     <td>
-                                        <input type="number" name="salary" value="${employee.salary?c}">
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Address:</td>
-                                    <td>
-                                        <input type="text" name="address" value="${employee.address}">
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Phone Number:</td>
-                                    <td>
-                                        <input type="text" name="phoneNumber" value="${employee.phoneNumber}">
+                                        <input type="text" name="title" value="${user.permissions}">
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>Email:</td>
                                     <td>
-                                        <input type="email" name="email" value="${employee.email}"><br>
+                                        <input type="text" name="email" value="${employee.email}"><br>
                                     </td>
                                 </tr>
-
-
                                 </tbody>
                             </table>
 
@@ -101,5 +86,3 @@
 </div>
 <script src="/js/validation.js"></script>
 </html>
-
-

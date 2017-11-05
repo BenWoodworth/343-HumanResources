@@ -1,4 +1,4 @@
-package swen343.hr.controllers.employee
+package swen343.hr.controllers.employees
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
@@ -11,7 +11,10 @@ import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
+import swen343.hr.util.user
+import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelEmployee
+import swen343.hr.viewmodels.ViewModelEmployeeList
 
 /**
  * Created by ben on 10/16/17.
@@ -28,14 +31,20 @@ class ControllerEmployees @Inject constructor(
 
         get("") {
             templateLoader.loadTemplate(
-                    "/employees/view-all.ftl"
-
+                    "/employees/employees.ftl",
+                    ViewModelEmployeeList(
+                            session().user(),
+                            employeeService
+                                    .getEmployees()
+                                    .sortedBy { it.lastName.toLowerCase() }
+                    )
             )
         }
 
         get("/add") {
             templateLoader.loadTemplate(
-                    "/employees/add.ftl"
+                    "/employees/add.ftl",
+                    ViewModelBasic(session().user())
             )
         }
 
@@ -43,7 +52,8 @@ class ControllerEmployees @Inject constructor(
             val employee = employeeService.addEmployee(Employee(
                     user = userService.addUser(User(
                             username = request.queryParams("username"),
-                            passwordHash = hashProvider.hash(request.queryParams("password"))
+                            passwordHash = hashProvider.hash(request.queryParams("password")),
+                            permissions = listOf() // TODO
                     )),
                     firstName = request.queryParams("firstName"),
                     lastName = request.queryParams("lastName"),
@@ -63,7 +73,10 @@ class ControllerEmployees @Inject constructor(
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
-                        ViewModelEmployee(employee)
+                        ViewModelEmployee(
+                                session().user(),
+                                employee
+                        )
                 )
             } else {
 
@@ -118,7 +131,10 @@ class ControllerEmployees @Inject constructor(
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/profile.ftl",
-                        ViewModelEmployee(employee)
+                        ViewModelEmployee(
+                                session().user(),
+                                employee
+                        )
 
                 )
             } else {

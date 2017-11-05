@@ -6,17 +6,19 @@ import spark.RouteGroup
 import spark.Spark.path
 import spark.kotlin.get
 import swen343.hr.controllers.api.ControllerApi
-import swen343.hr.controllers.employee.ControllerEmployees
-import swen343.hr.dependencies.EmployeeService
+import swen343.hr.controllers.employees.ControllerEmployees
+import swen343.hr.controllers.auth.ControllerAuth
 import swen343.hr.dependencies.TemplateLoader
-import swen343.hr.viewmodels.ViewModelIndex
+import swen343.hr.models.User
+import swen343.hr.util.user
+import swen343.hr.viewmodels.ViewModelBasic
 
 @Singleton
 class ControllerIndex @Inject constructor(
         private val templateLoader: TemplateLoader,
-        private val employeeService: EmployeeService,
         private val controllerApi: ControllerApi,
-        private val controllerEmployees: ControllerEmployees
+        private val controllerEmployees: ControllerEmployees,
+        private val controllerAuth: ControllerAuth
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -24,28 +26,23 @@ class ControllerIndex @Inject constructor(
 
         path("/employees", controllerEmployees)
 
-        get("/register") {
-            templateLoader.loadTemplate(
-                    "register.ftl",
-                    null
-            )
-        }
-        get("/router") {
-            templateLoader.loadTemplate(
-                    "router.ftl",
-                    null
-            )
-        }
-        get("/home") {
-            templateLoader.loadTemplate(
-                    "home.ftl",
-                    ViewModelIndex(request.ip(), employeeService.getEmployees())
-            )
-        }
+        path("/auth", controllerAuth)
+
         get("/") {
+            if (session().user() == null) {
+                response.redirect("/auth/login")
+            } else {
+                templateLoader.loadTemplate(
+                        "index.ftl",
+                        ViewModelBasic(session().user())
+                )
+            }
+        }
+
+        get("/silos") {
             templateLoader.loadTemplate(
-                    "index.ftl",
-                    null
+                    "silos.ftl",
+                    ViewModelBasic(session().user())
             )
         }
     }

@@ -1,4 +1,4 @@
-<#import "lib/utils.ftl" as u>
+<#import "../lib/utils.ftl" as u>
 <html>
 <@u.head/>
 <Title>Registration</Title>
@@ -33,9 +33,9 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Department:</td>
+                                        <td>Permissions:</td>
                                         <td>
-                                            <input type="text" name="department"><br>
+                                            <textarea name="permissions" cols="40" rows="10"></textarea>
                                         </td>
                                     </tr>
 
