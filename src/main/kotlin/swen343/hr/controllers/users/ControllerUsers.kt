@@ -29,7 +29,7 @@ class ControllerUsers @Inject constructor(
 
         get("") {
             templateLoader.loadTemplate(
-                    "/users/users.ftl",
+                    "/users/list.ftl",
                     ViewModelUserList(
                             user(),
                             userService
@@ -111,7 +111,7 @@ class ControllerUsers @Inject constructor(
             }
         }
 
-        get("/profile/:username") {
+        get("/view/:username") {
             val username = request.params("username")
             val user = username?.let {
                 userService.getUser(it)
@@ -119,12 +119,11 @@ class ControllerUsers @Inject constructor(
 
             if (user != null) {
                 templateLoader.loadTemplate(
-                        "/users/profile.ftl",
+                        "/users/view.ftl",
                         ViewModelUser(
                                 user(),
                                 user
                         )
-
                 )
             } else {
                 TODO("Error")

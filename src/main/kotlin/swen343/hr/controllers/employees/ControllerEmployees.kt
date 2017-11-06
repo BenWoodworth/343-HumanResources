@@ -35,7 +35,7 @@ class ControllerEmployees @Inject constructor(
             requirePerms(Permissions.HR_EMPLOYEES_VIEW)
 
             templateLoader.loadTemplate(
-                    "/employees/employees.ftl",
+                    "/employees/list.ftl",
                     ViewModelEmployeeList(
                             user(),
                             employeeService
@@ -72,7 +72,7 @@ class ControllerEmployees @Inject constructor(
                     email = request.queryParams("email"),
                     address = request.queryParams("address")
             ))
-            response.redirect("/employees/profile/${employee.user.username}")
+            response.redirect("/employees/view/${employee.user.username}")
         }
 
         get("/edit/:username") {
@@ -131,13 +131,13 @@ class ControllerEmployees @Inject constructor(
                         email = request.queryParams("email"),
                         address = request.queryParams("address")
                 ))
-                response.redirect("/employees/profile/$username")
+                response.redirect("/employees/view/$username")
             } else {
                 TODO("Error")
             }
         }
 
-        get("/profile/:username") {
+        get("/view/:username") {
             requirePerms(Permissions.HR_EMPLOYEES_VIEW)
 
             val username = request.params("username")
@@ -147,7 +147,7 @@ class ControllerEmployees @Inject constructor(
 
             if (employee != null) {
                 templateLoader.loadTemplate(
-                        "/employees/profile.ftl",
+                        "/employees/view.ftl",
                         ViewModelEmployee(
                                 user(),
                                 employee

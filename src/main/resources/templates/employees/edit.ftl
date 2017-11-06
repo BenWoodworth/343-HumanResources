@@ -91,7 +91,7 @@
                         </div>
 
                         <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <a class="btn github-button" role="button" href="../profile/${employee.user.username}">Cancel</a>
+                        <a class="btn github-button" role="button" href="/employees/view/${employee.user.username}">Cancel</a>
                     </form>
                 </div>
             </div>
