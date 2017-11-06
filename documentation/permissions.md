@@ -1,6 +1,5 @@
 # Permissions
 ## Department permissions
-Users within a certain department should have their department's permission.
 | Permission    | Description                         |
 |---------------|-------------------------------------|
 | hr            | Member of department: HR            |
