@@ -95,11 +95,16 @@ class UserServiceMySql @Inject constructor(
 
     override fun editUser(user: User) {
         database.connection.prepareStatement(
-                "REPLACE INTO Users (id, username, passwordHash) VALUES(?, ?, ?);"
+                """
+                    UPDATE Users
+                    SET username=?,
+                        passwordHash=?
+                    WHERE id=?
+                  """
         ).apply {
-            setInt(1, user.id)
-            setString(2, user.username)
-            setString(3, user.passwordHash)
+            setString(1, user.username)
+            setString(2, user.passwordHash)
+            setInt(3, user.id)
         }.execute()
 
         setPermissions(user.id, user.permissions)

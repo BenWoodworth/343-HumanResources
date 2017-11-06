@@ -16,7 +16,7 @@
                 <div class="row">
 
                     <form action="submit" method="post" name="addUserForm" onsubmit="validateForm()">
-                        <input type="hidden" name="username" value="${user.username}">
+                        <input type="hidden" name="id" value="${user.id}">
 
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
@@ -41,7 +41,6 @@
                                     <td>Permissions:</td>
                                     <td>
                                         <textarea type="text"
-                                                  name="title"
                                                   name="permissions"
                                                   cols="40"
                                                   rows="10">${permissions}</textarea>
