@@ -30,7 +30,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
 
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M2'
     }
 }
 
@@ -93,18 +93,3 @@ sourceSets {
 
 sourceCompatibility = 1.8
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'swen343.hr.MainKt'
-    }
-
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-}
-
-junitPlatform {
-    filters {
-        engines {
-            include 'spek'
-        }
-    }
-}
