@@ -1,4 +1,4 @@
 <#import "/templates/lib/template.ftl" as template>
-<@template title="Login" showHeader=true>
+<@template.template title="Login" showNav=true>
 
-</@template>
+</@template.template>
