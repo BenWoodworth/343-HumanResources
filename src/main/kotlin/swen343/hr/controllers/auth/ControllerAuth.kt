@@ -11,6 +11,7 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.models.User
 import swen343.hr.util.Permission
 import swen343.hr.util.user
+import swen343.hr.viewmodels.FormLogin
 import swen343.hr.viewmodels.ViewModelBasic
 
 /**
@@ -20,34 +21,34 @@ import swen343.hr.viewmodels.ViewModelBasic
 class ControllerAuth @Inject constructor(
         private val userService: UserService,
         private val hashProvider: HashProvider,
-        private val templateLoader: TemplateLoader
+        private val templateLoader: TemplateLoader,
+        private val formLoginFactory: FormLogin.Factory
 ) : RouteGroup {
 
     override fun addRoutes() {
 
-        get("") {
-            response.redirect("./login")
-        }
-
         get("/login") {
             templateLoader.loadTemplate(
                     "/auth/login.ftl",
-                    ViewModelBasic(user())
+                    formLoginFactory.getForm(user())
             )
         }
 
         post("/login") {
-            val username = request.queryParams("username")
-            val password = request.queryParams("password")
+            val form = formLoginFactory.getForm(
+                    sessionUser = user(),
+                    username = request.queryParams("username"),
+                    password = request.queryParams("password")
+            )
 
-            val passwordHash = password?.let { hashProvider.hash(password) }
-            val user = userService.getUser(username)
-
-            if (user?.passwordHash != passwordHash) {
-                response.redirect("/auth/login") // TODO Invalid login message
+            if (!form.validate()) {
+                templateLoader.loadTemplate(
+                        "/auth/login.ftl",
+                        form
+                )
             } else {
-                user(user)
-                response.redirect("/silos   ")
+                user(userService.getUser(form.username!!))
+                response.redirect("/silos")
             }
         }
 

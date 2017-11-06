@@ -9,6 +9,7 @@
 <#else>
     <form class="form-signin" method="post">
         <h2 class="form-signin-heading">KennUWare Login</h2>
+        <@u.validation_errors/>
         <label for="input-username" class="sr-only">Username</label>
         <input type="text" name="username" id="input-username" class="form-control" placeholder="Username" required autofocus>
         <label for="input-password" class="sr-only">Password</label>

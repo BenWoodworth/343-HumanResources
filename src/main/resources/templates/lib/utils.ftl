@@ -42,3 +42,11 @@
     </div>
 </nav>
 </#macro>
+
+<#macro validation_errors>
+    <#if validation??>
+        <#list validation.errors as error>
+            <div class="validation-message">${error}</div>
+        </#list>
+    </#if>
+</#macro>
