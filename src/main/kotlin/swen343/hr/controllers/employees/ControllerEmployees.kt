@@ -14,6 +14,7 @@ import swen343.hr.models.Employee
 import swen343.hr.models.User
 import swen343.hr.util.requirePerms
 import swen343.hr.util.user
+import swen343.hr.viewmodels.FormEmployeeEdit
 import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelEmployee
 import swen343.hr.viewmodels.ViewModelEmployeeList
@@ -83,13 +84,63 @@ class ControllerEmployees @Inject constructor(
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
-                        ViewModelEmployee(
-                                user(),
-                                employee
+                        FormEmployeeEdit(
+                                sessionUser = user(),
+                                fields = FormEmployeeEdit.Fields(employee),
+                                employee = employee
                         )
                 )
             } else {
+                TODO("Error")
+            }
+        }
 
+        post("/edit/:username") {
+            requirePerms(Permissions.HR_EMPLOYEES_EDIT)
+
+            val username = request.params("username")
+            val employee = username?.let {
+                employeeService.getEmployee(it)
+            }
+
+            if (employee != null) {
+                val form = FormEmployeeEdit(
+                        sessionUser = user(),
+                        fields = FormEmployeeEdit.Fields(
+                                firstName = request.queryParams("firstName"),
+                                lastName = request.queryParams("lastName"),
+                                title = request.queryParams("title"),
+                                department = request.queryParams("department"),
+                                salary = request.queryParams("salary"),
+                                phoneNumber = request.queryParams("phoneNumber"),
+                                email = request.queryParams("email"),
+                                address = request.queryParams("address")
+                        ),
+                        employee = employee
+                )
+
+                if (!form.validate()) {
+                    templateLoader.loadTemplate(
+                            "/employees/edit.ftl",
+                            form
+                    )
+                } else {
+                    employeeService.editEmployee(Employee(
+                            id = employee.id,
+                            user = employee.user,
+                            firstName = request.queryParams("firstName"),
+                            lastName = request.queryParams("lastName"),
+                            title = request.queryParams("title"),
+                            department = request.queryParams("department"),
+                            salary = request.queryParams("salary").toInt(),
+                            phoneNumber = request.queryParams("phoneNumber"),
+                            email = request.queryParams("email"),
+                            address = request.queryParams("address")
+                    ))
+                    response.redirect("/employees/view/$username")
+                }
+            } else {
+                TODO("Error")
             }
         }
 
@@ -104,34 +155,6 @@ class ControllerEmployees @Inject constructor(
             if (employee != null) {
                 employeeService.deleteEmployee(employee)
                 response.redirect("/employees")
-            } else {
-                TODO("Error")
-            }
-        }
-
-        post("/edit/submit") {
-            requirePerms(Permissions.HR_EMPLOYEES_EDIT)
-
-
-            val username = request.queryParams("username")
-            val employee = username?.let {
-                employeeService.getEmployee(it)
-            }
-
-            if (employee != null) {
-                employeeService.editEmployee(Employee(
-                        id = employee.id,
-                        user = employee.user,
-                        firstName = request.queryParams("firstName"),
-                        lastName = request.queryParams("lastName"),
-                        title = request.queryParams("title"),
-                        department = request.queryParams("department"),
-                        salary = request.queryParams("salary").toInt(),
-                        phoneNumber = request.queryParams("phoneNumber"),
-                        email = request.queryParams("email"),
-                        address = request.queryParams("address")
-                ))
-                response.redirect("/employees/view/$username")
             } else {
                 TODO("Error")
             }
