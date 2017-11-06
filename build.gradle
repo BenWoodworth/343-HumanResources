@@ -14,6 +14,7 @@ buildscript {
         version_slf4j = '1.6.1'
         version_guice = '4.0'
         version_mysql_connector = '5.1.13'
+        version_moshi = '1.5.0'
     }
 
     repositories {
@@ -51,6 +52,8 @@ dependencies {
     compile "com.google.inject:guice:$version_guice"
 
     compile "mysql:mysql-connector-java:$version_mysql_connector"
+
+    compile "com.squareup.moshi:moshi:$version_moshi"
 }
 
 task ktlint(type: JavaExec) {

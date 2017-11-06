@@ -12,10 +12,10 @@ import swen343.hr.dependencies.EmployeeService
  */
 @Singleton
 class ControllerApi @Inject constructor(
-        private val employeeService: EmployeeService
+        private val controllerApiV1: ControllerV1
 ) : RouteGroup {
 
     override fun addRoutes() {
-        path("/v1", ControllerV1(employeeService))
+        path("/v1", controllerApiV1)
     }
 }

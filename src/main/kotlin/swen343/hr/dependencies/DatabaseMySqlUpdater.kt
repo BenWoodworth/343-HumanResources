@@ -46,6 +46,22 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                 );
             """
     )
+}, {
+    it.connection.createStatement().execute(
+            "DROP TABLE IF EXISTS Permissions;"
+    )
+
+    it.connection.createStatement().execute(
+            """
+                CREATE TABLE Permissions (
+                  id            INT           NOT NULL AUTO_INCREMENT,
+                  userId        INT           NOT NULL,
+                  permission    VARCHAR(100)  NOT NULL,
+                  PRIMARY KEY (id),
+                  FOREIGN KEY (userId) REFERENCES Users(id)
+                );
+            """
+    )
 }) {
 
     override fun initialize(updatable: DatabaseMySql) {}

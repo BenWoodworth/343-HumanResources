@@ -36,3 +36,7 @@ h2 {
     content:"*";
     color:red;
 }
+
+.account-info {
+    text-align: right;
+}

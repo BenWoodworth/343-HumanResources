@@ -62,7 +62,8 @@ class EmployeeServiceDummy @Inject constructor(
         addEmployee(Employee(
                 user = userService.addUser(User(
                         username = "kmartinez",
-                        passwordHash = hashService.hash("password")
+                        passwordHash = hashService.hash("password"),
+                        permissions = listOf()
                 )),
                 firstName = "Kenn",
                 lastName = "Martinez",
@@ -78,7 +79,8 @@ class EmployeeServiceDummy @Inject constructor(
         addEmployee(Employee(
                 user = userService.addUser(User(
                         username = "jacacia",
-                        passwordHash = hashService.hash("password")
+                        passwordHash = hashService.hash("password"),
+                        permissions = listOf()
                 )),
                 firstName = "Jack",
                 lastName = "Acacia",

@@ -9,14 +9,16 @@
 
 
         <div class="panel panel-info">
-            <div class="panel-heading">
+            <div class="panel-heading" >
                 <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic"
-                                                                        src="https://ritpedia.rit.edu/images/0/0f/KennethMartinez.jpg"
-                                                                        class="img-circle img-responsive"></div>
+                    <div class="col-md-3 col-lg-3 " align="center">
+                        <#--<img alt="User Pic"-->
+                             <#--src="https://ritpedia.rit.edu/images/0/0f/KennethMartinez.jpg"-->
+                             <#--class="img-circle img-responsive">-->
+                    </div>
 
                     <form action="submit" method="post" name="addUserForm" onsubmit="validateForm()">
                         <input type="hidden" name="username" value="${employee.user.username}">
@@ -101,3 +103,5 @@
 </div>
 <script src="/js/validation.js"></script>
 </html>
+
+

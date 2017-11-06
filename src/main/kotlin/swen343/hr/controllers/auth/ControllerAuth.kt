@@ -9,7 +9,9 @@ import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.User
+import swen343.hr.util.Permission
 import swen343.hr.util.user
+import swen343.hr.viewmodels.ViewModelBasic
 
 /**
  * Created by beltran on 11/01/17.
@@ -28,7 +30,10 @@ class ControllerAuth @Inject constructor(
         }
 
         get("/login") {
-            templateLoader.loadTemplate("/auth/login.ftl")
+            templateLoader.loadTemplate(
+                    "/auth/login.ftl",
+                    ViewModelBasic(session().user())
+            )
         }
 
         post("/login") {
@@ -39,10 +44,10 @@ class ControllerAuth @Inject constructor(
             val user = userService.getUser(username)
 
             if (user?.passwordHash != passwordHash) {
-                response.redirect("/auth") // TODO Invalid login message
+                response.redirect("/auth/login") // TODO Invalid login message
             } else {
                 session().user(user)
-                response.redirect("/")
+                response.redirect("/silos   ")
             }
         }
 
@@ -52,14 +57,24 @@ class ControllerAuth @Inject constructor(
         }
 
         get("/register") {
-            templateLoader.loadTemplate("/auth/register.ftl")
+            templateLoader.loadTemplate(
+                    "/auth/register.ftl",
+                    ViewModelBasic(session().user())
+            )
         }
 
         post("/register") {
+            val permissions = request
+                    .queryParams("permissions")
+                    .split(Regex("\\v+"))
+                    .map { Permission(it) }
+
             val user = userService.addUser(User(
                     username = request.queryParams("username"),
-                    passwordHash = hashProvider.hash(request.queryParams("password"))
+                    passwordHash = hashProvider.hash(request.queryParams("password")),
+                    permissions = permissions
             ))
+
             session().user(user)
             response.redirect("/")
         }
