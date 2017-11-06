@@ -15,7 +15,7 @@ fun RouteHandler.user(): User? = session().attribute<User>("user")
 fun RouteHandler.user(user: User?) = session().attribute("user", user)
 
 /**
- * Require permissions.
+ * Require permissions to access a page.
  */
 fun RouteHandler.requirePerms(vararg perms: String) {
     val missing = perms
@@ -35,4 +35,19 @@ fun RouteHandler.requirePerms(vararg perms: String) {
                 ${missing.joinToString("<br>")}
             """.trimIndent()
     )
+}
+
+/**
+ * Require permissions to use an API.
+ */
+fun RouteHandler.requirePermsApi(vararg perms: String) {
+    val missing = perms
+            .filterNot { user()?.hasPermission(it) ?: false }
+
+    if (missing.isEmpty()) return
+
+    val apiResponse = ApiResponse("Missing permissions: ${missing.joinToString(", ")}")
+    val json = apiResponse.jsonResponse(response)
+
+    halt(403, json)
 }
