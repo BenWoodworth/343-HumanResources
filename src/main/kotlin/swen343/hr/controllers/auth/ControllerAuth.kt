@@ -20,7 +20,6 @@ import swen343.hr.viewmodels.ViewModelBasic
 @Singleton
 class ControllerAuth @Inject constructor(
         private val userService: UserService,
-        private val hashProvider: HashProvider,
         private val templateLoader: TemplateLoader,
         private val formLoginFactory: FormLogin.Factory
 ) : RouteGroup {
@@ -47,7 +46,7 @@ class ControllerAuth @Inject constructor(
                         form
                 )
             } else {
-                user(userService.getUser(form.username!!))
+                user(userService.getUser(form.fields.username))
                 response.redirect("/silos")
             }
         }

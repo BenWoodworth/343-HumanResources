@@ -13,23 +13,25 @@ class FormLogin(
         hashProvider: HashProvider,
 
         override val sessionUser: User?,
-
-        val username: String?,
-        val password: String?
-) : Form({
-    val user = username?.let { userService.getUser(username) }
-    val passwordHash = password?.let { hashProvider.hash(password) }
+        override val fields: FormLogin.Fields
+) : Form<FormLogin.Fields>({
+    val user = userService.getUser(fields.username)
+    val passwordHash = hashProvider.hash(fields.password)
 
     when {
-        username.isNullOrEmpty() ->
-            "Username missing"
-        password.isNullOrEmpty() ->
-            "Password missing"
+        fields.username.isEmpty() ->
+             errors += "Username missing"
+        fields.password.isEmpty() ->
+            errors += "Password missing"
         user?.passwordHash != passwordHash ->
-            "Incorrect username or password"
-        else -> null
+            errors += "Incorrect username or password"
     }
 }) {
+
+    data class Fields(
+            val username: String,
+            val password: String
+    )
 
     class Factory @Inject constructor(
             private val userService: UserService,
@@ -44,8 +46,10 @@ class FormLogin(
                     userService = userService,
                     hashProvider = hashProvider,
                     sessionUser = sessionUser,
-                    username = username,
-                    password = password
+                    fields = FormLogin.Fields(
+                            username = username,
+                            password = password
+                    )
             )
         }
     }
