@@ -56,28 +56,5 @@ class ControllerAuth @Inject constructor(
             user(null)
             response.redirect("/")
         }
-
-        get("/register") {
-            templateLoader.loadTemplate(
-                    "/auth/register.ftl",
-                    ViewModelBasic(user())
-            )
-        }
-
-        post("/register") {
-            val permissions = request
-                    .queryParams("permissions")
-                    .split(Regex("\\v+"))
-                    .map { Permission(it) }
-
-            val user = userService.addUser(User(
-                    username = request.queryParams("username"),
-                    passwordHash = hashProvider.hash(request.queryParams("password")),
-                    permissions = permissions
-            ))
-
-            user(user)
-            response.redirect("/")
-        }
     }
 }
