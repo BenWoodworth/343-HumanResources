@@ -43,7 +43,7 @@
                                         <textarea type="text"
                                                   name="permissions"
                                                   cols="40"
-                                                  rows="10">${permissions}</textarea>
+                                                  rows="10">${permsNewLine}</textarea>
                                     </td>
                                 </tr>
 
