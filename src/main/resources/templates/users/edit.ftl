@@ -16,7 +16,7 @@
                 <div class="row">
 
                     <form action="submit" method="post" name="addUserForm" onsubmit="validateForm()">
-                        <input type="hidden" name="username" value="${user.username}">
+                        <input type="hidden" name="id" value="${user.id}">
 
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
@@ -26,24 +26,24 @@
                                 <tr>
                                     <td>Username:</td>
                                     <td>
-                                        <input type="text" name="title" value="${user.username}">
+                                        <input type="text" name="username" value="${user.username}">
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td>Password:</td>
+                                    <td>Password hash:</td>
                                     <td>
-                                        <input type="text" name="title" value="${user.passwordHash}">
+                                        <input type="text" name="passwordHash" value="${user.passwordHash}">
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>Permissions:</td>
                                     <td>
-                                        <textarea type="text" name="title" name="permissions" cols="40" rows="10">
-                                            <#list permissions as permission>
-                                            </#list>
-                                        </textarea>
+                                        <textarea type="text"
+                                                  name="permissions"
+                                                  cols="40"
+                                                  rows="10">${permissions}</textarea>
                                     </td>
                                 </tr>
 
@@ -55,7 +55,7 @@
                         </div>
 
                         <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <a class="btn github-button" role="button" href="../profile/${user.username}">Cancel</a>
+                        <a class="btn github-button" role="button" href="../view/${user.username}">Cancel</a>
                     </form>
                 </div>
             </div>

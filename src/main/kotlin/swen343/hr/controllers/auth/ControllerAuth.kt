@@ -32,7 +32,7 @@ class ControllerAuth @Inject constructor(
         get("/login") {
             templateLoader.loadTemplate(
                     "/auth/login.ftl",
-                    ViewModelBasic(session().user())
+                    ViewModelBasic(user())
             )
         }
 
@@ -46,20 +46,20 @@ class ControllerAuth @Inject constructor(
             if (user?.passwordHash != passwordHash) {
                 response.redirect("/auth/login") // TODO Invalid login message
             } else {
-                session().user(user)
+                user(user)
                 response.redirect("/silos   ")
             }
         }
 
         get("/sign-out") {
-            session().user(null)
+            user(null)
             response.redirect("/")
         }
 
         get("/register") {
             templateLoader.loadTemplate(
                     "/auth/register.ftl",
-                    ViewModelBasic(session().user())
+                    ViewModelBasic(user())
             )
         }
 
@@ -75,7 +75,7 @@ class ControllerAuth @Inject constructor(
                     permissions = permissions
             ))
 
-            session().user(user)
+            user(user)
             response.redirect("/")
         }
     }

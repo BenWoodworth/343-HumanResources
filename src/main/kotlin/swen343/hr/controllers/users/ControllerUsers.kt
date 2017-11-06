@@ -29,9 +29,9 @@ class ControllerUsers @Inject constructor(
 
         get("") {
             templateLoader.loadTemplate(
-                    "/users/users.ftl",
+                    "/users/list.ftl",
                     ViewModelUserList(
-                            session().user(),
+                            user(),
                             userService
                                     .getUsers()
                                     .sortedBy { it.username.toLowerCase() }
@@ -39,14 +39,14 @@ class ControllerUsers @Inject constructor(
             )
         }
 
-        get("/register") {
+        get("/add") {
             templateLoader.loadTemplate(
-                    "/users/register.ftl",
-                    ViewModelBasic(session().user())
+                    "/users/add.ftl",
+                    ViewModelBasic(user())
             )
         }
 
-        post("/register") {
+        post("/add") {
             val permissions = request
                     .queryParams("permissions")
                     .split(Regex("\\v+"))
@@ -58,7 +58,7 @@ class ControllerUsers @Inject constructor(
                     permissions = permissions
             ))
 
-            session().user(user)
+            user(user)
             response.redirect("/")
         }
 
@@ -69,7 +69,7 @@ class ControllerUsers @Inject constructor(
                 templateLoader.loadTemplate(
                         "/users/edit.ftl",
                         ViewModelUser(
-                                session().user(),
+                                user(),
                                 user
                         )
                 )
@@ -86,7 +86,7 @@ class ControllerUsers @Inject constructor(
 
             if (user != null) {
                 userService.deleteUser(user)
-                response.redirect("/home")
+                response.redirect("/users")
             } else {
                 TODO("Error")
             }
@@ -105,13 +105,13 @@ class ControllerUsers @Inject constructor(
                         passwordHash = request.queryParams("passwordHash"),
                         permissions = user.permissions
                 ))
-                response.redirect("/users/profile/$username")
+                response.redirect("/users/view/$username")
             } else {
                 TODO("Error")
             }
         }
 
-        get("/profile/:username") {
+        get("/view/:username") {
             val username = request.params("username")
             val user = username?.let {
                 userService.getUser(it)
@@ -119,12 +119,11 @@ class ControllerUsers @Inject constructor(
 
             if (user != null) {
                 templateLoader.loadTemplate(
-                        "/users/profile.ftl",
+                        "/users/view.ftl",
                         ViewModelUser(
-                                session().user(),
+                                user(),
                                 user
                         )
-
                 )
             } else {
                 TODO("Error")

@@ -10,7 +10,7 @@
 
     <h2>Kennuware Employee Table</h2>
 
-    <a class="btn btn-primary btn-mid" role="button" href="employees/add">Add Employee</a>
+    <a class="btn btn-primary btn-mid" role="button" href="/employees/add">Add Employee</a>
     <br></br>
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>
@@ -26,15 +26,15 @@
         <tbody data-link="row" class="rowlink">
         <#list employees as employee>
         <tr>
-            <td><a href="employees/profile/${employee.user.username}"
+            <td><a href="employees/view/${employee.user.username}"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.user.username}</a></td>
-            <td><a href="employees/profile/${employee.user.username}"
+            <td><a href="employees/view/${employee.user.username}"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.firstName}</a></td>
-            <td><a href="employees/profile/${employee.user.username}"
+            <td><a href="employees/view/${employee.user.username}"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.lastName}</a></td>
-            <td><a href="employees/profile/${employee.user.username}"
+            <td><a href="employees/view/${employee.user.username}"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.email}</a></td>
-            <td><a href="employees/profile/${employee.user.username}"
+            <td><a href="employees/view/${employee.user.username}"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.department}</a></td>
             <td>
 

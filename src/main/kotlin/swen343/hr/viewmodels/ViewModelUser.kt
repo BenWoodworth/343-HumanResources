@@ -9,5 +9,7 @@ data class ViewModelUser(
         val user: User
 ) : ViewModel {
 
-
+    val permissions: String by lazy {
+        user.permissions.joinToString("\n")
+    }
 }
