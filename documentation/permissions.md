@@ -1,3 +1,24 @@
+# Description
+## Permission Structure
+Permissions consist of subpermissions separated by periods.  
+Subpermissions can contain the characters `A-Z`, `a-z`, `-`, and `_`.  
+Users can be given permissions with `*` to match any subpermission.  
+Users can be given permissions with `**` to match any remaining subpermissions.
+
+## Examples
+| User's Permission | Test Permission  | Has Permission?  |
+|-------------------|------------------|------------------|
+| hr.employees      | hr.employees     | True             |
+| hr.*              | hr.employees     | True             |
+| hr.**             | hr.employees     | True             |
+| hr.**             | hr.employees.add | True             |
+| hr.employees      | hr               | False            |
+| hr.employees      | hr.employees.add | False            |
+| hr.*              | hr               | False            |
+| hr.*              | hr.users         | False            |
+| hr.*              | hr.employees.add | False            |
+| hr.**             | hr               | False            |
+
 # Permissions
 ## Department permissions
 | Permission    | Description                         |
@@ -9,7 +30,7 @@
 | accounting    | Member of department: Accounting    |
 | manufacturing | Member of department: Manufacturing |
 
-# HR Permissions
+## HR Permissions
 | Permission              | Description                    |
 |-------------------------|--------------------------------|
 | hr.employees.add        | Add employees                  |
