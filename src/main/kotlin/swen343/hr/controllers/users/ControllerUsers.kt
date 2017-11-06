@@ -86,7 +86,7 @@ class ControllerUsers @Inject constructor(
 
             if (user != null) {
                 userService.deleteUser(user)
-                response.redirect("/home")
+                response.redirect("/users")
             } else {
                 TODO("Error")
             }

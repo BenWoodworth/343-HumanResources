@@ -106,6 +106,8 @@ class UserServiceMySql @Inject constructor(
     }
 
     override fun deleteUser(user: User) {
+        setPermissions(user.id, emptyList())
+
         database.connection.prepareStatement(
                 "DELETE FROM Users WHERE id=?;"
         ).apply {
