@@ -28,16 +28,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="/users">Users</a>
             </li>
-            <li class="account-info nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">My Profile</a>
-                    <a class="dropdown-item" href="#">Employee Profile</a>
-                    <a class="dropdown-item" href="/auth/sign-out">Sign Out</a>
-                </div>
+            <li class=" nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    ${sessionUser.username}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="./users/view/${sessionUser.username}">My Profile</a>
+                        <a class="dropdown-item" href="./employees/view/${sessionUser.username}">Employee Profile</a>
+                        <a class="dropdown-item" href="/auth/sign-out">Sign Out</a>
+                    </div>
             </li>
+
         </ul>
     </div>
 </nav>
