@@ -10,7 +10,10 @@
 <#if showNav>
     <@navbar/>
 </#if>
+<div>
+    <#nested>
 
+</div>
 </body>
 </html>
 
