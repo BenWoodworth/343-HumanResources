@@ -22,6 +22,11 @@
                                     <tbody>
 
                                     <tr>
+                                        <td>Username:</td>
+                                        <td>${employee.user.username}</td>
+                                    </tr>
+
+                                    <tr>
                                         <td>Title:</td>
                                         <td>${employee.title}</td>
                                     </tr>
