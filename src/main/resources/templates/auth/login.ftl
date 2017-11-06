@@ -2,6 +2,7 @@
 <html>
 <title>Welcome to HR!</title>
 <@u.head/>
+
 <body>
 <div class="container">
 <#if sessionUser??>
