@@ -32,12 +32,12 @@ class ControllerIndex @Inject constructor(
         path("/auth", controllerAuth)
 
         get("/") {
-            if (session().user() == null) {
+            if (user() == null) {
                 response.redirect("/auth/login")
             } else {
                 templateLoader.loadTemplate(
                         "index.ftl",
-                        ViewModelBasic(session().user())
+                        ViewModelBasic(user())
                 )
             }
         }
@@ -45,7 +45,7 @@ class ControllerIndex @Inject constructor(
         get("/silos") {
             templateLoader.loadTemplate(
                     "silos.ftl",
-                    ViewModelBasic(session().user())
+                    ViewModelBasic(user())
             )
         }
     }

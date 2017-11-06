@@ -5,12 +5,14 @@ import com.google.inject.Singleton
 import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
+import swen343.hr.Permissions
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
+import swen343.hr.util.requirePerms
 import swen343.hr.util.user
 import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelEmployee
@@ -30,10 +32,12 @@ class ControllerEmployees @Inject constructor(
     override fun addRoutes() {
 
         get("") {
+            requirePerms(Permissions.HR_EMPLOYEES_VIEW)
+
             templateLoader.loadTemplate(
                     "/employees/employees.ftl",
                     ViewModelEmployeeList(
-                            session().user(),
+                            user(),
                             employeeService
                                     .getEmployees()
                                     .sortedBy { it.lastName.toLowerCase() }
@@ -42,13 +46,17 @@ class ControllerEmployees @Inject constructor(
         }
 
         get("/add") {
+            requirePerms(Permissions.HR_EMPLOYEES_ADD)
+
             templateLoader.loadTemplate(
                     "/employees/add.ftl",
-                    ViewModelBasic(session().user())
+                    ViewModelBasic(user())
             )
         }
 
         post("/add") {
+            requirePerms(Permissions.HR_EMPLOYEES_ADD)
+
             val employee = employeeService.addEmployee(Employee(
                     user = userService.addUser(User(
                             username = request.queryParams("username"),
@@ -68,13 +76,15 @@ class ControllerEmployees @Inject constructor(
         }
 
         get("/edit/:username") {
+            requirePerms(Permissions.HR_EMPLOYEES_EDIT)
+
             val username = request.params("username")
             val employee = employeeService.getEmployee(username)
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
                         ViewModelEmployee(
-                                session().user(),
+                                user(),
                                 employee
                         )
                 )
@@ -84,6 +94,8 @@ class ControllerEmployees @Inject constructor(
         }
 
         get("/delete/:username") {
+            requirePerms(Permissions.HR_EMPLOYEES_DELETE)
+
             val username = request.params("username")
             val employee = username?.let {
                 employeeService.getEmployee(it)
@@ -98,6 +110,9 @@ class ControllerEmployees @Inject constructor(
         }
 
         post("/edit/submit") {
+            requirePerms(Permissions.HR_EMPLOYEES_EDIT)
+
+
             val username = request.queryParams("username")
             val employee = username?.let {
                 employeeService.getEmployee(it)
@@ -123,6 +138,8 @@ class ControllerEmployees @Inject constructor(
         }
 
         get("/profile/:username") {
+            requirePerms(Permissions.HR_EMPLOYEES_VIEW)
+
             val username = request.params("username")
             val employee = username?.let {
                 employeeService.getEmployee(it)
@@ -132,7 +149,7 @@ class ControllerEmployees @Inject constructor(
                 templateLoader.loadTemplate(
                         "/employees/profile.ftl",
                         ViewModelEmployee(
-                                session().user(),
+                                user(),
                                 employee
                         )
 

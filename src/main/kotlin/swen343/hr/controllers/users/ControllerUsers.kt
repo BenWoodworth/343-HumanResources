@@ -31,7 +31,7 @@ class ControllerUsers @Inject constructor(
             templateLoader.loadTemplate(
                     "/users/users.ftl",
                     ViewModelUserList(
-                            session().user(),
+                            user(),
                             userService
                                     .getUsers()
                                     .sortedBy { it.username.toLowerCase() }
@@ -39,14 +39,14 @@ class ControllerUsers @Inject constructor(
             )
         }
 
-        get("/register") {
+        get("/add") {
             templateLoader.loadTemplate(
-                    "/users/register.ftl",
-                    ViewModelBasic(session().user())
+                    "/users/add.ftl",
+                    ViewModelBasic(user())
             )
         }
 
-        post("/register") {
+        post("/add") {
             val permissions = request
                     .queryParams("permissions")
                     .split(Regex("\\v+"))
@@ -58,7 +58,7 @@ class ControllerUsers @Inject constructor(
                     permissions = permissions
             ))
 
-            session().user(user)
+            user(user)
             response.redirect("/")
         }
 
@@ -69,7 +69,7 @@ class ControllerUsers @Inject constructor(
                 templateLoader.loadTemplate(
                         "/users/edit.ftl",
                         ViewModelUser(
-                                session().user(),
+                                user(),
                                 user
                         )
                 )
@@ -121,7 +121,7 @@ class ControllerUsers @Inject constructor(
                 templateLoader.loadTemplate(
                         "/users/profile.ftl",
                         ViewModelUser(
-                                session().user(),
+                                user(),
                                 user
                         )
 
