@@ -5,14 +5,10 @@ import com.google.inject.Singleton
 import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
-import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
-import swen343.hr.models.User
-import swen343.hr.util.Permission
-import swen343.hr.util.user
+import swen343.hr.util.RouteUtil
 import swen343.hr.viewmodels.FormLogin
-import swen343.hr.viewmodels.ViewModelBasic
 
 /**
  * Created by beltran on 11/01/17.
@@ -21,7 +17,8 @@ import swen343.hr.viewmodels.ViewModelBasic
 class ControllerAuth @Inject constructor(
         private val userService: UserService,
         private val templateLoader: TemplateLoader,
-        private val formLoginFactory: FormLogin.Factory
+        private val formLoginFactory: FormLogin.Factory,
+        private val routeUtil: RouteUtil
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -29,13 +26,13 @@ class ControllerAuth @Inject constructor(
         get("/login") {
             templateLoader.loadTemplate(
                     "/auth/login.ftl",
-                    formLoginFactory.getForm(user())
+                    formLoginFactory.getForm(routeUtil.user(this))
             )
         }
 
         post("/login") {
             val form = formLoginFactory.getForm(
-                    sessionUser = user(),
+                    sessionUser = routeUtil.user(this),
                     username = request.queryParams("username"),
                     password = request.queryParams("password")
             )
@@ -46,13 +43,14 @@ class ControllerAuth @Inject constructor(
                         form
                 )
             } else {
-                user(userService.getUser(form.fields.username))
+
+                routeUtil.user(this, userService.getUser(form.fields.username))
                 response.redirect("/silos")
             }
         }
 
         get("/sign-out") {
-            user(null)
+            routeUtil.user(this, null)
             response.redirect("/")
         }
     }

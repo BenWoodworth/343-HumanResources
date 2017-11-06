@@ -10,7 +10,7 @@ import swen343.hr.controllers.employees.ControllerEmployees
 import swen343.hr.controllers.users.ControllerUsers
 import swen343.hr.controllers.auth.ControllerAuth
 import swen343.hr.dependencies.TemplateLoader
-import swen343.hr.util.user
+import swen343.hr.util.RouteUtil
 import swen343.hr.viewmodels.ViewModelBasic
 
 @Singleton
@@ -19,7 +19,8 @@ class ControllerIndex @Inject constructor(
         private val controllerApi: ControllerApi,
         private val controllerEmployees: ControllerEmployees,
         private val controllerUsers: ControllerUsers,
-        private val controllerAuth: ControllerAuth
+        private val controllerAuth: ControllerAuth,
+        private val routeUtil: RouteUtil
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -32,12 +33,12 @@ class ControllerIndex @Inject constructor(
         path("/auth", controllerAuth)
 
         get("/") {
-            if (user() == null) {
+            if (routeUtil.user(this) == null) {
                 response.redirect("/auth/login")
             } else {
                 templateLoader.loadTemplate(
                         "index.ftl",
-                        ViewModelBasic(user())
+                        ViewModelBasic(routeUtil.user(this))
                 )
             }
         }
@@ -45,7 +46,7 @@ class ControllerIndex @Inject constructor(
         get("/silos") {
             templateLoader.loadTemplate(
                     "silos.ftl",
-                    ViewModelBasic(user())
+                    ViewModelBasic(routeUtil.user(this))
             )
         }
     }

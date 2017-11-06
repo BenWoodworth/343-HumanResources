@@ -10,7 +10,7 @@ import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.User
 import swen343.hr.util.Permission
-import swen343.hr.util.user
+import swen343.hr.util.RouteUtil
 import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelUser
 import swen343.hr.viewmodels.ViewModelUserList
@@ -22,7 +22,8 @@ import swen343.hr.viewmodels.ViewModelUserList
 class ControllerUsers @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val userService: UserService,
-        private val hashProvider: HashProvider
+        private val hashProvider: HashProvider,
+        private val routeUtil: RouteUtil
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -31,7 +32,7 @@ class ControllerUsers @Inject constructor(
             templateLoader.loadTemplate(
                     "/users/list.ftl",
                     ViewModelUserList(
-                            user(),
+                            routeUtil.user(this),
                             userService
                                     .getUsers()
                                     .sortedBy { it.username.toLowerCase() }
@@ -42,7 +43,7 @@ class ControllerUsers @Inject constructor(
         get("/add") {
             templateLoader.loadTemplate(
                     "/users/add.ftl",
-                    ViewModelBasic(user())
+                    ViewModelBasic(routeUtil.user(this))
             )
         }
 
@@ -58,7 +59,7 @@ class ControllerUsers @Inject constructor(
                     permissions = permissions
             ))
 
-            user(user)
+            routeUtil.user(this, user)
             response.redirect("/")
         }
 
@@ -69,7 +70,7 @@ class ControllerUsers @Inject constructor(
                 templateLoader.loadTemplate(
                         "/users/edit.ftl",
                         ViewModelUser(
-                                user(),
+                                routeUtil.user(this),
                                 user
                         )
                 )
@@ -121,7 +122,7 @@ class ControllerUsers @Inject constructor(
                 templateLoader.loadTemplate(
                         "/users/view.ftl",
                         ViewModelUser(
-                                user(),
+                                routeUtil.user(this),
                                 user
                         )
                 )
