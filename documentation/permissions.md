@@ -29,7 +29,7 @@
 # How Permissions Work
 ## Permission Structure
 Permissions consist of subpermissions separated by periods.  
-Subpermissions can contain the characters `A-Z`, `a-z`, `-`, and `_`.  
+Subpermissions can contain the characters `A-Z`, `a-z`, `0-9`, `-`, and `_`.  
 Users can be given permissions with `*` to match any subpermission.  
 Users can be given permissions with `**` to match any remaining subpermissions.
 
