@@ -3,19 +3,17 @@
 
 <html>
 <head>
-
+    <title>${title}</title>
 </head>
 <body>
+    <#if showNav>
+        <@navbar/>
+    </#if>
 
-<#if showNav>
-    <@navbar/>
-</#if>
-<div>
-    <#nested>
-
-</div>
+    <div>
+        <#nested>
+    </div>
 </body>
 </html>
 
 </#macro>
-</import>
