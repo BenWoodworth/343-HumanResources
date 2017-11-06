@@ -23,7 +23,7 @@
         <tbody data-link="row" class="rowlink">
         <#list users as user>
         <tr>
-            <td><a href="users/profile/${user.username}" title="${user.username}" >${user.username}</a></td>
+            <td><a href="users/view/${user.username}" title="${user.username}" >${user.username}</a></td>
 
 
             <td>

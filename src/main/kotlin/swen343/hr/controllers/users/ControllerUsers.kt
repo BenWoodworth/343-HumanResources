@@ -105,7 +105,7 @@ class ControllerUsers @Inject constructor(
                         passwordHash = request.queryParams("passwordHash"),
                         permissions = user.permissions
                 ))
-                response.redirect("/users/profile/$username")
+                response.redirect("/users/view/$username")
             } else {
                 TODO("Error")
             }
