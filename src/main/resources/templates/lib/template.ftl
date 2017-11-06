@@ -1,6 +1,5 @@
-<#import "header.ftl">
-<#macro template hideHeader title>
-a = ${a}
+<#import "navbar.ftl" as navbar>
+<#macro template title showNav>
 
 <html>
 <head>
@@ -8,8 +7,10 @@ a = ${a}
 </head>
 <body>
 
-    <@header/>
-        nav_bar
+<#if showNav>
+    <@navbar/>
+</#if>
+
 </body>
 </html>
 
