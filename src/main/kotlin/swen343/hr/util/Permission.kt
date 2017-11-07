@@ -30,13 +30,13 @@ data class Permission(
         }
     }
 
-    private val parts = permission.split("\\.")
+    private val parts = permission.split(".")
 
     /**
      * Check if permission string matches this [Permission].
      */
     fun matches(permString: String): Boolean {
-        val testParts = permString.split("\\.")
+        val testParts = permString.split(".")
 
         for (i in 0 until maxOf(parts.size, testParts.size)) {
             when {
