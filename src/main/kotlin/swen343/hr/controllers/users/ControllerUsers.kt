@@ -65,8 +65,7 @@ class ControllerUsers @Inject constructor(
                     permissions = permissions
             ))
 
-            routeUtil.user(this, user)
-            response.redirect("/")
+            response.redirect("/users/view/${user.username}")
         }
 
         get("/edit/:username") {
@@ -136,7 +135,7 @@ class ControllerUsers @Inject constructor(
             }
         }
 
-        get("/delete/:username") {
+        post("/delete/:username") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_DELETE)
             val username = request.params("username")
             val user = username?.let {
