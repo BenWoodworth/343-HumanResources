@@ -18,7 +18,7 @@
     </button>
     <a class="navbar-brand" href="#">KennUWare HR</a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
@@ -28,18 +28,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="/users">Users</a>
             </li>
-            <li class=" nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    ${sessionUser.username}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="./users/view/${sessionUser.username}">My Profile</a>
-                        <a class="dropdown-item" href="./employees/view/${sessionUser.username}">Employee Profile</a>
-                        <a class="dropdown-item" href="/auth/sign-out">Sign Out</a>
-                    </div>
-            </li>
 
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class=" nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                ${sessionUser.username}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="./users/view/${sessionUser.username}">My Profile</a>
+                    <a class="dropdown-item" href="./employees/view/${sessionUser.username}">Employee Profile</a>
+                    <a class="dropdown-item" href="/auth/sign-out">Sign Out</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
