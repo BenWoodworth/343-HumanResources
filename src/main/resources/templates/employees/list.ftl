@@ -40,10 +40,10 @@
 
                 <form method="POST" action="/employees/delete/${employee.user.username}">
                     <input type="submit" title="Delete employee" value="-"/>
+                    <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.user.username}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </A>
                 </form>
-                <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.user.username}">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </A>
 
 
             </td>
