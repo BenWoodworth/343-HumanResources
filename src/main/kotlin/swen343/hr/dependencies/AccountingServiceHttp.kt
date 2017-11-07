@@ -1,12 +1,11 @@
 package swen343.hr.dependencies
 
-import com.google.inject.ImplementedBy
+import com.google.inject.Singleton
 
+@Singleton
+class AccountingServiceHttp : AccountingService {
 
-class AccountingServiceHttp {
-    //TODO Waiting for Accounting implementation
-    fun getBudget(){
-
+    override fun getBudget(): Int {
+        TODO("Waiting for Accounting implementation")
     }
-
 }
