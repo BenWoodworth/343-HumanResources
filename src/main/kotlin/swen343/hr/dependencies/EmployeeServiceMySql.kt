@@ -106,7 +106,7 @@ class EmployeeServiceMySql @Inject constructor(
     override fun editEmployee(employee: Employee) {
         database.connection.prepareStatement(
                 """
-                    UPDATE Users
+                    UPDATE Employees
                     SET userId=?,
                         firstName=?,
                         lastName=?,
