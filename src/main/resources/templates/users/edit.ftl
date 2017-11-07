@@ -15,7 +15,7 @@
             <div class="panel-body">
                 <div class="row">
 
-                    <form action="submit" method="post" name="addUserForm" onsubmit="validateForm()">
+                    <form method="post" name="addUserForm">
                         <input type="hidden" name="id" value="${user.id}">
 
                         <div class=" col-md-9 col-lg-9 ">
@@ -26,14 +26,21 @@
                                 <tr>
                                     <td>Username:</td>
                                     <td>
-                                        <input type="text" name="username" value="${user.username}">
+                                        <input type="text" name="username" value="${fields.username}">
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td>Password hash:</td>
+                                    <td>New password:</td>
                                     <td>
-                                        <input type="text" name="passwordHash" value="${user.passwordHash}">
+                                        <input type="password" name="newPassword" value="">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Confirm new password:</td>
+                                    <td>
+                                        <input type="password" name="newPasswordConfirm" value="">
                                     </td>
                                 </tr>
 
@@ -43,7 +50,7 @@
                                         <textarea type="text"
                                                   name="permissions"
                                                   cols="40"
-                                                  rows="10">${permsNewLine}</textarea>
+                                                  rows="10">${fields.permissions}</textarea>
                                     </td>
                                 </tr>
 

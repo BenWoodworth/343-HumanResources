@@ -1,6 +1,7 @@
 package swen343.hr.viewmodels
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.User
@@ -20,7 +21,7 @@ class FormLogin(
 
     when {
         fields.username.isEmpty() ->
-             errors += "Username missing"
+            errors += "Username missing"
         fields.password.isEmpty() ->
             errors += "Password missing"
         user?.passwordHash != passwordHash ->
@@ -33,6 +34,7 @@ class FormLogin(
             val password: String
     )
 
+    @Singleton
     class Factory @Inject constructor(
             private val userService: UserService,
             private val hashProvider: HashProvider
@@ -41,16 +43,14 @@ class FormLogin(
                 sessionUser: User?,
                 username: String = "",
                 password: String = ""
-        ): FormLogin {
-            return FormLogin(
-                    userService = userService,
-                    hashProvider = hashProvider,
-                    sessionUser = sessionUser,
-                    fields = FormLogin.Fields(
-                            username = username,
-                            password = password
-                    )
-            )
-        }
+        ) = FormLogin(
+                userService = userService,
+                hashProvider = hashProvider,
+                sessionUser = sessionUser,
+                fields = FormLogin.Fields(
+                        username = username,
+                        password = password
+                )
+        )
     }
 }

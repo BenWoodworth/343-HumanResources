@@ -9,7 +9,7 @@ abstract class Form<out TFields>(
          * Returns `null` if valid, or a validation
          * error if invalid.
          */
-        private vararg val validators: ValidationData<TFields>.() -> Unit
+        private val validator: ValidationData<TFields>.() -> Unit
 ) : ViewModel {
 
     /**
@@ -27,10 +27,8 @@ abstract class Form<out TFields>(
     fun validate(): Boolean {
         val errors = mutableListOf<String>()
 
-        for (validator in validators) {
-            errors += mutableListOf<String>().apply {
-                validator(ValidationData(fields, this))
-            }
+        errors += mutableListOf<String>().apply {
+            validator(ValidationData(fields, this))
         }
 
         val result = ValidationResult(

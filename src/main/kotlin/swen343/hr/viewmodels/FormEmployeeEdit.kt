@@ -16,33 +16,33 @@ class FormEmployeeEdit(
     } else if (!Regex("^[a-zA-Z]+\$").matches(fields.firstName)) {
         errors += "First name must only contain letters"
     }
-}, {
+
     if (fields.lastName.isEmpty()) {
         errors += "Last name must not be empty"
     } else if (!Regex("^[a-zA-Z]+\$").matches(fields.lastName)) {
         errors += "Last name must only contain letters"
     }
-}, {
+
     if (fields.title.isEmpty()) {
         errors += "Title must not be empty"
     } else if (!Regex("^[a-zA-Z ]+\$").matches(fields.title)) {
         errors += "Title must only contain letters and spaces"
     }
-}, {
+
     if (fields.department.isEmpty()) {
         errors += "Department must not be empty"
     } else if (!Regex("^[a-zA-Z ]+\$").matches(fields.lastName)) {
         errors += "Department must only contain letters"
     }
-}, {
+
     if (!Regex("^\\d+\$").matches(fields.salary)) {
         errors += "Salary must be a non-negative integer"
     }
-}, {
+
     if (!Regex("^\\d{3}-\\d{3}-\\d{4}$").matches(fields.phoneNumber)) {
         errors += "Phone number must have the format ###-###-####"
     }
-}, {
+
     if (!Regex("^\\w*@\\w*\\.\\w*$").matches(fields.email)) {
         errors += "Invalid email"
     }

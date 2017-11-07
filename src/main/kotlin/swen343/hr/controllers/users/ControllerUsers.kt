@@ -11,6 +11,7 @@ import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.models.User
 import swen343.hr.util.Permission
 import swen343.hr.util.RouteUtil
+import swen343.hr.viewmodels.FormUserEdit
 import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelUser
 import swen343.hr.viewmodels.ViewModelUserList
@@ -23,7 +24,8 @@ class ControllerUsers @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val userService: UserService,
         private val hashProvider: HashProvider,
-        private val routeUtil: RouteUtil
+        private val routeUtil: RouteUtil,
+        private val formUserEditFactory: FormUserEdit.Factory
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -64,18 +66,67 @@ class ControllerUsers @Inject constructor(
         }
 
         get("/edit/:username") {
-            val username = request.params("username")
+            val username = params("username")
             val user = userService.getUser(username)
+
             if (user != null) {
                 templateLoader.loadTemplate(
                         "/users/edit.ftl",
-                        ViewModelUser(
-                                routeUtil.user(this),
-                                user
+                        formUserEditFactory.getForm(
+                                sessionUser = routeUtil.user(this),
+                                fields = FormUserEdit.Fields(user),
+                                user = user
                         )
                 )
             } else {
 
+            }
+        }
+
+        post("/edit/:username") {
+            val username = params("username")
+            val user = userService.getUser(username)
+
+            if (user != null) {
+                val form = formUserEditFactory.getForm(
+                        sessionUser = routeUtil.user(this),
+                        fields = FormUserEdit.Fields(
+                                username = queryParams("username"),
+                                newPassword = queryParams("newPassword"),
+                                newPasswordConfirm = queryParams("newPasswordConfirm"),
+                                permissions = queryParams("permissions")
+                        ),
+                        user = user
+                )
+
+                if (form.validate()) {
+                    val passHash = if (form.fields.newPassword == "") {
+                        user.passwordHash
+                    } else {
+                        hashProvider.hash(form.fields.newPassword)
+                    }
+
+                    val permissions = form.fields.permissions
+                            .split(Regex("\\v"))
+                            .map { Permission(it) }
+
+                    val newUser = user.copy(
+                            username = form.fields.username,
+                            passwordHash = passHash,
+                            permissions = permissions
+                    )
+
+                    userService.editUser(newUser)
+
+                    response.redirect("/users/view/${newUser.username}")
+                } else {
+                    templateLoader.loadTemplate(
+                            "/users/edit.ftl",
+                            form
+                    )
+                }
+            } else {
+                TODO("Error")
             }
         }
 
@@ -88,25 +139,6 @@ class ControllerUsers @Inject constructor(
             if (user != null) {
                 userService.deleteUser(user)
                 response.redirect("/users")
-            } else {
-                TODO("Error")
-            }
-        }
-
-        post("/edit/submit") {
-            val username = request.queryParams("username")
-            val user = username?.let {
-                userService.getUser(it)
-            }
-
-            if (user != null) {
-                userService.editUser(User(
-                        id = user.id,
-                        username = user.username,
-                        passwordHash = request.queryParams("passwordHash"),
-                        permissions = user.permissions
-                ))
-                response.redirect("/users/view/$username")
             } else {
                 TODO("Error")
             }
