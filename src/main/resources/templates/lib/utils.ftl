@@ -53,8 +53,8 @@
                 ${sessionUser.username}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="./users/view/${sessionUser.username}">My Profile</a>
-                    <a class="dropdown-item" href="./employees/view/${sessionUser.username}">Employee Profile</a>
+                    <a class="dropdown-item" href="./users/view/${sessionUser.username}">Profile</a>
+                    <a class="dropdown-item" href="./employees/view/${sessionUser.username}">Employee</a>
                     <a class="dropdown-item" href="/auth/sign-out">Sign Out</a>
                 </div>
             </li>
