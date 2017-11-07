@@ -6,22 +6,25 @@
         <div class="row">
             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
             </div>
-
-
-
-
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="" width="140" height="180"> </div>
+                            <#--<div class="col-md-3 col-lg-3 " align="center"> -->
+                                <#--<img alt="User Pic" src="" width="140" height="180">-->
+                            <#--</div>-->
 
 
                             <div class=" col-md-9 col-lg-9 ">
                                 <table class="table table-user-information">
                                     <tbody>
+
+                                    <tr>
+                                        <td>Username:</td>
+                                        <td>${employee.user.username}</td>
+                                    </tr>
 
                                     <tr>
                                         <td>Title:</td>
@@ -35,7 +38,7 @@
 
                                     <tr>
                                         <td>Salary</td>
-                                        <td>${employee.salary}</td>
+                                        <td>${salary}</td>
                                     </tr>
 
                                     <tr>
@@ -63,8 +66,8 @@
 
                     </div>
 
-                    <A class="btn btn-primary btn-mid" role="button" href="../edit/${employee.user.username}" >Edit Profile</A>
-                    <A class="btn btn-primary btn-mid" role="button" href="/home" >Back</A>
+                    <a class="btn btn-primary btn-mid" role="button" href="../edit/${employee.user.username}" >Edit Profile</a>
+                    <a class="btn btn-primary btn-mid" role="button" href="/employees" >Back</a>
                 </div>
 
 

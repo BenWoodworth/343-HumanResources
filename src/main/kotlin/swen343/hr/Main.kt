@@ -4,19 +4,28 @@ import com.google.inject.*
 import swen343.hr.dependencies.*
 
 fun main(args: Array<String>) {
-    val injector = Guice.createInjector(ModuleHumanResources())
+    val injector = Guice.createInjector(ModuleHumanResources(
+            ConfigProperties(ConfigPropertiesUpdater())
+    ))
     val humanResources = injector.getInstance(HumanResources::class.java)
 
-    humanResources.start()
+    humanResources.start(args)
 }
 
-private class ModuleHumanResources : Module {
+private class ModuleHumanResources(
+        private val config: Config
+) : Module {
 
     override fun configure(binder: Binder?) {
         binder?.apply {
-            // TODO Bind based off the "useDummyServices" config option
-            bind(EmployeeService::class.java).to(EmployeeServiceDummy::class.java)
-            bind(UserService::class.java).to(UserServiceDummy::class.java)
+            if (config.useDummyServices) {
+                bind(EmployeeService::class.java).to(EmployeeServiceDummy::class.java)
+                bind(UserService::class.java).to(UserServiceDummy::class.java)
+            }
         }
     }
+
+    @Provides
+    @Singleton
+    fun provideConfig() = config
 }

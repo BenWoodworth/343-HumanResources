@@ -11,7 +11,7 @@ import swen343.hr.models.User
 @Singleton
 class EmployeeServiceDummy @Inject constructor(
         userService: UserService,
-        hashProvider: HashProvider
+        hashService: HashProvider
 ) : EmployeeService {
 
     private val employees = mutableListOf<Employee>()
@@ -27,12 +27,12 @@ class EmployeeServiceDummy @Inject constructor(
     }
 
     override fun addEmployee(employee: Employee): Employee {
-        val maxId = employees
-                .maxBy { it.id }
-                ?.id ?: -1
+        val id = employees
+                .map { it.id }
+                .maxBy { it + 1 } ?: 0
 
         val newEmployee = Employee(
-                id = maxId + 1,
+                id = id,
                 user = employee.user,
                 firstName = employee.firstName,
                 lastName = employee.lastName,
@@ -62,7 +62,8 @@ class EmployeeServiceDummy @Inject constructor(
         addEmployee(Employee(
                 user = userService.addUser(User(
                         username = "kmartinez",
-                        passwordHash = hashProvider.hash("password")
+                        passwordHash = hashService.hash("password"),
+                        permissions = listOf()
                 )),
                 firstName = "Kenn",
                 lastName = "Martinez",
@@ -78,7 +79,8 @@ class EmployeeServiceDummy @Inject constructor(
         addEmployee(Employee(
                 user = userService.addUser(User(
                         username = "jacacia",
-                        passwordHash = hashProvider.hash("password")
+                        passwordHash = hashService.hash("password"),
+                        permissions = listOf()
                 )),
                 firstName = "Jack",
                 lastName = "Acacia",

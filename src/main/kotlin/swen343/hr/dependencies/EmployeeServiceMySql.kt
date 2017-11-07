@@ -3,6 +3,8 @@ package swen343.hr.dependencies
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.Employee
+import java.sql.Statement
+import java.util.*
 
 @Singleton
 class EmployeeServiceMySql @Inject constructor(
@@ -35,11 +37,15 @@ class EmployeeServiceMySql @Inject constructor(
 
     override fun getEmployee(username: String): Employee? {
         database.connection.prepareStatement(
-                "SELECT * FROM Employees WHERE username=?;"
+                """
+                        SELECT Employees.* FROM Employees
+                          JOIN Users ON Employees.userId=Users.id
+                          WHERE Users.username=?;
+                """
         ).apply {
-            setString(0, username)
+            setString(1, username)
         }.executeQuery().use {
-            return if (!it.next()) {
+            return if (it.next()) {
                 Employee(
                         id = it.getInt("id"),
                         user = userService.getUser(it.getInt("userId"))!!,
@@ -59,14 +65,9 @@ class EmployeeServiceMySql @Inject constructor(
     }
 
     override fun addEmployee(employee: Employee): Employee {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun editEmployee(employee: Employee) {
         database.connection.prepareStatement(
                 """
-                    REPLACE INTO Employees (
-                      id,
+                    INSERT INTO Employees (
                       userId,
                       firstName,
                       lastName,
@@ -76,10 +77,10 @@ class EmployeeServiceMySql @Inject constructor(
                       phoneNumber,
                       email,
                       address
-                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-                """
+                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+                """,
+                Statement.RETURN_GENERATED_KEYS
         ).apply {
-            setInt(0, employee.id)
             setInt(1, employee.user.id)
             setString(2, employee.firstName)
             setString(3, employee.lastName)
@@ -89,6 +90,45 @@ class EmployeeServiceMySql @Inject constructor(
             setString(7, employee.phoneNumber)
             setString(8, employee.email)
             setString(9, employee.address)
+        }.apply {
+            execute()
+        }.generatedKeys.use {
+            if (it.next()) {
+                return employee.copy(
+                        id = it.getInt(1)
+                )
+            } else {
+                TODO("Error")
+            }
+        }
+    }
+
+    override fun editEmployee(employee: Employee) {
+        database.connection.prepareStatement(
+                """
+                    UPDATE Users
+                    SET userId=?,
+                        firstName=?,
+                        lastName=?,
+                        title=?,
+                        department=?,
+                        salary=?,
+                        phoneNumber=?,
+                        email=?,
+                        address=?
+                    WHERE id=?
+                """
+        ).apply {
+            setInt(1, employee.user.id)
+            setString(2, employee.firstName)
+            setString(3, employee.lastName)
+            setString(4, employee.title)
+            setString(5, employee.department)
+            setInt(6, employee.salary)
+            setString(7, employee.phoneNumber)
+            setString(8, employee.email)
+            setString(9, employee.address)
+            setInt(10, employee.id)
         }.execute()
     }
 
@@ -96,7 +136,7 @@ class EmployeeServiceMySql @Inject constructor(
         database.connection.prepareStatement(
                 "DELETE FROM Employees WHERE id=?;"
         ).apply {
-            setInt(0, employee.id)
+            setInt(1, employee.id)
         }.execute()
     }
 }

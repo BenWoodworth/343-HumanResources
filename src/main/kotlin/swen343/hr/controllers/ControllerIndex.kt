@@ -6,17 +6,21 @@ import spark.RouteGroup
 import spark.Spark.path
 import spark.kotlin.get
 import swen343.hr.controllers.api.ControllerApi
-import swen343.hr.controllers.employee.ControllerEmployees
-import swen343.hr.dependencies.EmployeeService
+import swen343.hr.controllers.employees.ControllerEmployees
+import swen343.hr.controllers.users.ControllerUsers
+import swen343.hr.controllers.auth.ControllerAuth
 import swen343.hr.dependencies.TemplateLoader
-import swen343.hr.viewmodels.ViewModelIndex
+import swen343.hr.util.RouteUtil
+import swen343.hr.viewmodels.ViewModelBasic
 
 @Singleton
 class ControllerIndex @Inject constructor(
         private val templateLoader: TemplateLoader,
-        private val employeeService: EmployeeService,
         private val controllerApi: ControllerApi,
-        private val controllerEmployees: ControllerEmployees
+        private val controllerEmployees: ControllerEmployees,
+        private val controllerUsers: ControllerUsers,
+        private val controllerAuth: ControllerAuth,
+        private val routeUtil: RouteUtil
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -24,28 +28,25 @@ class ControllerIndex @Inject constructor(
 
         path("/employees", controllerEmployees)
 
-        get("/register") {
-            templateLoader.loadTemplate(
-                    "register.ftl",
-                    null
-            )
-        }
-        get("/router") {
-            templateLoader.loadTemplate(
-                    "router.ftl",
-                    null
-            )
-        }
-        get("/home") {
-            templateLoader.loadTemplate(
-                    "home.ftl",
-                    ViewModelIndex(request.ip(), employeeService.getEmployees())
-            )
-        }
+        path("/users", controllerUsers)
+
+        path("/auth", controllerAuth)
+
         get("/") {
+            if (routeUtil.user(this) == null) {
+                response.redirect("/auth/login")
+            } else {
+                templateLoader.loadTemplate(
+                        "index.ftl",
+                        ViewModelBasic(routeUtil.user(this))
+                )
+            }
+        }
+
+        get("/silos") {
             templateLoader.loadTemplate(
-                    "index.ftl",
-                    null
+                    "silos.ftl",
+                    ViewModelBasic(routeUtil.user(this))
             )
         }
     }
