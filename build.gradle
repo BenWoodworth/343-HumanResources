@@ -23,13 +23,14 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url "http://dl.bintray.com/jetbrains/spek" }
+        mavenCentral()
     }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
 
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
     }
 }
 
@@ -88,6 +89,8 @@ sourceSets {
 
     test.java.srcDirs += "src/test/kotlin"
 }
+
+sourceCompatibility = 1.8
 
 jar {
     manifest {
