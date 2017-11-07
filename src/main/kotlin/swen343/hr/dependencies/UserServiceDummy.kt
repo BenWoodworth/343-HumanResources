@@ -31,8 +31,8 @@ class UserServiceDummy @Inject constructor(
 
     override fun addUser(user: User): User {
         val id = users
-                .map { it.id }
-                .maxBy { it + 1 } ?: 0
+                .map { it.id + 1 }
+                .maxBy { it } ?: 0
 
         val newUser = user.copy(id = id)
 

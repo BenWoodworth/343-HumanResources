@@ -15,7 +15,7 @@
             <div class="panel-body">
                 <div class="row">
 
-                    <form method="post" name="addUserForm">
+                    <form action="submit" method="post" name="addUserForm" onsubmit="validateForm()">
                         <input type="hidden" name="id" value="${user.id}">
 
                         <div class=" col-md-9 col-lg-9 ">
@@ -25,32 +25,27 @@
 
                                 <tr>
                                     <td>Username:</td>
-                                    <td>
-                                        <input type="text" name="username" value="${fields.username}">
-                                    </td>
-                                </tr>
+                                    <td>${user.username}</td>
 
-                                <tr>
-                                    <td>New password:</td>
-                                    <td>
-                                        <input type="password" name="newPassword" value="">
-                                    </td>
                                 </tr>
-
-                                <tr>
-                                    <td>Confirm new password:</td>
-                                    <td>
-                                        <input type="password" name="newPasswordConfirm" value="">
-                                    </td>
+                                <td>Password:</td>
+                                <td><b>*******</b></td>
                                 </tr>
 
                                 <tr>
                                     <td>Permissions:</td>
+
                                     <td>
-                                        <textarea type="text"
-                                                  name="permissions"
-                                                  cols="40"
-                                                  rows="10">${fields.permissions}</textarea>
+
+                                    <#if permissions?has_content>
+                                        <#list permissions as permission>
+                                            <code>${permission}</code>
+                                            <br></br>
+                                        </#list>
+                                    <#else>
+                                        <i class="text-muted">None</i>
+                                    </#if>
+
                                     </td>
                                 </tr>
 
@@ -61,8 +56,8 @@
 
                         </div>
 
-                        <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <a class="btn github-button" role="button" href="../view/${user.username}">Cancel</a>
+                        <a class="btn btn-primary btn-mid" role="button" href="../edit/${user.username}">Edit</a>
+                        <a class="btn btn-primary btn-mid" role="button" href="/users">Back</a>
                     </form>
                 </div>
             </div>

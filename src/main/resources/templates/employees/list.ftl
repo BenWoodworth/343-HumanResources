@@ -47,9 +47,10 @@
             </td>
         </tr>
         </#list>
+        <script src="/js/employeeList.js"></script>
         </tbody>
     </table>
 </div>
-<script src="/js/employee-list.js"></script>
+
 </body>
 </html>

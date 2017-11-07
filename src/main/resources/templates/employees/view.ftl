@@ -67,7 +67,7 @@
                     </div>
 
                     <a class="btn btn-primary btn-mid" role="button" href="../edit/${employee.user.username}" >Edit Profile</a>
-                    <a class="btn btn-primary btn-mid" role="button" href="/employees" >Employees</a>
+                    <a class="btn btn-primary btn-mid" role="button" href="/employees" >Back</a>
                 </div>
 
 

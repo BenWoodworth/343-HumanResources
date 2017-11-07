@@ -9,7 +9,7 @@ data class ViewModelUser(
         val user: User
 ) : ViewModel {
 
-    val permissions: String by lazy {
-        user.permissions.joinToString("\n")
-    }
+    val permissions = user.permissions.map { it.permission }
+
+    val permsNewLine = user.permissions.joinToString("\n")
 }
