@@ -9,6 +9,7 @@ import swen343.hr.controllers.api.ControllerApi
 import swen343.hr.controllers.employees.ControllerEmployees
 import swen343.hr.controllers.users.ControllerUsers
 import swen343.hr.controllers.auth.ControllerAuth
+import swen343.hr.controllers.payroll.ControllerPayroll
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.util.RouteUtil
 import swen343.hr.viewmodels.ViewModelBasic
@@ -20,17 +21,16 @@ class ControllerIndex @Inject constructor(
         private val controllerEmployees: ControllerEmployees,
         private val controllerUsers: ControllerUsers,
         private val controllerAuth: ControllerAuth,
+        private val controllerPayroll: ControllerPayroll,
         private val routeUtil: RouteUtil
 ) : RouteGroup {
 
     override fun addRoutes() {
         path("/api", controllerApi)
-
         path("/employees", controllerEmployees)
-
         path("/users", controllerUsers)
-
         path("/auth", controllerAuth)
+        path("/payroll", controllerPayroll)
 
         get("/") {
             if (routeUtil.user(this) == null) {
