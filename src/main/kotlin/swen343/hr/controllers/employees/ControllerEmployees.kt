@@ -144,7 +144,7 @@ class ControllerEmployees @Inject constructor(
             }
         }
 
-        get("/delete/:username") {
+        post("/delete/:username") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_DELETE)
 
             val username = request.params("username")

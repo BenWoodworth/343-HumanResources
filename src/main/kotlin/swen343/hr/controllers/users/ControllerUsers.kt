@@ -5,6 +5,7 @@ import com.google.inject.Singleton
 import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
+import swen343.hr.Permissions
 import swen343.hr.dependencies.UserService
 import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
@@ -31,6 +32,7 @@ class ControllerUsers @Inject constructor(
     override fun addRoutes() {
 
         get("") {
+            routeUtil.requirePerms(this, Permissions.HR_USERS_VIEW)
             templateLoader.loadTemplate(
                     "/users/list.ftl",
                     ViewModelUserList(
@@ -43,6 +45,7 @@ class ControllerUsers @Inject constructor(
         }
 
         get("/add") {
+            routeUtil.requirePerms(this, Permissions.HR_USERS_ADD)
             templateLoader.loadTemplate(
                     "/users/add.ftl",
                     ViewModelBasic(routeUtil.user(this))
@@ -50,6 +53,7 @@ class ControllerUsers @Inject constructor(
         }
 
         post("/add") {
+            routeUtil.requirePerms(this, Permissions.HR_USERS_ADD)
             val permissions = request
                     .queryParams("permissions")
                     .split(Regex("\\v+"))
@@ -66,6 +70,7 @@ class ControllerUsers @Inject constructor(
         }
 
         get("/edit/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_USERS_EDIT)
             val username = params("username")
             val user = userService.getUser(username)
 
@@ -84,6 +89,7 @@ class ControllerUsers @Inject constructor(
         }
 
         post("/edit/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_USERS_EDIT)
             val username = params("username")
             val user = userService.getUser(username)
 
@@ -131,6 +137,7 @@ class ControllerUsers @Inject constructor(
         }
 
         get("/delete/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_USERS_DELETE)
             val username = request.params("username")
             val user = username?.let {
                 userService.getUser(it)
@@ -145,6 +152,7 @@ class ControllerUsers @Inject constructor(
         }
 
         get("/view/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_USERS_VIEW)
             val username = request.params("username")
             val user = username?.let {
                 userService.getUser(it)

@@ -28,8 +28,8 @@ class EmployeeServiceDummy @Inject constructor(
 
     override fun addEmployee(employee: Employee): Employee {
         val id = employees
-                .map { it.id }
-                .maxBy { it + 1 } ?: 0
+                .map { it.id + 1 }
+                .maxBy { it} ?: 0
 
         val newEmployee = Employee(
                 id = id,
