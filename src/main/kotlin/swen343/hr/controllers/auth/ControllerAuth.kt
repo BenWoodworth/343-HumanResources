@@ -24,6 +24,7 @@ class ControllerAuth @Inject constructor(
     override fun addRoutes() {
 
         get("/login") {
+
             templateLoader.loadTemplate(
                     "/auth/login.ftl",
                     formLoginFactory.getForm(routeUtil.user(this))
