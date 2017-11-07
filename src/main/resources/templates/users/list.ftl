@@ -28,10 +28,12 @@
 
             <td>
 
-                <button title="Delete user" onclick="removeUser('${user.username}')">-</button>
-                <A class="btn icon" title="Edit user" role="button" href="users/edit/${user.username}" >
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </A>
+                <form method="POST" action="/users/delete/${user.username}">
+                    <input type="submit" title="Delete user" value="-"/>
+                    <A class="btn icon" title="Edit employee" role="button" href="users/edit/${user.username}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </A>
+                </form>
 
 
 
