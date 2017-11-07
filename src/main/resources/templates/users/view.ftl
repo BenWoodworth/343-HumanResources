@@ -23,18 +23,30 @@
                                 <tbody>
 
 
-                                <td>
+                                <tr>
                                     <td>Username:</td>
-                                    <td>{user.username}</td>
+                                    <td>${user.username}</td>
 
-                                <td>
-                                    <td>Password hash:</td>
-                                    <td>{user.username}</td>
+                                </tr>
+                                <td>Password:</td>
+                                <td><b>*******</b></td>
                                 </tr>
 
                                 <tr>
                                     <td>Permissions:</td>
-                                    <td>${permissions}</td>
+
+                                    <td>
+
+                                    <#if permissions?has_content>
+                                        <#list permissions as permission>
+                                            <code>${permission}</code>
+                                            <br></br>
+                                        </#list>
+                                    <#else>
+                                        <i class="text-muted">None</i>
+                                    </#if>
+
+                                    </td>
                                 </tr>
 
 
@@ -44,8 +56,8 @@
 
                         </div>
 
-                        <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <a class="btn github-button" role="button" href="../view/${user.username}">Cancel</a>
+                        <a class="btn btn-primary btn-mid" role="button" href="../edit/${user.username}">Edit</a>
+                        <a class="btn btn-primary btn-mid" role="button" href="/users">Back</a>
                     </form>
                 </div>
             </div>
