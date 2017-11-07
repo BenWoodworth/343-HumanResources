@@ -39,8 +39,12 @@ class FormEmployeeEdit(
         errors += "Salary must be a non-negative integer"
     }
 
-    if (!Regex("^\\d{3}-\\d{3}-\\d{4}$").matches(fields.phoneNumber)) {
-        errors += "Phone number must have the format ###-###-####"
+//    if (!Regex("^\\d{3}-\\d{3}-\\d{4}$").matches(fields.phoneNumber)) {
+//        errors += "Phone number must have the format ###-###-####"
+//    }
+
+    if (!Regex("^\\d{10}$").matches(fields.phoneNumber)) {
+        errors += "Phone number must have the format ##########"
     }
 
     if (!Regex("^\\w*@\\w*\\.\\w*$").matches(fields.email)) {
