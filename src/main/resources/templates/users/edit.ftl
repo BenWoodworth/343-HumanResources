@@ -2,15 +2,17 @@
 <html>
 <@u.head/>
 <Title>Edit ${user.username} </Title>
+<body>
+<@u.nav_bar/>
 <div class="container">
     <div class="row">
-        <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+        <div class="col-md-53 toppad  pull-right col-md-offset-3 ">
         </div>
 
 
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">${user.username}</h3>
+                <h2 class="panel-title">${user.username}</h2>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -60,9 +62,10 @@
 
 
                         </div>
-
-                        <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <a class="btn github-button" role="button" href="../view/${user.username}">Cancel</a>
+                        <div class="center-button">
+                            <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
+                            <a class="btn github-button" role="button" href="../view/${user.username}">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -73,4 +76,5 @@
 </div>
 </div>
 <script src="/js/validation.js"></script>
+</body>
 </html>

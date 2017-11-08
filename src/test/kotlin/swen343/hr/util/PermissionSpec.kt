@@ -5,7 +5,7 @@ import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import kotlin.test.*
 
-class PermissionTest : Spek({
+class PermissionSpec : Spek({
     describe("Permissions for a.b") {
         val permission = Permission("a.b")
 
