@@ -2,6 +2,8 @@
 <html>
 <@u.head/>
 <Title>Registration</Title>
+<body>
+<@u.nav_bar/>
 <div class="container">
     <div class="row">
 
@@ -56,4 +58,5 @@
     </div>
 </div>
 <script src="/js/validation.js"></script>
+</body>
 </html>

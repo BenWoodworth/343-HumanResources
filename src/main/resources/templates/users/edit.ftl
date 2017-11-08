@@ -2,6 +2,8 @@
 <html>
 <@u.head/>
 <Title>Edit ${user.username} </Title>
+<body>
+<@u.nav_bar/>
 <div class="container">
     <div class="row">
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -73,4 +75,5 @@
 </div>
 </div>
 <script src="/js/validation.js"></script>
+</body>
 </html>
