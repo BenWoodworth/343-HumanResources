@@ -12,7 +12,7 @@
 
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Create a new employee</h3>
+                    <h2 class="panel-title">Create a new employee</h2>
                 </div>
                 <div class="panel-body">
                     <div class="row">

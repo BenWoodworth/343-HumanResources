@@ -12,7 +12,7 @@
 
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Register to KennUWare</h3>
+                    <h2 class="panel-title">Register to KennUWare</h2>
                 </div>
                 <div class="panel-body">
                     <div class="row">

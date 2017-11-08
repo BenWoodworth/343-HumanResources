@@ -12,7 +12,7 @@
 
         <div class="panel panel-info">
             <div class="panel-heading" >
-                <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
+                <h2 class="panel-title">${employee.firstName} ${employee.lastName}</h2>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -89,9 +89,10 @@
 
 
                         </div>
-
-                        <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                        <a class="btn github-button" role="button" href="/employees/view/${employee.user.username}">Cancel</a>
+                        <div class="center-button">
+                            <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
+                            <a class="btn github-button" role="button" href="/employees/view/${employee.user.username}">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>
