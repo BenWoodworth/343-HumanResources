@@ -12,12 +12,19 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="" width="140" height="180"> </div>
+                            <#--<div class="col-md-3 col-lg-3 " align="center"> -->
+                                <#--<img alt="User Pic" src="" width="140" height="180">-->
+                            <#--</div>-->
 
 
                             <div class=" col-md-9 col-lg-9 ">
                                 <table class="table table-user-information">
                                     <tbody>
+
+                                    <tr>
+                                        <td>Username:</td>
+                                        <td>${employee.user.username}</td>
+                                    </tr>
 
                                     <tr>
                                         <td>Title:</td>
@@ -60,7 +67,7 @@
                     </div>
 
                     <a class="btn btn-primary btn-mid" role="button" href="../edit/${employee.user.username}" >Edit Profile</a>
-                    <a class="btn btn-primary btn-mid" role="button" href="/employees" >Employees</a>
+                    <a class="btn btn-primary btn-mid" role="button" href="/employees" >Back</a>
                 </div>
 
 

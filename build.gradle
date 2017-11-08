@@ -2,8 +2,9 @@ group 'swen343.hr'
 version '1.0'
 
 apply plugin: 'kotlin'
-apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 buildscript {
     ext {
@@ -16,20 +17,20 @@ buildscript {
         version_slf4j = '1.6.1'
         version_guice = '4.0'
         version_mysql_connector = '5.1.13'
-        version_spek = '1.1.5'
-        version_mockito = '1.10.19'
         version_moshi = '1.5.0'
+        version_spek = '1.1.5'
+        version_junit_platform = '1.0.0-M2'
+        version_junit_jupiter = '5.0.0-M2'
+        version_mockito = '1.10.19'
     }
 
     repositories {
-        jcenter()
-        maven { url "http://dl.bintray.com/jetbrains/spek" }
         mavenCentral()
+        jcenter()
     }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
-
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M2'
     }
 }
@@ -37,7 +38,6 @@ buildscript {
 repositories {
     mavenCentral()
     jcenter()
-    maven { url "http://dl.bintray.com/jetbrains/spek" }
 }
 
 configurations {
@@ -60,12 +60,17 @@ dependencies {
 
     compile "mysql:mysql-connector-java:$version_mysql_connector"
 
-    testCompile "org.jetbrains.spek:spek-api:$version_spek"
-    testRuntime "org.jetbrains.spek:spek-junit-platform-engine:$version_spek"
-    testCompile "org.mockito:mockito-all:$version_mockito"
-    testCompile 'org.jetbrains.kotlin:kotlin-test:1.1.0'
-
     compile "com.squareup.moshi:moshi:$version_moshi"
+
+    testCompile "org.jetbrains.spek:spek-api:1.0.89"
+    testCompile 'org.assertj:assertj-core:3.5.2'
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$version_kotlin"
+    testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M2'
+    testCompile "org.junit.jupiter:junit-jupiter-api:5.0.0-M2"
+    testCompile "org.mockito:mockito-all:$version_mockito"
+    testRuntime "org.jetbrains.spek:spek-junit-platform-engine:1.0.89"
+    testRuntime "org.junit.vintage:junit-vintage-engine:4.12.0-M2"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.0.0-M2"
 }
 
 task ktlint(type: JavaExec) {
@@ -93,3 +98,17 @@ sourceSets {
 
 sourceCompatibility = 1.8
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'swen343.hr.MainKt'
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+junitPlatform {
+    platformVersion = "1.0.0-M2"
+    engines {
+        include 'spek', 'junit-jupiter', 'junit-vintage'
+    }
+}

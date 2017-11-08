@@ -106,30 +106,29 @@ class EmployeeServiceMySql @Inject constructor(
     override fun editEmployee(employee: Employee) {
         database.connection.prepareStatement(
                 """
-                    REPLACE INTO Employees (
-                      id,
-                      userId,
-                      firstName,
-                      lastName,
-                      title,
-                      department,
-                      salary,
-                      phoneNumber,
-                      email,
-                      address
-                    ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                    UPDATE Users
+                    SET userId=?,
+                        firstName=?,
+                        lastName=?,
+                        title=?,
+                        department=?,
+                        salary=?,
+                        phoneNumber=?,
+                        email=?,
+                        address=?
+                    WHERE id=?
                 """
         ).apply {
-            setInt(1, employee.id)
-            setInt(2, employee.user.id)
-            setString(3, employee.firstName)
-            setString(4, employee.lastName)
-            setString(5, employee.title)
-            setString(6, employee.department)
-            setInt(7, employee.salary)
-            setString(8, employee.phoneNumber)
-            setString(9, employee.email)
-            setString(10, employee.address)
+            setInt(1, employee.user.id)
+            setString(2, employee.firstName)
+            setString(3, employee.lastName)
+            setString(4, employee.title)
+            setString(5, employee.department)
+            setInt(6, employee.salary)
+            setString(7, employee.phoneNumber)
+            setString(8, employee.email)
+            setString(9, employee.address)
+            setInt(10, employee.id)
         }.execute()
     }
 

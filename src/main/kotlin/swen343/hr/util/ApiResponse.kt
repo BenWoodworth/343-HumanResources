@@ -13,9 +13,10 @@ class ApiResponse private constructor(
     constructor(errorMessage: String) : this(null, errorMessage)
 
     fun jsonResponse(res: Response? = null): String {
-        val moshi = Moshi.Builder().build()
-        val adapter = moshi.adapter(ApiResponse::class.java)
-        val json = adapter.toJson(this)
+        val json = Moshi.Builder().build()
+                .adapter(ApiResponse::class.java)
+                .indent("  ")
+                .toJson(this)
 
         res?.apply {
             type("application/json")

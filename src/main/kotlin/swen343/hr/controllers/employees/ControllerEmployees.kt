@@ -5,13 +5,15 @@ import com.google.inject.Singleton
 import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
+import swen343.hr.Permissions
 import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
-import swen343.hr.util.user
+import swen343.hr.util.RouteUtil
+import swen343.hr.viewmodels.FormEmployeeEdit
 import swen343.hr.viewmodels.ViewModelBasic
 import swen343.hr.viewmodels.ViewModelEmployee
 import swen343.hr.viewmodels.ViewModelEmployeeList
@@ -24,16 +26,19 @@ class ControllerEmployees @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
         private val userService: UserService,
-        private val hashProvider: HashProvider
+        private val hashProvider: HashProvider,
+        private val routeUtil: RouteUtil
 ) : RouteGroup {
 
     override fun addRoutes() {
 
         get("") {
+            routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)
+
             templateLoader.loadTemplate(
-                    "/employees/employees.ftl",
+                    "/employees/list.ftl",
                     ViewModelEmployeeList(
-                            session().user(),
+                            routeUtil.user(this),
                             employeeService
                                     .getEmployees()
                                     .sortedBy { it.lastName.toLowerCase() }
@@ -42,13 +47,17 @@ class ControllerEmployees @Inject constructor(
         }
 
         get("/add") {
+            routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
+
             templateLoader.loadTemplate(
                     "/employees/add.ftl",
-                    ViewModelBasic(session().user())
+                    ViewModelBasic(routeUtil.user(this))
             )
         }
 
         post("/add") {
+            routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
+
             val employee = employeeService.addEmployee(Employee(
                     user = userService.addUser(User(
                             username = request.queryParams("username"),
@@ -64,26 +73,80 @@ class ControllerEmployees @Inject constructor(
                     email = request.queryParams("email"),
                     address = request.queryParams("address")
             ))
-            response.redirect("/employees/profile/${employee.user.username}")
+            response.redirect("/employees/view/${employee.user.username}")
         }
 
         get("/edit/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_EDIT)
+
             val username = request.params("username")
             val employee = employeeService.getEmployee(username)
             if (employee != null) {
                 templateLoader.loadTemplate(
                         "/employees/edit.ftl",
-                        ViewModelEmployee(
-                                session().user(),
-                                employee
+                        FormEmployeeEdit(
+                                sessionUser = routeUtil.user(this),
+                                fields = FormEmployeeEdit.Fields(employee),
+                                employee = employee
                         )
                 )
             } else {
+                TODO("Error")
+            }
+        }
 
+        post("/edit/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_EDIT)
+
+            val username = request.params("username")
+            val employee = username?.let {
+                employeeService.getEmployee(it)
+            }
+
+            if (employee != null) {
+                val form = FormEmployeeEdit(
+                        sessionUser = routeUtil.user(this),
+                        fields = FormEmployeeEdit.Fields(
+                                firstName = request.queryParams("firstName"),
+                                lastName = request.queryParams("lastName"),
+                                title = request.queryParams("title"),
+                                department = request.queryParams("department"),
+                                salary = request.queryParams("salary"),
+                                phoneNumber = request.queryParams("phoneNumber"),
+                                email = request.queryParams("email"),
+                                address = request.queryParams("address")
+                        ),
+                        employee = employee
+                )
+
+                if (!form.validate()) {
+                    templateLoader.loadTemplate(
+                            "/employees/edit.ftl",
+                            form
+                    )
+                } else {
+                    employeeService.editEmployee(Employee(
+                            id = employee.id,
+                            user = employee.user,
+                            firstName = request.queryParams("firstName"),
+                            lastName = request.queryParams("lastName"),
+                            title = request.queryParams("title"),
+                            department = request.queryParams("department"),
+                            salary = request.queryParams("salary").toInt(),
+                            phoneNumber = request.queryParams("phoneNumber"),
+                            email = request.queryParams("email"),
+                            address = request.queryParams("address")
+                    ))
+                    response.redirect("/employees/view/$username")
+                }
+            } else {
+                TODO("Error")
             }
         }
 
         get("/delete/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_DELETE)
+
             val username = request.params("username")
             val employee = username?.let {
                 employeeService.getEmployee(it)
@@ -91,38 +154,15 @@ class ControllerEmployees @Inject constructor(
 
             if (employee != null) {
                 employeeService.deleteEmployee(employee)
-                response.redirect("/home")
+                response.redirect("/employees")
             } else {
                 TODO("Error")
             }
         }
 
-        post("/edit/submit") {
-            val username = request.queryParams("username")
-            val employee = username?.let {
-                employeeService.getEmployee(it)
-            }
+        get("/view/:username") {
+            routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)
 
-            if (employee != null) {
-                employeeService.editEmployee(Employee(
-                        id = employee.id,
-                        user = employee.user,
-                        firstName = request.queryParams("firstName"),
-                        lastName = request.queryParams("lastName"),
-                        title = request.queryParams("title"),
-                        department = request.queryParams("department"),
-                        salary = request.queryParams("salary").toInt(),
-                        phoneNumber = request.queryParams("phoneNumber"),
-                        email = request.queryParams("email"),
-                        address = request.queryParams("address")
-                ))
-                response.redirect("/employees/profile/$username")
-            } else {
-                TODO("Error")
-            }
-        }
-
-        get("/profile/:username") {
             val username = request.params("username")
             val employee = username?.let {
                 employeeService.getEmployee(it)
@@ -130,9 +170,9 @@ class ControllerEmployees @Inject constructor(
 
             if (employee != null) {
                 templateLoader.loadTemplate(
-                        "/employees/profile.ftl",
+                        "/employees/view.ftl",
                         ViewModelEmployee(
-                                session().user(),
+                                routeUtil.user(this),
                                 employee
                         )
 

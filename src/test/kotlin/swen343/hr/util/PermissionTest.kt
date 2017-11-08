@@ -7,7 +7,7 @@ import kotlin.test.*
 
 class PermissionTest : Spek({
     describe("Permissions for a.b") {
-        val permission = Permission("a.*")
+        val permission = Permission("a.b")
 
         it("Should not match a") {
             val perm = permission.matches("a")

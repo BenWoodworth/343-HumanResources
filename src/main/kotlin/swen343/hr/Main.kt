@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     ))
     val humanResources = injector.getInstance(HumanResources::class.java)
 
-    humanResources.start()
+    humanResources.start(args)
 }
 
 private class ModuleHumanResources(
