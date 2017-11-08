@@ -2,13 +2,15 @@
 <html>
     <@u.head/>
     <Title>Kenneth Martinez</Title>
+    <body>
+    <@u.nav_bar/>
     <div class="container">
         <div class="row">
             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
             </div>
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">${employee.firstName} ${employee.lastName}</h3>
+                        <h2 class="panel-title">${employee.firstName} ${employee.lastName}</h2>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -65,12 +67,14 @@
                         </div>
 
                     </div>
-
-                    <a class="btn btn-primary btn-mid" role="button" href="../edit/${employee.user.username}" >Edit Profile</a>
-                    <a class="btn btn-primary btn-mid" role="button" href="/employees" >Back</a>
+                    <div class="center-button">
+                        <a class="btn btn-primary btn-mid center-button" role="button" href="../edit/${employee.user.username}" >Edit Profile</a>
+                        <a class="btn btn-primary btn-mid center-button" role="button" href="/employees" >Back</a>
+                    </div>
                 </div>
 
 
         </div>
     </div>
+    </body>
 </html>

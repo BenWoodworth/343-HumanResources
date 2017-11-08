@@ -7,8 +7,11 @@
 
                 <#if sessionUser??>
                     <h2>Welcome back, ${sessionUser.username}!</h2>
-                <div class="container">
 
+
+
+                <div class="container">
+                    <a style="float: right" href="/auth/sign-out">Sign out</a>
                             <h3>Please choose a Silo:</h3>
 
                     <div class="container">
