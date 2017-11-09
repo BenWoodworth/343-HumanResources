@@ -9,4 +9,6 @@ import com.google.inject.ImplementedBy
 interface HashProvider {
 
     fun hash(string: String): String
+
+    fun hash(bytes: ByteArray): String
 }

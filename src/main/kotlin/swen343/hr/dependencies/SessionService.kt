@@ -13,7 +13,12 @@ interface SessionService {
      *
      * @return a new session
      */
-    fun createSession(user: User, ip: String): Session
+    fun createSession(user: User): Session
+
+    /**
+     * End a user's session.
+     */
+    fun endSession(sessionId: String)
 
     /**
      * Gets a session from a session ID.

@@ -14,10 +14,15 @@ class HashProviderSha256 : HashProvider {
     private val messageDigest = MessageDigest.getInstance("SHA-256")
 
     override fun hash(string: String): String {
-        val digest =  messageDigest.digest(
+        val digest = messageDigest.digest(
                 string.toByteArray(StandardCharsets.UTF_8)
         )
 
+        return String(Base64.getEncoder().encode(digest))
+    }
+
+    override fun hash(bytes: ByteArray): String {
+        val digest = messageDigest.digest(bytes)
         return String(Base64.getEncoder().encode(digest))
     }
 }

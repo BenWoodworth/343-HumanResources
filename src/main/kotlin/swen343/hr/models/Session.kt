@@ -8,5 +8,5 @@ import java.util.*
 data class Session(
         val sessionId: String,
         val user: User,
-        val expiration: Date
+        val expiration: Date?
 )
