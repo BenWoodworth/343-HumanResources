@@ -13,7 +13,7 @@ class SessionServiceDummy @Inject constructor(
         private val userService: UserService
 ) : SessionServiceAbstract(hashProvider) {
 
-    private val sessions: MutableList<Session>()
+    private val sessions = mutableListOf<Session>()
 
     override fun endSession(sessionId: String) {
         sessions.removeIf {

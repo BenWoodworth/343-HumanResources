@@ -11,26 +11,24 @@ import javax.inject.Singleton
 class DatabaseMySql @Inject constructor(
         private val hrProperties: Config,
         databaseMySqlUpdater: DatabaseMySqlUpdater
-) : Database, Updatable {
+) : Database(), Updatable {
 
     override var revision: Int?
         get() {
-            var result: Int? = null
-
             try {
                 connect {
                     createStatement().executeQuery(
                             "SELECT value FROM Attributes WHERE attribute='revision';"
                     ).use {
                         if (it.next()) {
-                            result = it.getString("value").toInt()
+                            return it.getString("value").toInt()
                         }
                     }
                 }
             } catch (exception: SQLException) {
             }
 
-            return result
+            return null
         }
         set(value) {
             connect {
