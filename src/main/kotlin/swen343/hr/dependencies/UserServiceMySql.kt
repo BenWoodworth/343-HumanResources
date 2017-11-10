@@ -43,12 +43,12 @@ class UserServiceMySql @Inject constructor(
                 setInt(1, id)
             }.executeQuery().use {
                 if (it.next()) {
-                    val id = it.getInt("id")
+                    val newId = it.getInt("id")
                     return User(
-                            id = id,
+                            id = newId,
                             username = it.getString("username"),
                             passwordHash = it.getString("passwordHash"),
-                            permissions = getPermissions(id)
+                            permissions = getPermissions(newId)
                     )
                 }
             }
