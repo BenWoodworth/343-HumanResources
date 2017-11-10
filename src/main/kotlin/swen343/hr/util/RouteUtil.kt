@@ -4,8 +4,8 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import spark.kotlin.RouteHandler
 import spark.kotlin.halt
+import swen343.hr.dependencies.Config
 import swen343.hr.dependencies.SessionService
-import swen343.hr.dependencies.UserService
 import swen343.hr.models.User
 
 /**
@@ -13,7 +13,8 @@ import swen343.hr.models.User
  */
 @Singleton
 class RouteUtil @Inject constructor(
-        private val sessionService: SessionService
+        private val sessionService: SessionService,
+        private val config: Config
 ) {
 
     /**
@@ -21,7 +22,7 @@ class RouteUtil @Inject constructor(
      */
     fun user(routeHandler: RouteHandler): User? {
         return routeHandler.request.cookie("SID")?.let {
-            sessionService.getSession(it)?.user
+            sessionService.getSession(it, routeHandler.request.ip())?.user
         }
     }
 
@@ -34,14 +35,12 @@ class RouteUtil @Inject constructor(
         }
 
         user?.let {
-            val session = sessionService.createSession(it)
+            val session = sessionService.createSession(it, routeHandler.request.ip())
             routeHandler.response.cookie(
-                    ".kennuware.com",
-                    null,
+                    "/",
                     "SID",
-                    session.sessionId,
-                    -1,
-                    false,
+                    session.token,
+                    config.sessionDurationSeconds ?: -1,
                     false
             )
         }

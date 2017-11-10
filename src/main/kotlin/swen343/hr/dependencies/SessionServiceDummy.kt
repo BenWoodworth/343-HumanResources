@@ -9,15 +9,14 @@ import swen343.hr.models.Session
  */
 @Singleton
 class SessionServiceDummy @Inject constructor(
-        hashProvider: HashProviderSha256,
         private val userService: UserService
-) : SessionServiceAbstract(hashProvider) {
+) : SessionServiceAbstract() {
 
     private val sessions = mutableListOf<Session>()
 
-    override fun endSession(sessionId: String) {
+    override fun endSession(token: String) {
         sessions.removeIf {
-            it.sessionId == sessionId
+            it.token == token
         }
     }
 
@@ -25,9 +24,9 @@ class SessionServiceDummy @Inject constructor(
         sessions += session
     }
 
-    override fun loadSession(sessionId: String): Session? {
+    override fun loadSession(token: String): Session? {
         return sessions.firstOrNull {
-            it.sessionId == sessionId
+            it.token == token
         }
     }
 }
