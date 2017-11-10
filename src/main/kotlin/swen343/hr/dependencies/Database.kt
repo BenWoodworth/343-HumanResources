@@ -7,13 +7,7 @@ import java.sql.Connection
  * Created by ben on 10/29/17.
  */
 @ImplementedBy(DatabaseMySql::class)
-abstract class Database {
+interface Database {
 
-    abstract fun createConnection(): Connection
-
-    inline fun connect(block: Connection.() -> Unit) {
-        createConnection().use {
-            block(it)
-        }
-    }
+    fun createConnection(): Connection
 }

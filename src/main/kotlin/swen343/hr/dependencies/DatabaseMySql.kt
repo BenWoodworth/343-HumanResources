@@ -1,6 +1,7 @@
 package swen343.hr.dependencies
 
 import swen343.hr.util.Updatable
+import swen343.hr.util.connect
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 class DatabaseMySql @Inject constructor(
         private val hrProperties: Config,
         databaseMySqlUpdater: DatabaseMySqlUpdater
-) : Database(), Updatable {
+) : Database, Updatable {
 
     override var revision: Int?
         get() {

@@ -1,6 +1,7 @@
 package swen343.hr.dependencies
 
 import swen343.hr.util.Updater
+import swen343.hr.util.connect
 
 class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
     connect {

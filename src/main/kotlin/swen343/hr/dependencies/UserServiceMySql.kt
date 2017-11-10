@@ -5,6 +5,7 @@ import com.google.inject.Singleton
 import swen343.hr.models.Employee
 import swen343.hr.models.User
 import swen343.hr.util.Permission
+import swen343.hr.util.connect
 import java.sql.Statement
 
 @Singleton

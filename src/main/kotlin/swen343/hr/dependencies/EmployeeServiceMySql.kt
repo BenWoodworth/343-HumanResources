@@ -3,6 +3,7 @@ package swen343.hr.dependencies
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import swen343.hr.models.Employee
+import swen343.hr.util.connect
 import java.sql.Statement
 import java.util.*
 
