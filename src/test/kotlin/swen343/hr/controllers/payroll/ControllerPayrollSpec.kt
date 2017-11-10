@@ -59,14 +59,6 @@ class ControllerPayrollSpec : Spek({
     `when`(employeeService.getEmployee("2")).thenReturn(employee2)
 
     val accountingService = mock(AccountingService::class.java)
-    val sessionService = mock(SessionService::class.java)
-
-    val payroll = ControllerPayroll(
-            employeeService = employeeService,
-            templateLoader = TemplateLoaderResource(),
-            accountingService = accountingService,
-            routeUtil = RouteUtil(sessionService)
-    )
 
     xdescribe("the payroll controller") {
         on("a pay employee request for a single employee") {
