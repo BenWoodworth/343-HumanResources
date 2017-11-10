@@ -36,11 +36,24 @@ class RouteUtil @Inject constructor(
 
         user?.let {
             val session = sessionService.createSession(it, routeHandler.request.ip())
+
+            val host = routeHandler.request.host()
+            val regex = Regex("^([^.]*\\.)*([^.]*\\.[^.:]*)(:.*)?\$")
+            val matches = regex.matchEntire(host)
+
+            val domain = if (matches == null) {
+                host
+            } else {
+                ".${matches.groupValues[2]}"
+            }
+
             routeHandler.response.cookie(
+                    domain,
                     "/",
                     "SID",
                     session.token,
                     config.sessionDurationSeconds ?: -1,
+                    false,
                     false
             )
         }
