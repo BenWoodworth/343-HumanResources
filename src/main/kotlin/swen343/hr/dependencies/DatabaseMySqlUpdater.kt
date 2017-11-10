@@ -77,10 +77,10 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                 """
                     CREATE TABLE Sessions (
                       id            INT           NOT NULL AUTO_INCREMENT,
-                      sessionId     VARCHAR(44)   NOT NULL UNIQUE,
                       userId        INT           NOT NULL,
-                      expiration    DATETIME      NULL,
+                      token         VARCHAR(44)   NOT NULL UNIQUE,
                       ipAddress     VARCHAR(40)   NULL,
+                      expiration    DATETIME      NULL,
                       FOREIGN KEY (userId) REFERENCES Users(id)
                     );
                 """
