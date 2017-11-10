@@ -4,6 +4,7 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.api.dsl.xdescribe
 import org.mockito.Mockito.*
 import spark.Spark
 import swen343.hr.dependencies.*
@@ -67,7 +68,7 @@ class ControllerPayrollSpec : Spek({
             routeUtil = RouteUtil(sessionService)
     )
 
-    describe("the payroll controller") {
+    xdescribe("the payroll controller") {
         on("a pay employee request for a single employee") {
             it("should use the accounting service for payroll") {
                 val url = URL("http://localhost:${Spark.port()}/payroll/pay/1")
