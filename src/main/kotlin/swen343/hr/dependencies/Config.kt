@@ -15,4 +15,6 @@ interface Config {
     val databaseUrl: String
     val databaseUser: String
     val databasePass: String
+
+    val sessionDurationSeconds: Int?
 }

@@ -62,4 +62,9 @@ class ConfigProperties @Inject constructor(
 
     override val databasePass: String
         get() = properties.getProperty("database.pass")
+
+    override val sessionDurationSeconds: Int?
+        get() = properties.getProperty("session-duration.seconds")
+                .toIntOrNull()
+                ?.takeIf { it >= 0 }
 }

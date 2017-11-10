@@ -1,18 +1,13 @@
 package swen343.hr.controllers.payroll
 
-import org.assertj.core.api.Assertions.assertThat
-import org.eclipse.jetty.client.HttpConnection
-import org.eclipse.jetty.client.HttpRequest
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.api.dsl.xdescribe
 import org.mockito.Mockito.*
 import spark.Spark
-import swen343.hr.dependencies.AccountingService
-import swen343.hr.dependencies.EmployeeService
-import swen343.hr.dependencies.TemplateLoaderResource
-import swen343.hr.dependencies.UserService
+import swen343.hr.dependencies.*
 import swen343.hr.models.Employee
 import swen343.hr.models.User
 import swen343.hr.util.RouteUtil
@@ -64,16 +59,8 @@ class ControllerPayrollSpec : Spek({
     `when`(employeeService.getEmployee("2")).thenReturn(employee2)
 
     val accountingService = mock(AccountingService::class.java)
-    val userService = mock(UserService::class.java)
 
-    val payroll = ControllerPayroll(
-            employeeService = employeeService,
-            templateLoader = TemplateLoaderResource(),
-            accountingService = accountingService,
-            routeUtil = RouteUtil(userService)
-    )
-
-    describe("the payroll controller") {
+    xdescribe("the payroll controller") {
         on("a pay employee request for a single employee") {
             it("should use the accounting service for payroll") {
                 val url = URL("http://localhost:${Spark.port()}/payroll/pay/1")

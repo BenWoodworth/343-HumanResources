@@ -4,7 +4,8 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import spark.kotlin.RouteHandler
 import spark.kotlin.halt
-import swen343.hr.dependencies.UserService
+import swen343.hr.dependencies.Config
+import swen343.hr.dependencies.SessionService
 import swen343.hr.models.User
 
 /**
@@ -12,22 +13,50 @@ import swen343.hr.models.User
  */
 @Singleton
 class RouteUtil @Inject constructor(
-        private val userService: UserService
+        private val sessionService: SessionService,
+        private val config: Config
 ) {
 
     /**
      * Get the user currently logged in.
      */
     fun user(routeHandler: RouteHandler): User? {
-        val id = routeHandler.session().attribute<Int?>("userId")
-        return id?.let { userService.getUser(id) }
+        return routeHandler.request.cookie("SID")?.let {
+            sessionService.getSession(it, routeHandler.request.ip())?.user
+        }
     }
 
     /**
-     * Require permissions to access a page.
+     * Set the user currently logged in.
      */
     fun user(routeHandler: RouteHandler, user: User?) {
-        routeHandler.session().attribute("userId", user?.id)
+        routeHandler.request.cookie("SID")?.let {
+            sessionService.endSession(it)
+        }
+
+        user?.let {
+            val session = sessionService.createSession(it, routeHandler.request.ip())
+
+            val host = routeHandler.request.host()
+            val regex = Regex("^([^.]*\\.)*([^.]*\\.[^.:]*)(:.*)?\$")
+            val matches = regex.matchEntire(host)
+
+            val domain = if (matches == null) {
+                host
+            } else {
+                ".${matches.groupValues[2]}"
+            }
+
+            routeHandler.response.cookie(
+                    domain,
+                    "/",
+                    "SID",
+                    session.token,
+                    config.sessionDurationSeconds ?: -1,
+                    false,
+                    false
+            )
+        }
     }
 
     /**
