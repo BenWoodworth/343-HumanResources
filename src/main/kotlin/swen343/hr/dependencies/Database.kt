@@ -9,8 +9,11 @@ import java.sql.Connection
 @ImplementedBy(DatabaseMySql::class)
 interface Database {
 
-    /**
-     * The connection to the database.
-     */
-    val connection: Connection
+    fun createConnection(): Connection
+
+    fun connect(executor: Connection.() -> Unit) {
+        createConnection().use {
+            executor(it)
+        }
+    }
 }

@@ -9,44 +9,49 @@ import javax.inject.Singleton
 
 @Singleton
 class DatabaseMySql @Inject constructor(
-        hrProperties: Config,
+        private val hrProperties: Config,
         databaseMySqlUpdater: DatabaseMySqlUpdater
 ) : Database, Updatable {
 
-    override val connection: Connection
-
     override var revision: Int?
         get() {
+            var result: Int? = null
+
             try {
-                connection.createStatement().executeQuery(
-                        "SELECT value FROM Attributes WHERE attribute='revision';"
-                ).use {
-                    if (it.next()) {
-                        return it.getString("value").toInt()
+                connect {
+                    createStatement().executeQuery(
+                            "SELECT value FROM Attributes WHERE attribute='revision';"
+                    ).use {
+                        if (it.next()) {
+                            result = it.getString("value").toInt()
+                        }
                     }
                 }
             } catch (exception: SQLException) {
             }
 
-            return null
+            return result
         }
         set(value) {
-            connection.prepareStatement(
-                    "REPLACE INTO Attributes VALUES('revision', ?);"
-            ).apply {
-                setString(1, value?.toString())
-            }.execute()
+            connect {
+                prepareStatement(
+                        "REPLACE INTO Attributes VALUES('revision', ?);"
+                ).apply {
+                    setString(1, value?.toString())
+                }.execute()
+            }
         }
 
     init {
         Class.forName("com.mysql.jdbc.Driver")
+        databaseMySqlUpdater.update(this)
+    }
 
-        connection = DriverManager.getConnection(
+    override fun createConnection(): Connection {
+        return DriverManager.getConnection(
                 hrProperties.databaseUrl,
                 hrProperties.databaseUser,
                 hrProperties.databasePass
         )
-
-        databaseMySqlUpdater.update(this)
     }
 }

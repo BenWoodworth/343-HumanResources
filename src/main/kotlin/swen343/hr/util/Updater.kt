@@ -7,7 +7,7 @@ package swen343.hr.util
  * @param T the type of object to be updated
  */
 abstract class Updater<in T : Updatable>(
-        private vararg val revisions: (T) -> Unit
+        private vararg val revisions: T.() -> Unit
 ) {
 
     /**

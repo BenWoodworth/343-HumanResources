@@ -13,25 +13,27 @@ class EmployeeServiceMySql @Inject constructor(
 ) : EmployeeService {
 
     override fun getEmployees(): List<Employee> {
-        database.connection.createStatement().executeQuery(
-                "SELECT * FROM Employees;"
-        ).use {
-            val employees = mutableListOf<Employee>()
-            while (it.next()) {
-                employees += Employee(
-                        id = it.getInt("id"),
-                        user = userService.getUser(it.getInt("userId"))!!,
-                        firstName = it.getString("firstName"),
-                        lastName = it.getString("lastName"),
-                        title = it.getString("title"),
-                        department = it.getString("department"),
-                        salary = it.getInt("salary"),
-                        phoneNumber = it.getString("phoneNumber"),
-                        email = it.getString("email"),
-                        address = it.getString("address")
-                )
+        database.connect {
+            createStatement().executeQuery(
+                    "SELECT * FROM Employees;"
+            ).use {
+                val employees = mutableListOf<Employee>()
+                while (it.next()) {
+                    employees += Employee(
+                            id = it.getInt("id"),
+                            user = userService.getUser(it.getInt("userId"))!!,
+                            firstName = it.getString("firstName"),
+                            lastName = it.getString("lastName"),
+                            title = it.getString("title"),
+                            department = it.getString("department"),
+                            salary = it.getInt("salary"),
+                            phoneNumber = it.getString("phoneNumber"),
+                            email = it.getString("email"),
+                            address = it.getString("address")
+                    )
+                }
+                return employees
             }
-            return employees
         }
     }
 
