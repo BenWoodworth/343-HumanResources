@@ -1,5 +1,7 @@
 package swen343.hr.util
 
+import com.squareup.moshi.ToJson
+
 /**
  * A permission.
  *
@@ -52,4 +54,7 @@ data class Permission(
     }
 
     override fun toString() = permission
+
+    @ToJson
+    private fun toJson() = permission
 }

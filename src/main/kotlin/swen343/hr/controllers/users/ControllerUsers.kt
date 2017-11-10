@@ -30,7 +30,6 @@ class ControllerUsers @Inject constructor(
 ) : RouteGroup {
 
     override fun addRoutes() {
-
         get("") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_VIEW)
             templateLoader.loadTemplate(
