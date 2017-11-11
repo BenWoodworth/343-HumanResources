@@ -46,13 +46,13 @@ class RouteUtil @Inject constructor(
             val session = sessionService.createSession(it, routeHandler.request.ip())
 
             val host = routeHandler.request.host()
-            val regex = Regex("^([^.]*\\.)*([^.]*\\.[^.:]*)(:.*)?\$")
-            val matches = regex.matchEntire(host)
+            val domainRegex = Regex("^(?:\\w*\\.)*(\\w+\\.[a-zA-Z]+)(?::\\d+)?\$")
+            val matches = domainRegex.matchEntire(host)
 
             val domain = if (matches == null) {
                 host.split(':')[0]
             } else {
-                ".${matches.groupValues[2]}"
+                ".${matches.groupValues[1]}"
             }
 
             routeHandler.response.cookie(
