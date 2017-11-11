@@ -34,10 +34,10 @@ class ControllerSessionsApi @Inject constructor(
             val user = userService.getUser(username)
             if (user?.passwordHash != passwordHash) {
                 ApiResponse("Invalid username or password").jsonResponse(response)
+            } else {
+                val session = sessionService.createSession(user!!, request.ip())
+                ApiResponse(SessionResponse(session)).jsonResponse(response)
             }
-
-            val session = sessionService.createSession(user!!, request.ip())
-            ApiResponse(SessionResponse(session)).jsonResponse(response)
         }
 
         get("/from-token/:token") {
@@ -46,9 +46,9 @@ class ControllerSessionsApi @Inject constructor(
 
             if (session == null) {
                 ApiResponse("Invalid session token").jsonResponse(response)
+            } else {
+                ApiResponse(SessionResponse(session!!)).jsonResponse(response)
             }
-
-            ApiResponse(SessionResponse(session!!)).jsonResponse(response)
         }
 
         get("/from-cookie") {
@@ -56,9 +56,9 @@ class ControllerSessionsApi @Inject constructor(
 
             if (token == null) {
                 ApiResponse("No cookie stored in session").jsonResponse(response)
+            } else {
+                response.redirect("from-token/$token")
             }
-
-            response.redirect("from-token/$token")
         }
     }
 
