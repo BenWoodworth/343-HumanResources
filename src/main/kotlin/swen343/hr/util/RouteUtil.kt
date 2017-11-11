@@ -39,6 +39,7 @@ class RouteUtil @Inject constructor(
     fun user(routeHandler: RouteHandler, user: User?) {
         sessionToken(routeHandler)?.let {
             sessionService.endSession(it)
+            routeHandler.response.removeCookie("SID")
         }
 
         user?.let {
@@ -49,7 +50,7 @@ class RouteUtil @Inject constructor(
             val matches = regex.matchEntire(host)
 
             val domain = if (matches == null) {
-                host
+                host.split(':')[0]
             } else {
                 ".${matches.groupValues[2]}"
             }
