@@ -6,7 +6,14 @@ import swen343.hr.util.connect
 class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
     connect {
         createStatement().execute(
-                "DROP TABLE IF EXISTS Attributes, Employees, Users;"
+                """
+                    DROP TABLE IF EXISTS
+                      Attributes,
+                      Permissions,
+                      Sessions,
+                      Employees,
+                      Users;
+                """
         )
 
         createStatement().execute(
@@ -44,7 +51,10 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                       email         VARCHAR(100)  NOT NULL,
                       address       VARCHAR(250)  NOT NULL,
                       PRIMARY KEY (id),
-                      FOREIGN KEY (userId) REFERENCES Users(id)
+                      FOREIGN KEY (userId)
+                        REFERENCES Users(id)
+                        ON UPDATE CASCADE
+                        ON DELETE CASCADE
                     );
                 """
         )
@@ -62,7 +72,10 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                       userId        INT           NOT NULL,
                       permission    VARCHAR(100)  NOT NULL,
                       PRIMARY KEY (id),
-                      FOREIGN KEY (userId) REFERENCES Users(id)
+                      FOREIGN KEY (userId)
+                        REFERENCES Users(id)
+                        ON UPDATE CASCADE
+                        ON DELETE CASCADE
                     );
                 """
         )
@@ -80,7 +93,10 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                       userId        INT           NOT NULL,
                       ipAddress     VARCHAR(40)   NULL,
                       expiration    DATETIME      NULL,
-                      FOREIGN KEY (userId) REFERENCES Users(id)
+                      FOREIGN KEY (userId)
+                        REFERENCES Users(id)
+                        ON UPDATE CASCADE
+                        ON DELETE CASCADE
                     );
                 """
         )
