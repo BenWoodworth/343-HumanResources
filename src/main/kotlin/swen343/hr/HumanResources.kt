@@ -20,6 +20,7 @@ class HumanResources @Inject constructor(
     fun start(args: Array<String>) {
         if (args.contains("--reset-admin")) {
             resetAdmin()
+            exitProcess(0)
         } else {
             setupAdmin()
         }
@@ -41,8 +42,6 @@ class HumanResources @Inject constructor(
         println("Admin account setup.")
         println("user: admin")
         println("pass: $password")
-
-        exitProcess(0)
     }
 
     private fun setupAdmin() {
