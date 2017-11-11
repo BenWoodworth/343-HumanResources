@@ -39,14 +39,17 @@ class HumanResources @Inject constructor(
     fun setupAdmin() {
         if (userService.getUser("admin") != null) return
 
+        val rand = (Math.random() * 900 + 100).toInt().toString()
+        val password = "password$rand"
+
         userService.addUser(User(
                 username = "admin",
-                passwordHash = hashProvider.hash("password"),
+                passwordHash = hashProvider.hash(password),
                 permissions = listOf(Permission("*"))
         ))
 
         println("Admin account setup.")
         println("user: admin")
-        println("pass: password")
+        println("pass: $password")
     }
 }
