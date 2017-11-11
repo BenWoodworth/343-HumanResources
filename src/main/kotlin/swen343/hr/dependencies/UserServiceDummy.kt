@@ -55,7 +55,7 @@ class UserServiceDummy @Inject constructor(
                 username = "admin",
                 passwordHash = hashProvider.hash("password"),
                 permissions = listOf(
-                        Permission("**")
+                        Permission("*")
                 )
         ))
 

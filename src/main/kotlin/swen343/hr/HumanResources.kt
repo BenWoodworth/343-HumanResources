@@ -42,7 +42,7 @@ class HumanResources @Inject constructor(
         userService.addUser(User(
                 username = "admin",
                 passwordHash = hashProvider.hash("password"),
-                permissions = listOf(Permission("**"))
+                permissions = listOf(Permission("*"))
         ))
 
         println("Admin account setup.")
