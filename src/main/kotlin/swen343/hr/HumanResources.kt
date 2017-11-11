@@ -28,25 +28,32 @@ class HumanResources @Inject constructor(
     }
 
     private fun resetAdmin() {
-        userService.getUser("admin")?.let {
-            userService.deleteUser(it)
-        }
+        val rand = (Math.random() * 900 + 100).toInt().toString()
+        val password = "password$rand"
 
-        setupAdmin()
-        exitProcess(0)
-    }
-
-    fun setupAdmin() {
-        if (userService.getUser("admin") != null) return
-
-        userService.addUser(User(
+        val user = userService.getUser("admin")!!
+        userService.editUser(user.copy(
                 username = "admin",
-                passwordHash = hashProvider.hash("password"),
-                permissions = listOf(Permission("**"))
+                passwordHash = hashProvider.hash(password),
+                permissions = listOf(Permission("*"))
         ))
 
         println("Admin account setup.")
         println("user: admin")
-        println("pass: password")
+        println("pass: $password")
+
+        exitProcess(0)
+    }
+
+    private fun setupAdmin() {
+        if (userService.getUser("admin") != null) return
+
+        userService.addUser(User(
+                username = "admin",
+                passwordHash = "",
+                permissions = emptyList()
+        ))
+
+        resetAdmin()
     }
 }

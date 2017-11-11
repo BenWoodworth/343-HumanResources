@@ -124,6 +124,12 @@ class UserServiceMySql @Inject constructor(
 
         database.connect {
             prepareStatement(
+                    "DELETE FROM Sessions WHERE userId=?;"
+            ).apply {
+                setInt(1, user.id)
+            }.execute()
+
+            prepareStatement(
                     "DELETE FROM Users WHERE id=?;"
             ).apply {
                 setInt(1, user.id)

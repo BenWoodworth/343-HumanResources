@@ -1,5 +1,7 @@
 package swen343.hr.util
 
+import com.squareup.moshi.ToJson
+
 /**
  * A permission.
  *
@@ -22,7 +24,7 @@ package swen343.hr.util
 data class Permission(
         val permission: String
 ) {
-    private val regex = Regex("^(([\\w-]+|\\*)\\.)*([\\w-]+|\\*\\*?)\$")
+    private val regex = Regex("^\\w+(\\.\\w+)*(\\.\\*)?\$")
 
     init {
         assert(regex.matches(permission)) {
@@ -41,15 +43,16 @@ data class Permission(
         for (i in 0 until maxOf(parts.size, testParts.size)) {
             when {
                 i >= parts.size -> return false
+                parts[i] == "*" -> return true
                 i >= testParts.size -> return false
-                parts[i] == "**" -> return true
-                parts[i] == "*" -> Unit
                 parts[i] != testParts[i] -> return false
             }
         }
-
         return true
     }
 
     override fun toString() = permission
+
+    @ToJson
+    private fun toJson() = permission
 }

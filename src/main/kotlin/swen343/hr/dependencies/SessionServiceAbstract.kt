@@ -23,7 +23,10 @@ abstract class SessionServiceAbstract : SessionService {
         random.setSeed("${user.id}|${user.passwordHash}".toByteArray())
         val bytes = ByteArray(32) { 0 }
         random.nextBytes(bytes)
-        val sessionId = hashProvider.hash(bytes)
+        val token = hashProvider.hash(bytes)
+                .replace('/', '_')
+                .replace('+', '-')
+                .replace("=", "")
 
         val duration = config.sessionDurationSeconds?.let {
             it * 1000
@@ -33,7 +36,7 @@ abstract class SessionServiceAbstract : SessionService {
         }
 
         val session = Session(
-                token = sessionId,
+                token = token,
                 user = user,
                 ipAddress = ipAddress,
                 expiration = expiration
