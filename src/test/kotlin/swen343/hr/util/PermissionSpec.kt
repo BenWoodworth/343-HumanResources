@@ -6,66 +6,59 @@ import org.jetbrains.spek.api.dsl.it
 import kotlin.test.*
 
 class PermissionSpec : Spek({
+    describe("Permissions for a") {
+        val permission = Permission("a")
+
+        it("Should match a") {
+            assertTrue(permission.matches("a"))
+        }
+
+        it("Should not match b") {
+            assertFalse(permission.matches("b"))
+        }
+
+        it("Should not match a.b") {
+            assertFalse(permission.matches("a.b"))
+        }
+    }
+
     describe("Permissions for a.b") {
         val permission = Permission("a.b")
 
         it("Should not match a") {
-            val perm = permission.matches("a")
-            assertFalse(perm)
+            assertFalse(permission.matches("a"))
         }
 
         it("Should match a.b") {
-            val matches = permission.matches("a.b")
-            assertTrue(matches)
+            assertTrue(permission.matches("a.b"))
         }
 
         it("Should not match a.c") {
-            val matches = permission.matches("a.c")
-            assertFalse(matches)
+            assertFalse(permission.matches("a.c"))
         }
 
         it("Should not match a.b.c") {
-            val perm = permission.matches("a.b.c")
-            assertFalse(perm)
+            assertFalse(permission.matches("a.b.c"))
         }
     }
 
     describe("Permissions for a.*") {
         val permission = Permission("a.*")
 
-        it("Should not match a") {
-            val perm = permission.matches("a")
-            assertFalse(perm)
+        it("Should match a") {
+            assertTrue(permission.matches("a"))
         }
 
         it("Should match a.b") {
-            val matches = permission.matches("a.b")
-            assertTrue(matches)
-        }
-
-        it("Should not match a.b.c") {
-            val perm = permission.matches("a.b.c")
-            assertFalse(perm)
-        }
-    }
-
-    describe("Permissions for a.**") {
-        val permission = Permission("a.**")
-
-        it("Should not match a") {
-            val perm = permission.matches("a")
-            assertFalse(perm)
-        }
-
-        it("Should match a.b") {
-            val matches = permission.matches("a.b")
-            assertTrue(matches)
+            assertTrue(permission.matches("a.b"))
         }
 
         it("Should match a.b.c") {
-            val perm = permission.matches("a.b.c")
-            assertTrue(perm)
+            assertTrue(permission.matches("a.b.c"))
+        }
+
+        it("Should not match b.c") {
+            assertFalse(permission.matches("b.c"))
         }
     }
-
 })

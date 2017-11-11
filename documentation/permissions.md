@@ -28,21 +28,18 @@
 
 # How Permissions Work
 ## Permission Structure
-Permissions consist of subpermissions separated by periods.  
-Subpermissions can contain the characters `A-Z`, `a-z`, `0-9`, `-`, and `_`.  
-Users can be given permissions with `*` to match any subpermission.  
-Users can be given permissions with `**` to match any remaining subpermissions.
+Permissions consist of sub-permissions separated by `.`'s.  
+Sub-permissions can contain the characters `A-Z`, `a-z`, `0-9`, `-`, and `_`.  
+If the last sub-permission is `*`, then the remaining sub-permissions match.
 
 ## Examples
 | User's Permission | Test Permission  | Has Permission?  |
 |-------------------|------------------|------------------|
-| hr.employees      | hr.employees     | True             |
-| hr.*              | hr.employees     | True             |
-| hr.**             | hr.employees     | True             |
-| hr.**             | hr.employees.add | True             |
 | hr.employees      | hr               | False            |
+| hr.employees      | hr.employees     | True             |
 | hr.employees      | hr.employees.add | False            |
-| hr.*              | hr               | False            |
-| hr.*              | hr.users         | False            |
-| hr.*              | hr.employees.add | False            |
-| hr.**             | hr               | False            |
+| hr.*              | hr               | True             |
+| hr.*              | hr.users         | True             |
+| hr.*              | hr.employees     | True             |
+| hr.*              | hr.employees.add | True             |
+| hr.*              | manufacturing    | False            |

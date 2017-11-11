@@ -18,9 +18,9 @@ import java.net.URL
  * Created by ben on 11/7/17.
  */
 class ControllerPayrollSpec : Spek({
-    Spark.port(12345)
-    Spark.init()
-    Spark.awaitInitialization()
+    // Spark.port(12345)
+    // Spark.init()
+    // Spark.awaitInitialization()
 
     val employee0 = Employee(
             id = 0,

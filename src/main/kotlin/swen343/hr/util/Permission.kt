@@ -24,7 +24,7 @@ import com.squareup.moshi.ToJson
 data class Permission(
         val permission: String
 ) {
-    private val regex = Regex("^(([\\w-]+|\\*)\\.)*([\\w-]+|\\*\\*?)\$")
+    private val regex = Regex("^\\w+(\\.\\w+)*(\\.\\*)?\$")
 
     init {
         assert(regex.matches(permission)) {
@@ -43,13 +43,11 @@ data class Permission(
         for (i in 0 until maxOf(parts.size, testParts.size)) {
             when {
                 i >= parts.size -> return false
+                parts[i] == "*" -> return true
                 i >= testParts.size -> return false
-                parts[i] == "**" -> return true
-                parts[i] == "*" -> Unit
                 parts[i] != testParts[i] -> return false
             }
         }
-
         return true
     }
 
