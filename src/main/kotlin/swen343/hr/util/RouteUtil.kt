@@ -18,10 +18,17 @@ class RouteUtil @Inject constructor(
 ) {
 
     /**
+     * Get the current session token.
+     */
+    fun sessionToken(routeHandler: RouteHandler): String? {
+        return routeHandler.request.cookie("SID")
+    }
+
+    /**
      * Get the user currently logged in.
      */
     fun user(routeHandler: RouteHandler): User? {
-        return routeHandler.request.cookie("SID")?.let {
+        return sessionToken(routeHandler)?.let {
             sessionService.getSession(it, routeHandler.request.ip())?.user
         }
     }
@@ -30,7 +37,7 @@ class RouteUtil @Inject constructor(
      * Set the user currently logged in.
      */
     fun user(routeHandler: RouteHandler, user: User?) {
-        routeHandler.request.cookie("SID")?.let {
+        sessionToken(routeHandler)?.let {
             sessionService.endSession(it)
         }
 
