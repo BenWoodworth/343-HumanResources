@@ -45,4 +45,5 @@
 </div>
 <script src="/js/user-list.js"></script>
 </body>
+<@u.footer/>
 </html>

@@ -70,3 +70,20 @@
         </#list>
     </#if>
 </#macro>
+
+<#macro footer>
+    <footer>
+        <div class="container">
+            <hr>
+            <div class="row">
+                <div class="col col-lg-4">
+                </div>
+                <div class="col col-lg-4">
+                    <center><p>&copy; 2017 - KennUWare Corp.</p></center>
+                </div>
+                <div class="col col-lg-4">
+                </div>
+            </div>
+        </div>
+    </footer>
+</#macro>

@@ -41,4 +41,5 @@
     </div>
 </div>
 </body>
+<@u.footer/>
 </html>
