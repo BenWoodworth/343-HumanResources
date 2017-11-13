@@ -48,7 +48,7 @@ class ControllerEmployeesApi @Inject constructor(
         }
     }
 
-    private class EmployeeResponse(employee: Employee) {
+    class EmployeeResponse(employee: Employee) {
         val username = employee.user.username
         val firstName = employee.firstName
         val lastName = employee.lastName
