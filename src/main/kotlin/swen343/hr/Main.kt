@@ -21,6 +21,7 @@ private class ModuleHumanResources(
             if (config.useDummyServices) {
                 bind(EmployeeService::class.java).to(EmployeeServiceDummy::class.java)
                 bind(UserService::class.java).to(UserServiceDummy::class.java)
+                bind(SessionService::class.java).to(SessionServiceDummy::class.java)
             }
         }
     }

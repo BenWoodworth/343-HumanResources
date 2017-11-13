@@ -3,15 +3,17 @@ package swen343.hr.dependencies
 import swen343.hr.util.Updater
 
 class ConfigPropertiesUpdater : Updater<ConfigProperties>({
-    it.properties["port"] = "1234"
-    it.properties["use-dummy-services"] = "true"
-    it.properties["database.url"] = ""
-    it.properties["database.user"] = ""
-    it.properties["database.pass"] = ""
+    properties["port"] = "1234"
+    properties["use-dummy-services"] = "true"
+    properties["database.url"] = ""
+    properties["database.user"] = ""
+    properties["database.pass"] = ""
 }, {
-    if (it.properties["database-url"] == "") {
-        it.properties["database-url"] = "jdbc:mysql://<address>:3306/<database>"
+    if (properties["database-url"] == "") {
+        properties["database-url"] = "jdbc:mysql://<address>:3306/<database>"
     }
+}, {
+    properties["session-duration.seconds"] = "604800"
 }) {
 
     override fun initialize(updatable: ConfigProperties) {

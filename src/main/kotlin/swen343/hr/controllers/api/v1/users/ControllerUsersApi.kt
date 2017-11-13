@@ -56,15 +56,18 @@ class ControllerUsersApi @Inject constructor(
                         "User not found: $username"
                 ).jsonResponse(response)
             } else {
-                ApiResponse(object {
-                    val hasPermission = user.hasPermission(permission)
-                }).jsonResponse(response)
+                val hasPermission = user.hasPermission(permission)
+                ApiResponse(PermissionResponse(hasPermission)).jsonResponse(response)
             }
         }
     }
 
-    private class UserResponse(user: User) {
+    class UserResponse(user: User) {
         val username = user.username
         val permissions = user.permissions.map { it.toString() }
     }
+
+    class PermissionResponse(
+            val hasPermission: Boolean
+    )
 }
