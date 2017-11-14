@@ -5,10 +5,13 @@ import spark.RouteGroup
 import spark.kotlin.get
 import spark.kotlin.post
 import swen343.hr.Permissions
+import swen343.hr.controllers.api.v1.employees.ControllerEmployeesApi
 import swen343.hr.controllers.api.v1.employees.ControllerUsersApi
+import swen343.hr.dependencies.EmployeeService
 import swen343.hr.dependencies.HashProvider
 import swen343.hr.dependencies.SessionService
 import swen343.hr.dependencies.UserService
+import swen343.hr.models.Employee
 import swen343.hr.models.Session
 import swen343.hr.models.User
 import swen343.hr.util.ApiResponse
@@ -21,7 +24,8 @@ class ControllerSessionsApi @Inject constructor(
         private val userService: UserService,
         private val hashProvider: HashProvider,
         private val sessionService: SessionService,
-        private val routeUtil: RouteUtil
+        private val routeUtil: RouteUtil,
+        private val employeeService: EmployeeService
 ) : RouteGroup {
 
     override fun addRoutes() {
@@ -35,8 +39,11 @@ class ControllerSessionsApi @Inject constructor(
             if (user?.passwordHash != passwordHash) {
                 ApiResponse("Invalid username or password").jsonResponse(response)
             } else {
-                val session = sessionService.createSession(user!!, request.ip())
-                ApiResponse(SessionResponse(session)).jsonResponse(response)
+                val session = sessionService.createSession(user, request.ip())
+                ApiResponse(SessionResponse(
+                        session,
+                        employeeService.getEmployee(session.user.username)
+                )).jsonResponse(response)
             }
         }
 
@@ -47,7 +54,10 @@ class ControllerSessionsApi @Inject constructor(
             if (session == null) {
                 ApiResponse("Invalid session token").jsonResponse(response)
             } else {
-                ApiResponse(SessionResponse(session!!)).jsonResponse(response)
+                ApiResponse(SessionResponse(
+                        session,
+                        employeeService.getEmployee(session.user.username)
+                )).jsonResponse(response)
             }
         }
 
@@ -62,9 +72,10 @@ class ControllerSessionsApi @Inject constructor(
         }
     }
 
-    class SessionResponse(session: Session) {
+    class SessionResponse(session: Session, employee: Employee?) {
         val token = session.token
         val user = ControllerUsersApi.UserResponse(session.user)
+        val employee = employee?.let { ControllerEmployeesApi.EmployeeResponse(employee) }
         val ipAddress = session.ipAddress
         val expiration = session.expiration.toString()
     }
