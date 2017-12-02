@@ -52,7 +52,7 @@
                 <A class="btn btn-info " style="height:200px; width: 300px; padding-top: 100px" role="button"  href="http://accounting.kennuware.com">Accounting</A>
             </div>
             <div class="col col-lg-4">
-                <A class="btn btn-success" style="height:200px; width: 300px; padding-top: 100px"  href="http://manufacturing.kennuware.com">Manufacturing</A>
+                <A class="btn btn-success" style="height:200px; width: 300px; padding-top: 100px"  href="http://manufacturing.kennuware.com:8080">Manufacturing</A>
             </div>
             <div class="col col-lg-4">
                 <A class="btn btn-danger" style="height:200px; width: 300px; padding-top: 100px" role="button"  href="http://support.kennuware.com">Customer Support</A>
