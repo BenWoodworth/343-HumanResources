@@ -36,10 +36,7 @@ class ControllerIndex @Inject constructor(
             if (routeUtil.user(this) == null) {
                 response.redirect("/auth/login")
             } else {
-                templateLoader.loadTemplate(
-                        "index.ftl",
-                        ViewModelBasic(routeUtil.user(this))
-                )
+                redirect("/silos")
             }
         }
 

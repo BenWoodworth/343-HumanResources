@@ -1,7 +1,10 @@
 <#import "lib/utils.ftl" as u>
 
 <html>
+
 <title>Welcome to KennUWare</title>
+<h2 class="text-center"> Welcome back, ${sessionUser.username} </h2>
+
 <@u.head/>
 <body>
 <script src="js/konami.js"></script>

@@ -1,7 +1,7 @@
 <#import "../lib/template.ftl" as template>
 <#import "../lib/utils.ftl" as u>
 <@u.head/>
-<@template.template title="Login" showNav=false>
+<@template.template title="Login - KennUWare" showNav=false>
     <#if sessionUser??>
         <h2>You are already logged in</h2>
     <#else>
@@ -28,4 +28,3 @@
     </div>
     </#if>
 </@template.template>
-<@u.footer/>
