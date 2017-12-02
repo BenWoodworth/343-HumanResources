@@ -63,8 +63,9 @@
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.department}</a></td>
             <td>
 
-                <form method="POST" action="/employees/delete/${employee.user.username}">
+                <form onsubmit="return confirm('Do you want to delete this employee?');" method="POST" action="/employees/delete/${employee.user.username}">
                     <input type="submit" title="Delete employee" value="-"/>
+                    <script type="text/javascript" src="/js/employeeList.js"></script>
                     <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.user.username}">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </A>
