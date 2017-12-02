@@ -12,6 +12,12 @@ h2 {
     padding: 20px;
 }
 
+h3{
+    right: 0px;
+    padding: 20px;
+    position: absolute;
+}
+
 .github-button {
     background-color: black;
     color:white;
