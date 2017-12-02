@@ -12,7 +12,7 @@
 </#macro>
 
 <#macro nav_bar>
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #444444;">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -69,4 +69,21 @@
             <div class="validation-message">${error}</div>
         </#list>
     </#if>
+</#macro>
+
+<#macro footer>
+    <footer>
+        <div class="container">
+            <hr>
+            <div class="row">
+                <div class="col col-lg-4">
+                </div>
+                <div class="col col-lg-4">
+                    <center><p>&copy; 2017 - KennUWare Corp.</p></center>
+                </div>
+                <div class="col col-lg-4">
+                </div>
+            </div>
+        </div>
+    </footer>
 </#macro>

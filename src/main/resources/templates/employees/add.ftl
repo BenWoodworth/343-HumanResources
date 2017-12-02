@@ -113,4 +113,5 @@
 </div>
 <script src="/js/validation.js"></script>
 </body>
+<@u.footer/>
 </html>

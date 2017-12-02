@@ -1,5 +1,5 @@
-<#import "/lib/template.ftl" as template>
-<#import "/lib/utils.ftl" as u>
+<#import "../lib/template.ftl" as template>
+<#import "../lib/utils.ftl" as u>
 <@u.head/>
 <@template.template title="Login" showNav=false>
     <#if sessionUser??>
@@ -28,3 +28,4 @@
     </div>
     </#if>
 </@template.template>
+<@u.footer/>

@@ -10,6 +10,31 @@
 
     <h2>Kennuware Employee Table</h2>
 
+
+    <br></br>
+    <div class="col-xs-8 col-xs-offset-2">
+        <div class="input-group">
+            <div class="input-group-btn search-panel">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span id="search_concept">Filter by</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#department">Department</a></li>
+                    <li><a href="#salary">Salary</a></li>
+                    <li><a href="#position">Position</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#all">Anything</a></li>
+                </ul>
+            </div>
+            <input type="hidden" name="search_param" value="all" id="search_param">
+            <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <button class="btn btn-primary" type="button">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+
+        </div>
+    </div>
+    <br></br>
     <a class="btn btn-primary btn-mid" role="button" href="/employees/add">Add Employee</a>
     <br></br>
     <table class="table table-striped table-bordered table-hover" data-link="row">
@@ -49,10 +74,12 @@
             </td>
         </tr>
         </#list>
+        <script src="/js/filter.js"></script>
         <script src="/js/employeeList.js"></script>
         </tbody>
     </table>
 </div>
 
 </body>
+<@u.footer/>
 </html>
