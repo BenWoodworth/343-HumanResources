@@ -1,4 +1,5 @@
 <#import "navbar.ftl" as navbar>
+<#import "utils.ftl" as util>
 <#macro template title showNav>
 
 <html>
@@ -14,6 +15,7 @@
         <#nested>
     </div>
 </body>
+<@util.footer/>
 </html>
 
 </#macro>
