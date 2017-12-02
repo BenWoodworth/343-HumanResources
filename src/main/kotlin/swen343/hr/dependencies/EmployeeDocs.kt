@@ -2,7 +2,7 @@ package swen343.hr.dependencies
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import swen343.hr.viewmodels.ViewModelDocuments
+//import swen343.hr.viewmodels.ViewModelDocuments
 import swen343.hr.models.Employee
 import java.nio.file.Path
 

@@ -3,8 +3,8 @@
 <html>
 
 <title>Welcome to KennUWare</title>
-<h3><a type="button" class="btn btn-primary btn-sm" href="/auth/sign-out">Sign Out</a></h3>
-<h2 class="text-center">Welcome back, ${sessionUser.username}</h2>
+<h4 id="welcome"> Welcome back, ${sessionUser.username}!  <a type="button" class="btn btn-primary" href="/auth/sign-out">Sign Out</a></h4>
+<#--<h2 class="text-center">Welcome back, ${sessionUser.username}</h2>-->
 
 <@u.head/>
 <body>
