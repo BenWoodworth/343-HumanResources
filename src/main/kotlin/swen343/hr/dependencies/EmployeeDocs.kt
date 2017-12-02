@@ -11,15 +11,20 @@ class EmployeeDocs: EmployeeDocumentService {
 
     private val documents = mutableListOf<String>()
 
-    override fun getDocuments(employee: Employee): List<String> {
+    override fun getDocuments(username: String): List<String> {
         return documents
                 .toList()
     }
 
-    override fun uploadDocument(fileName: String): String {
+    override fun getDocument(username: String, fileName: String): Path {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
+    override fun uploadDocument(username: String): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-        return ""
-
+    override fun deleteDocument(username: String, fileName: String): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

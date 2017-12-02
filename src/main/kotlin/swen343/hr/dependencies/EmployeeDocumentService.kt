@@ -2,6 +2,7 @@ package swen343.hr.dependencies
 
 import com.google.inject.ImplementedBy
 import swen343.hr.models.Employee
+import java.nio.file.Path
 
 @ImplementedBy(EmployeeDocs::class)
 interface EmployeeDocumentService {
@@ -11,7 +12,14 @@ interface EmployeeDocumentService {
      *
      * @return all the [Document]s
      */
-    fun getDocuments(employee: Employee): List<String>
+    fun getDocuments(username: String): List<String>
+
+    /**
+     * Get a document [Document]s.
+     *
+     * @return a document [Document]s
+     */
+    fun getDocument(username: String, fileName: String): Path
 
 
     /**
@@ -21,7 +29,10 @@ interface EmployeeDocumentService {
      * @param document the [Document] to add
      * @return the added [Document]
      */
-    fun uploadDocument(fileName: String): String
+    fun uploadDocument(username: String): String
+//    TODO
+
+    fun deleteDocument(username: String, fileName: String): String
 
 
 }
