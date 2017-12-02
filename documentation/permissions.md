@@ -1,13 +1,13 @@
 # Permissions in Use
 ## Department permissions
-| Permission    | Description                         |
-|---------------|-------------------------------------|
-| hr            | Member of department: HR            |
-| sales         | Member of department: Sales         |
-| support       | Member of department: Support       |
-| inventory     | Member of department: Inventory     |
-| accounting    | Member of department: Accounting    |
-| manufacturing | Member of department: Manufacturing |
+| Permission      | Description                            |
+|-----------------|----------------------------------------|
+| hr              | Member of department: HR               |
+| sales           | Member of department: Sales            |
+| inventory       | Member of department: Inventory        |
+| accounting      | Member of department: Accounting       |
+| manufacturing   | Member of department: Manufacturing    |
+| customersupport | Member of department: Customer Support |
 
 ## HR Permissions
 | Permission              | Description                    |
