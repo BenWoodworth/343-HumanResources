@@ -55,7 +55,7 @@ class ControllerUsers @Inject constructor(
             routeUtil.requirePerms(this, Permissions.HR_USERS_ADD)
             val permissions = request
                     .queryParams("permissions")
-                    .split(Regex("\\v+"))
+                    .split(Regex("[\\s,]+"))
                     .map { Permission(it) }
 
             val user = userService.addUser(User(
@@ -111,7 +111,7 @@ class ControllerUsers @Inject constructor(
                     }
 
                     val permissions = form.fields.permissions
-                            .split(Regex("\\v"))
+                            .split(Regex("[\\s,]+"))
                             .map { Permission(it) }
 
                     val newUser = user.copy(

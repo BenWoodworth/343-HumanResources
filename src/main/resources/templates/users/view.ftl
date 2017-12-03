@@ -41,8 +41,7 @@
 
                                     <#if permissions?has_content>
                                         <#list permissions as permission>
-                                            <code>${permission}</code>
-                                            <br></br>
+                                            <code>${permission}</code><br/>
                                         </#list>
                                     <#else>
                                         <i class="text-muted">None</i>
