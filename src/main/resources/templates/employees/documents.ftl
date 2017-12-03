@@ -5,7 +5,7 @@
 
 <#list documents as document>
     <button>delete</button>
-    <a href="${document.name}">${document.name}</a>:
+    <a href="${document.name?url}">${document.name}</a>:
     ${document.size}
     <br/>
 </#list>
