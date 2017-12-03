@@ -12,6 +12,8 @@ import swen343.hr.viewmodels.ViewModelDocuments
 import javax.inject.Inject
 import javax.inject.Singleton
 import javax.servlet.MultipartConfigElement
+import spark.kotlin.halt
+import java.nio.file.Files
 
 @Singleton
 class ControllerEmployeesDocuments @Inject constructor(
@@ -53,7 +55,21 @@ class ControllerEmployeesDocuments @Inject constructor(
 
         // Download
         get("view/:username/documents/:filename") {
-            TODO()
+            val path = employeeDocumentService.getDocument(
+                    params("username"),
+                    params("filename")
+            )
+
+            path ?: throw halt(404)
+
+            response.header("Content-Disposition", "attachment; filename=${path.fileName}")
+            response.type("application/force-download")
+
+            response.raw().apply {
+                outputStream.use {
+                    Files.copy(path, it)
+                }
+            }
         }
 
         // Delete
