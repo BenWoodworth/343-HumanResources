@@ -22,13 +22,13 @@ document.addEventListener('keydown', function(e) {
     var requiredKey = konamiCode[konamiCodePosition];
 
     // compare the key with the required key
-    if (key == requiredKey) {
+    if (key === requiredKey) {
 
         // move to the next key in the konami code sequence
         konamiCodePosition++;
 
         // if the last key is reached, activate cheats
-        if (konamiCodePosition == konamiCode.length) {
+        if (konamiCodePosition === konamiCode.length) {
             activateCheats();
             konamiCodePosition = 0;
         }
@@ -40,9 +40,9 @@ document.addEventListener('keydown', function(e) {
 
 function activateCheats() {
 
-    var audio = new Audio('../meme/SWENMEME.mp3');
+    var audio = new Audio('/meme/SWENMEME.mp3');
     audio.play();
 
     var myWindow = window.open("", "_self");
-    myWindow.document.write("<img src=\"../meme/SWENMEME.jpg\">");
+    myWindow.document.write("<img src=\"/meme/SWENMEME.jpg\">");
 }

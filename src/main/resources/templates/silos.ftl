@@ -8,7 +8,7 @@
 
 <@u.head/>
 <body>
-<script src="js/konami.js"></script>
+<script src="/js/konami.js"></script>
 <div class="container" style="padding-top: 50px">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
