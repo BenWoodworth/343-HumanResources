@@ -18,11 +18,11 @@ class ViewModelDocuments(
 
     private fun getFileSize(path: Path): String {
         val fileSize = Files.size(path)
-        val magnitude = Math.floor(Math.log10(fileSize.toDouble()))
-        val scalar = (fileSize / Math.pow(10.0, magnitude)).toInt()
+        val magnitude = Math.floor(Math.log10(fileSize.toDouble()) / 3)
+        val scalar = (fileSize / Math.pow(1000.0, magnitude)).toInt()
 
         val units = listOf("B", "KB", "MB", "GB", "TB")
-        val unit = units[minOf(magnitude.toInt(), units.size)]
+        val unit = units[minOf(magnitude.toInt(), units.size - 1)]
 
         return "$scalar $unit"
     }

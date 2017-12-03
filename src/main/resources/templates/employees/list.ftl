@@ -35,7 +35,7 @@
         </div>
     </div>
     <br/>
-    <a class="btn btn-primary btn-mid" role="button" href="add">Add Employee</a>
+    <a class="btn btn-primary btn-mid" role="button" href="add/">Add Employee</a>
     <br/>
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>

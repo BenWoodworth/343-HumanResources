@@ -11,7 +11,7 @@
 
     <h2>Kennuware User Table</h2>
 
-    <a class="btn btn-primary btn-mid" role="button"  href="users/add">Add user</a>
+    <a class="btn btn-primary btn-mid" role="button"  href="add/">Add user</a>
     <br></br>
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>

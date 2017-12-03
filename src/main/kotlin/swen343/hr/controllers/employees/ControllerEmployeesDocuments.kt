@@ -11,6 +11,7 @@ import swen343.hr.util.RouteUtil
 import swen343.hr.viewmodels.ViewModelDocuments
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.servlet.MultipartConfigElement
 
 @Singleton
 class ControllerEmployeesDocuments @Inject constructor(
@@ -34,6 +35,11 @@ class ControllerEmployeesDocuments @Inject constructor(
 
         // Upload
         post("view/:username/documents/") {
+            request.attribute(
+                    "org.eclipse.jetty.multipartConfig",
+                    MultipartConfigElement("/temp")
+            )
+
             val document = request.raw().getPart("document")
 
             employeeDocumentService.uploadDocument(
@@ -42,7 +48,7 @@ class ControllerEmployeesDocuments @Inject constructor(
                     document.inputStream
             )
 
-            response.redirect("documents")
+            response.redirect(".")
         }
 
         // Download
