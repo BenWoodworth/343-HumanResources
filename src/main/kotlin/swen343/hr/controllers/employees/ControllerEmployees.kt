@@ -28,7 +28,6 @@ class ControllerEmployees @Inject constructor(
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
         private val userService: UserService,
-        private val hashProvider: HashProvider,
         private val routeUtil: RouteUtil
 ) : RouteGroup {
 
@@ -62,12 +61,10 @@ class ControllerEmployees @Inject constructor(
         post("add/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
 
+            val user = userService.getUser(request.queryParams("username"))!!
+
             val employee = employeeService.addEmployee(Employee(
-                    user = userService.addUser(User(
-                            username = request.queryParams("username"),
-                            passwordHash = hashProvider.hash(request.queryParams("password")),
-                            permissions = listOf() // TODO
-                    )),
+                    user = user,
                     firstName = request.queryParams("firstName"),
                     lastName = request.queryParams("lastName"),
                     title = request.queryParams("title"),
