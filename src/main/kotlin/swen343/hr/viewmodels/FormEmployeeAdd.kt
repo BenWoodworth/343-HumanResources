@@ -1,5 +1,7 @@
 package swen343.hr.viewmodels
 
+import swen343.hr.dependencies.EmployeeService
+import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
 
@@ -9,8 +11,18 @@ import swen343.hr.models.User
 class FormEmployeeAdd(
         override val sessionUser: User?,
         override val fields: FormEmployeeAdd.Fields,
-        val employee: Employee
+        userService: UserService,
+        employeeService: EmployeeService
 ) : Form<FormEmployeeAdd.Fields>({
+
+    userService.getUser(fields.username).run {
+        if (this == null) {
+            errors += "User does not exist"
+        } else if (employeeService.getEmployee(username) != null) {
+            errors += "User is already associated with an employee"
+        }
+    }
+
     if (fields.firstName.isEmpty()) {
         errors += "First name must not be empty"
     } else if (!Regex("^[a-zA-Z]+\$").matches(fields.firstName)) {
@@ -39,12 +51,8 @@ class FormEmployeeAdd(
         errors += "Salary must be a non-negative integer"
     }
 
-//    if (!Regex("^\\d{3}-\\d{3}-\\d{4}$").matches(fields.phoneNumber)) {
-//        errors += "Phone number must have the format ###-###-####"
-//    }
-
-    if (!Regex("^\\d{10}$").matches(fields.phoneNumber)) {
-        errors += "Phone number must have the format ##########"
+    if (!Regex("^\\d{3}-\\d{3}-\\d{4}$").matches(fields.phoneNumber)) {
+        errors += "Phone number must have the format ###-###-####"
     }
 
     if (!Regex("^\\w*@\\w*\\.\\w*$").matches(fields.email)) {
@@ -53,15 +61,15 @@ class FormEmployeeAdd(
 }) {
 
     class Fields(
-            val username: String,
-            val firstName: String,
-            val lastName: String,
-            val title: String,
-            val department: String,
-            val salary: String,
-            val phoneNumber: String,
-            val email: String,
-            val address: String
+            val username: String = "",
+            val firstName: String = "",
+            val lastName: String = "",
+            val title: String = "",
+            val department: String = "",
+            val salary: String = "",
+            val phoneNumber: String = "",
+            val email: String = "",
+            val address: String = ""
     ) {
         constructor(employee: Employee) : this(
                 username = employee.user.username,

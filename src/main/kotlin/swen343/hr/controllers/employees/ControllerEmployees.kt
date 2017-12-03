@@ -14,10 +14,7 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
 import swen343.hr.util.RouteUtil
-import swen343.hr.viewmodels.FormEmployeeEdit
-import swen343.hr.viewmodels.ViewModelBasic
-import swen343.hr.viewmodels.ViewModelEmployee
-import swen343.hr.viewmodels.ViewModelEmployeeList
+import swen343.hr.viewmodels.*
 
 /**
  * Created by ben on 10/16/17.
@@ -54,27 +51,55 @@ class ControllerEmployees @Inject constructor(
 
             templateLoader.loadTemplate(
                     "/employees/add.ftl",
-                    ViewModelBasic(routeUtil.user(this))
+                    FormEmployeeAdd(
+                            sessionUser = routeUtil.user(this),
+                            fields = FormEmployeeAdd.Fields(),
+                            userService = userService,
+                            employeeService = employeeService
+                    )
             )
         }
 
         post("add/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
 
-            val user = userService.getUser(request.queryParams("username"))!!
+            val form = FormEmployeeAdd(
+                    sessionUser = routeUtil.user(this),
+                    fields = FormEmployeeAdd.Fields(
+                            username = queryParams("username"),
+                            firstName = queryParams("firstName"),
+                            lastName = queryParams("lastName"),
+                            title = queryParams("title"),
+                            department = queryParams("department"),
+                            salary = queryParams("salary"),
+                            phoneNumber = queryParams("phoneNumber"),
+                            email = queryParams("email"),
+                            address = queryParams("address")
+                    ),
+                    userService = userService,
+                    employeeService = employeeService
+            )
 
-            val employee = employeeService.addEmployee(Employee(
-                    user = user,
-                    firstName = request.queryParams("firstName"),
-                    lastName = request.queryParams("lastName"),
-                    title = request.queryParams("title"),
-                    department = request.queryParams("department"),
-                    salary = request.queryParams("salary").toInt(),
-                    phoneNumber = request.queryParams("phoneNumber"),
-                    email = request.queryParams("email"),
-                    address = request.queryParams("address")
-            ))
-            response.redirect("/employees/view/${employee.user.username}/")
+            if (!form.validate()) {
+                templateLoader.loadTemplate(
+                        "/employees/add.ftl",
+                        form
+                )
+            } else {
+                val employee = employeeService.addEmployee(Employee(
+                        user = userService.getUser(queryParams("username"))!!,
+                        firstName = queryParams("firstName"),
+                        lastName = queryParams("lastName"),
+                        title = queryParams("title"),
+                        department = queryParams("department"),
+                        salary = queryParams("salary").toInt(),
+                        phoneNumber = queryParams("phoneNumber"),
+                        email = queryParams("email"),
+                        address = queryParams("address")
+                ))
+                response.redirect("/employees/view/${employee.user.username}/")
+            }
+
         }
 
         get("edit/:username/") {
