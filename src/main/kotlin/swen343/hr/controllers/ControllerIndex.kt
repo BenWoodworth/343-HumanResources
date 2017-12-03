@@ -36,7 +36,7 @@ class ControllerIndex @Inject constructor(
             if (routeUtil.user(this) == null) {
                 response.redirect("/auth/login/")
             } else {
-                redirect("/silos")
+                redirect("/silos/")
             }
         }
 
