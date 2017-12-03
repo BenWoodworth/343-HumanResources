@@ -27,13 +27,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/employees">
+                <a class="nav-link" href="/employees/">
                     <i class="fa fa-briefcase" aria-hidden="true"></i>
                     Employees
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/users">
+                <a class="nav-link" href="/users/">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     Users
                 </a>
@@ -53,9 +53,9 @@
                 ${sessionUser.username}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="./users/view/${sessionUser.username}">Profile</a>
-                    <a class="dropdown-item" href="./employees/view/${sessionUser.username}">Employee</a>
-                    <a class="dropdown-item" href="/auth/sign-out">Sign Out</a>
+                    <a class="dropdown-item" href="/users/view/${sessionUser.username}/">Profile</a>
+                    <a class="dropdown-item" href="/employees/view/${sessionUser.username}/">Employee</a>
+                    <a class="dropdown-item" href="/auth/sign-out/">Sign Out</a>
                 </div>
             </li>
         </ul>

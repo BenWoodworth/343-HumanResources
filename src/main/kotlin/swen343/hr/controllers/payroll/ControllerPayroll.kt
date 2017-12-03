@@ -37,7 +37,7 @@ class ControllerPayroll @Inject constructor(
             )
         }
 
-        post("/pay/:username") {
+        post("pay/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_PAYROLL_PAY)
 
             val username = params("username")
@@ -50,7 +50,7 @@ class ControllerPayroll @Inject constructor(
             }
         }
 
-        post("/pay-all") {
+        post("pay-all/") {
             routeUtil.requirePerms(this, Permissions.HR_PAYROLL_PAY)
 
             employeeService.getEmployees().all {

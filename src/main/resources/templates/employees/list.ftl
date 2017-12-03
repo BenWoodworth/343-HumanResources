@@ -11,7 +11,7 @@
     <h2>Kennuware Employee Table</h2>
 
 
-    <br></br>
+    <br/>
     <div class="col-xs-8 col-xs-offset-2">
         <div class="input-group">
             <div class="input-group-btn search-panel">
@@ -34,9 +34,9 @@
 
         </div>
     </div>
-    <br></br>
-    <a class="btn btn-primary btn-mid" role="button" href="/employees/add">Add Employee</a>
-    <br></br>
+    <br/>
+    <a class="btn btn-primary btn-mid" role="button" href="add">Add Employee</a>
+    <br/>
     <table class="table table-striped table-bordered table-hover" data-link="row">
         <thead>
         <tr>
@@ -51,21 +51,21 @@
         <tbody data-link="row" class="rowlink">
         <#list employees as employee>
         <tr>
-            <td><a href="employees/view/${employee.user.username}"
+            <td><a href="view/${employee.user.username}/"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.user.username}</a></td>
-            <td><a href="employees/view/${employee.user.username}"
+            <td><a href="view/${employee.user.username}/"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.firstName}</a></td>
-            <td><a href="employees/view/${employee.user.username}"
+            <td><a href="view/${employee.user.username}/"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.lastName}</a></td>
-            <td><a href="employees/view/${employee.user.username}"
+            <td><a href="view/${employee.user.username}/"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.email}</a></td>
-            <td><a href="employees/view/${employee.user.username}"
+            <td><a href="view/${employee.user.username}/"
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.department}</a></td>
             <td>
 
-                <form method="POST" action="/employees/delete/${employee.user.username}">
+                <form method="POST" action="delete/${employee.user.username}/">
                     <input type="submit" title="Delete employee" value="-"/>
-                    <A class="btn icon" title="Edit employee" role="button" href="employees/edit/${employee.user.username}">
+                    <A class="btn icon" title="Edit employee" role="button" href="edit/${employee.user.username}/">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </A>
                 </form>

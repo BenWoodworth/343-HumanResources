@@ -58,8 +58,8 @@
                         </div>
 
                         <div class="center-button">
-                            <a class="btn btn-primary btn-mid" role="button" href="../edit/${user.username}">Edit</a>
-                            <a class="btn btn-primary btn-mid" role="button" href="/users">Back</a>
+                            <a class="btn btn-primary btn-mid" role="button" href="/users/edit/${user.username}/">Edit</a>
+                            <a class="btn btn-primary btn-mid" role="button" href="/users/">Back</a>
                         </div>
                     </form>
 

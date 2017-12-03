@@ -37,7 +37,7 @@
         </div>
         <div class="row" style="padding-left: 50 px; padding-right: 50px ">
             <div class="col col-lg-4">
-                <A class="btn btn-warning " style="height:200px; width: 300px; padding-top: 100px" role="button"  href="/employees">Human Resources</A>
+                <A class="btn btn-warning " style="height:200px; width: 300px; padding-top: 100px" role="button"  href="/employees/">Human Resources</A>
             </div>
             <div class="col col-lg-4">
                 <A class="btn btn-primary" style="height:200px; width: 300px; padding-top: 100px" role="button"  href="http://sales.kennuware.com">Sales</A>

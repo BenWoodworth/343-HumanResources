@@ -10,10 +10,10 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/employees">Employees</a>
+                <a class="nav-link" href="/employees/">Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/users">Users</a>
+                <a class="nav-link" href="/users/">Users</a>
             </li>
 
         </ul>
@@ -25,7 +25,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">My Profile</a>
                     <a class="dropdown-item" href="#">Employee Profile</a>
-                    <a class="dropdown-item" href="/auth/sign-out">Sign Out</a>
+                    <a class="dropdown-item" href="/auth/sign-out/">Sign Out</a>
                 </div>
             </li>
         </ul>

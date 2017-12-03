@@ -23,15 +23,15 @@
         <tbody data-link="row" class="rowlink">
         <#list users as user>
         <tr>
-            <td><a href="users/view/${user.username}" title="${user.username}" >${user.username}</a></td>
+            <td><a href="view/${user.username}/" title="${user.username}" >${user.username}</a></td>
 
 
             <td>
 
-                <form onsubmit="return confirm('Do you want to delete this user?');" method="POST" action="/users/delete/${user.username}">
+                <form onsubmit="return confirm('Do you want to delete this user?');" method="POST" action="delete/${user.username}/">
                     <input type="submit" title="Delete user" value="-"/>
                     <script type="text/javascript" src="/js/userList.js"></script>
-                    <A class="btn icon" title="Edit employee" role="button" href="users/edit/${user.username}">
+                    <A class="btn icon" title="Edit employee" role="button" href="edit/${user.username}/">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </A>
                 </form>

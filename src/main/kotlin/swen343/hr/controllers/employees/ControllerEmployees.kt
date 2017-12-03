@@ -50,7 +50,7 @@ class ControllerEmployees @Inject constructor(
             )
         }
 
-        get("/add") {
+        get("add/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
 
             templateLoader.loadTemplate(
@@ -59,7 +59,7 @@ class ControllerEmployees @Inject constructor(
             )
         }
 
-        post("/add") {
+        post("add/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
 
             val employee = employeeService.addEmployee(Employee(
@@ -77,10 +77,10 @@ class ControllerEmployees @Inject constructor(
                     email = request.queryParams("email"),
                     address = request.queryParams("address")
             ))
-            response.redirect("/employees/view/${employee.user.username}")
+            response.redirect("/employees/view/${employee.user.username}/")
         }
 
-        get("/edit/:username") {
+        get("edit/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_EDIT)
 
             val username = request.params("username")
@@ -99,7 +99,7 @@ class ControllerEmployees @Inject constructor(
             }
         }
 
-        post("/edit/:username") {
+        post("edit/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_EDIT)
 
             val username = request.params("username")
@@ -141,14 +141,14 @@ class ControllerEmployees @Inject constructor(
                             email = request.queryParams("email"),
                             address = request.queryParams("address")
                     ))
-                    response.redirect("/employees/view/$username")
+                    response.redirect("/employees/view/$username/")
                 }
             } else {
                 TODO("Error")
             }
         }
 
-        post("/delete/:username") {
+        post("delete/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_DELETE)
 
             val username = request.params("username")
@@ -159,13 +159,13 @@ class ControllerEmployees @Inject constructor(
             if (employee != null) {
                 employeeService.deleteEmployee(employee)
 
-                response.redirect("/employees")
+                response.redirect("/employees/")
             } else {
                 TODO("Error")
             }
         }
 
-        get("/view/:username") {
+        get("view/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)
 
             val username = request.params("username")

@@ -64,7 +64,7 @@
                         </div>
                         <div class="center-button">
                             <input class="btn btn-primary btn-mid" type="submit" value="Save"/>
-                            <a class="btn github-button" role="button" href="../view/${user.username}">Cancel</a>
+                            <a class="btn github-button" role="button" href="/users/view/${user.username}/">Cancel</a>
                         </div>
                     </form>
                 </div>

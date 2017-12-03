@@ -16,6 +16,6 @@ class ControllerApi @Inject constructor(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        path("/v1", controllerApiV1)
+        path("v1/", controllerApiV1)
     }
 }

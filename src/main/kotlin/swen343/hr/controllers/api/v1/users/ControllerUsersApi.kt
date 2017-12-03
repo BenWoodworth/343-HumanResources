@@ -30,7 +30,7 @@ class ControllerUsersApi @Inject constructor(
             ).jsonResponse(response)
         }
 
-        get("/:username") {
+        get(":username") {
             routeUtil.requirePermsApi(this, Permissions.HR_API_USERS)
             val username = request.params("username")
             val user = userService.getUser(username)
@@ -44,7 +44,7 @@ class ControllerUsersApi @Inject constructor(
             }
         }
 
-        get("/:username/has-perm/:permission") {
+        get(":username/has-perm/:permission") {
             routeUtil.requirePermsApi(this, Permissions.HR_API_USERS_PERMISSION)
             val username = request.params("username")
             val user = userService.getUser(username)

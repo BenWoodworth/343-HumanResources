@@ -23,7 +23,7 @@ class ControllerAuth @Inject constructor(
 
     override fun addRoutes() {
 
-        get("/login") {
+        get("login/") {
 
             templateLoader.loadTemplate(
                     "/auth/login.ftl",
@@ -31,7 +31,7 @@ class ControllerAuth @Inject constructor(
             )
         }
 
-        post("/login") {
+        post("login/") {
             val form = formLoginFactory.getForm(
                     sessionUser = routeUtil.user(this),
                     username = request.queryParams("username"),
@@ -46,11 +46,11 @@ class ControllerAuth @Inject constructor(
             } else {
 
                 routeUtil.user(this, userService.getUser(form.fields.username))
-                response.redirect("/silos")
+                response.redirect("/silos/")
             }
         }
 
-        get("/sign-out") {
+        get("sign-out/") {
             routeUtil.user(this, null)
             response.redirect("/")
         }

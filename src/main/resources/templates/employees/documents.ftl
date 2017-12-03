@@ -1,5 +1,5 @@
-<form method="post" action=".">
-    <input type="file">
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="document">
     <input type="submit" value="Upload">
 </form>
 

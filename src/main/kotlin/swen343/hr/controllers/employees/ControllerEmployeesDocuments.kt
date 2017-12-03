@@ -20,7 +20,7 @@ class ControllerEmployeesDocuments @Inject constructor(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        get("/view/:username/documents") {
+        get("view/:username/documents/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)
 
             templateLoader.loadTemplate(
@@ -33,18 +33,31 @@ class ControllerEmployeesDocuments @Inject constructor(
         }
 
         // Upload
-        post("/view/:username/documents") {
-            TODO()
+        post("view/:username/documents/") {
+            val document = request.raw().getPart("document")
+
+            employeeDocumentService.uploadDocument(
+                    params("username"),
+                    document.submittedFileName,
+                    document.inputStream
+            )
+
+            response.redirect("documents")
         }
 
         // Download
-        get("/view/:username/documents/:filename") {
+        get("view/:username/documents/:filename") {
             TODO()
         }
 
         // Delete
-        delete("/view/:username/documents/:filename") {
-            TODO()
+        delete("view/:username/documents/:filename") {
+            employeeDocumentService.deleteDocument(
+                    params("username"),
+                    params("filename")
+            )
+
+            response.redirect(".")
         }
     }
 }

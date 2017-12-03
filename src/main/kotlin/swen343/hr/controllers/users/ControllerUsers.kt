@@ -43,7 +43,7 @@ class ControllerUsers @Inject constructor(
             )
         }
 
-        get("/add") {
+        get("add/") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_ADD)
             templateLoader.loadTemplate(
                     "/users/add.ftl",
@@ -51,7 +51,7 @@ class ControllerUsers @Inject constructor(
             )
         }
 
-        post("/add") {
+        post("add/") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_ADD)
             val permissions = request
                     .queryParams("permissions")
@@ -64,10 +64,10 @@ class ControllerUsers @Inject constructor(
                     permissions = permissions
             ))
 
-            response.redirect("/users/view/${user.username}")
+            response.redirect("/users/view/${user.username}/")
         }
 
-        get("/edit/:username") {
+        get("edit/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_EDIT)
             val username = params("username")
             val user = userService.getUser(username)
@@ -86,7 +86,7 @@ class ControllerUsers @Inject constructor(
             }
         }
 
-        post("/edit/:username") {
+        post("edit/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_EDIT)
             val username = params("username")
             val user = userService.getUser(username)
@@ -122,7 +122,7 @@ class ControllerUsers @Inject constructor(
 
                     userService.editUser(newUser)
 
-                    response.redirect("/users/view/${newUser.username}")
+                    response.redirect("/users/view/${newUser.username}/")
                 } else {
                     templateLoader.loadTemplate(
                             "/users/edit.ftl",
@@ -134,7 +134,7 @@ class ControllerUsers @Inject constructor(
             }
         }
 
-        post("/delete/:username") {
+        post("delete/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_DELETE)
             val username = request.params("username")
             val user = username?.let {
@@ -143,13 +143,13 @@ class ControllerUsers @Inject constructor(
 
             if (user != null) {
                 userService.deleteUser(user)
-                response.redirect("/users")
+                response.redirect("/users/")
             } else {
                 TODO("Error")
             }
         }
 
-        get("/view/:username") {
+        get("view/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_USERS_VIEW)
             val username = request.params("username")
             val user = username?.let {
