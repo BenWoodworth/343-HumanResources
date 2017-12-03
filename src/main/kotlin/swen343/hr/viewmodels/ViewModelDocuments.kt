@@ -28,7 +28,7 @@ class ViewModelDocuments(
     }
 
     class Document constructor(
-            fileName: String,
-            fileSize: String
+            val name: String,
+            val size: String
     )
 }

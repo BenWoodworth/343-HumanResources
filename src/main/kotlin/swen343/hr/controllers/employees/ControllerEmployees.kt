@@ -3,6 +3,7 @@ package swen343.hr.controllers.employees
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import spark.RouteGroup
+import spark.Spark.path
 import spark.kotlin.get
 import spark.kotlin.post
 import swen343.hr.Permissions
@@ -23,6 +24,7 @@ import swen343.hr.viewmodels.ViewModelEmployeeList
  */
 @Singleton
 class ControllerEmployees @Inject constructor(
+        private val controllerEmployeesDocuments: ControllerEmployeesDocuments,
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
         private val userService: UserService,
@@ -31,6 +33,8 @@ class ControllerEmployees @Inject constructor(
 ) : RouteGroup {
 
     override fun addRoutes() {
+
+        path("", controllerEmployeesDocuments)
 
         get("") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)

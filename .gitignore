@@ -6,4 +6,6 @@
 /classes/
 /.gradle/
 
+/data/*
+
 config.properties

@@ -68,6 +68,7 @@
 
                     </div>
                     <div class="center-button">
+                        <a class="btn btn-primary btn-mid center-button" role="button" href="${employee.user.username}/documents" >Documents</a>
                         <a class="btn btn-primary btn-mid center-button" role="button" href="../edit/${employee.user.username}" >Edit Profile</a>
                         <a class="btn btn-primary btn-mid center-button" role="button" href="/employees" >Back</a>
                     </div>
