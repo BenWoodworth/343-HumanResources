@@ -33,9 +33,7 @@ class SessionServiceDummy @Inject constructor(
             userService.getUser(it.id)
         }
 
-        return if (user == null) {
-            null
-        } else {
+        return user?.let {
             session.copy(user = user)
         }
     }
