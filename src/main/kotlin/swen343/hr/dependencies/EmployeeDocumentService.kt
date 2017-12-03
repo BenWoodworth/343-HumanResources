@@ -1,38 +1,32 @@
 package swen343.hr.dependencies
 
 import com.google.inject.ImplementedBy
-import swen343.hr.models.Employee
+import java.io.InputStream
 import java.nio.file.Path
 
-@ImplementedBy(EmployeeDocs::class)
+@ImplementedBy(EmployeeDocumentServiceFilesystem::class)
 interface EmployeeDocumentService {
 
     /**
-     * Get all the [Document]s.
+     * Get all the documents for an employee.
      *
-     * @return all the [Document]s
+     * @return paths to the employee's documents
      */
-    fun getDocuments(username: String): List<String>
+    fun getDocuments(username: String): List<Path>
 
     /**
-     * Get a document [Document]s.
+     * Get an employee's document.
      *
-     * @return a document [Document]s
+     * @return a the path to the employee's document
      */
-    fun getDocument(username: String, fileName: String): Path
-
+    fun getDocument(username: String, fileName: String): Path?
 
     /**
-     * Uploads a new [Document]. The ID of the provided [Document]
-     * will be disregarded, and a new ID will be created.
+     * Uploads a new document.
      *
-     * @param document the [Document] to add
      * @return the added [Document]
      */
-    fun uploadDocument(username: String): String
-//    TODO
+    fun uploadDocument(username: String, fileName: String, stream: InputStream)
 
-    fun deleteDocument(username: String, fileName: String): String
-
-
+    fun deleteDocument(username: String, fileName: String)
 }

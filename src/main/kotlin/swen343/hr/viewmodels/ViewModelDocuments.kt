@@ -1,18 +1,34 @@
 package swen343.hr.viewmodels
 
+import swen343.hr.models.User
 import java.nio.file.Files
 import java.nio.file.Path
-import java.text.NumberFormat
-import java.util.*
 
-data class ViewModelDocuments(
-       val fileName: String,
-       val size: String
+class ViewModelDocuments(
+        override val sessionUser: User?,
+        documentPaths: List<Path>
 ) : ViewModel {
 
-    constructor(path:Path):this(
-            fileName = path.fileName.toString(),
-            size = Files.size(path).toString()
-    )
+    val documents: List<Document> = documentPaths.map {
+        Document(
+            it.fileName.toString(),
+            getFileSize(it)
+        )
+    }
 
+    private fun getFileSize(path: Path): String {
+        val fileSize = Files.size(path)
+        val magnitude = Math.floor(Math.log10(fileSize.toDouble()))
+        val scalar = (fileSize / Math.pow(10.0, magnitude)).toInt()
+
+        val units = listOf("B", "KB", "MB", "GB", "TB")
+        val unit = units[minOf(magnitude.toInt(), units.size)]
+
+        return "$scalar $unit"
+    }
+
+    class Document constructor(
+            fileName: String,
+            fileSize: String
+    )
 }
