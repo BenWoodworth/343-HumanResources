@@ -63,7 +63,7 @@
                    title="${employee.firstName} ${employee.lastName}'s profile">${employee.department}</a></td>
             <td>
 
-                <form method="POST" action="delete/${employee.user.username}/">
+                <form  onsubmit="return confirm('Do you really want to delete the employee?');" method="POST" action="delete/${employee.user.username}/">
                     <input type="submit" title="Delete employee" value="-"/>
                     <A class="btn icon" title="Edit employee" role="button" href="edit/${employee.user.username}/">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
