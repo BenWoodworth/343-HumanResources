@@ -1,29 +1,24 @@
 package swen343.hr.dependencies
 
 import com.google.inject.Singleton
-import swen343.hr.models.Employee
-import java.util.ArrayList
-import com.sun.xml.internal.ws.streaming.XMLStreamWriterUtil.getOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
 import java.nio.charset.Charset
-import kotlin.experimental.and
 import com.squareup.moshi.Moshi
 
 
 @Singleton
 class AccountingServiceHttp : AccountingService {
 
-    val accountingURL = "accounting.kennuware.com/api"
-    val siloId : 1
-    val payroll
+    val hrSiloId = 1
+    val baseUrl = "accounting.kennuware.com/api"
 
     override fun requestPayroll(): Boolean {
         val rawData = "id=10"
         val type = "application/x-www-form-urlencoded"
         val encodedData = URLEncoder.encode(rawData, "UTF-8")
-        val u = URL("$accountingURL/pay")
+        val u = URL("$baseUrl/pay")
         val conn = u.openConnection() as HttpURLConnection
         conn.setDoOutput(true)
         conn.setRequestMethod("POST")
@@ -39,7 +34,7 @@ class AccountingServiceHttp : AccountingService {
         val rawData = "id=10"
         val type = "application/x-www-form-urlencoded"
         val encodedData = URLEncoder.encode(rawData, "UTF-8")
-        val u = URL("$accountingURL/balance/$siloId")
+        val u = URL("$baseUrl/balance/$hrSiloId")
         val conn = u.openConnection() as HttpURLConnection
         conn.setDoOutput(true)
         conn.setRequestMethod("GET")
@@ -53,5 +48,7 @@ class AccountingServiceHttp : AccountingService {
         return response!!.Amount
     }
 
-    class PayMe(val Amount :Int)
+    class PayMe(
+            val Amount: Int
+    )
 }

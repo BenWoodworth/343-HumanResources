@@ -44,7 +44,7 @@ class ControllerPayroll @Inject constructor(
             val employee = employeeService.getEmployee(username)
 
             if (employee != null) {
-                accountingService.requestPayroll(employee)
+                accountingService.requestPayroll()
             } else {
                 TODO("Error")
             }
@@ -54,7 +54,7 @@ class ControllerPayroll @Inject constructor(
             routeUtil.requirePerms(this, Permissions.HR_PAYROLL_PAY)
 
             employeeService.getEmployees().all {
-                accountingService.requestPayroll(it)
+                accountingService.requestPayroll()
             }
         }
     }
