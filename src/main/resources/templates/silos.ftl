@@ -35,7 +35,7 @@
                 <h4 id="welcome"> Welcome back, ${sessionUser.username}!</h4>
             </div>
             <div class="col" align="right">
-                <a type="button" class="btn btn-primary" href="/auth/sign-out">Sign Out</a>
+                <a type="button" class="btn btn-primary" href="/auth/sign-out/">Sign Out</a>
             </div>
         </div>
     </div>
