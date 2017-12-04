@@ -13,15 +13,15 @@ import kotlin.experimental.and
 @Singleton
 class AccountingServiceHttp : AccountingService {
 
-    val accountingURL = "accounting.kennuware.com/api"
-    val siloId : Int
+  //  val accountingURL = "accounting.kennuware.com/api"
+  //  val siloId : Int
 
-    constructor(siloId : Int){
+  /*  constructor(siloId : Int){
         this.siloId = siloId
     }
-
+  */
     override fun requestPayroll(employee: Employee): Boolean {
-        val rawData = "id=10"
+        /*val rawData = "id=10"
         val type = "application/x-www-form-urlencoded"
         val encodedData = URLEncoder.encode(rawData, "UTF-8")
         val u = URL("$accountingURL/pay")
@@ -31,7 +31,7 @@ class AccountingServiceHttp : AccountingService {
         conn.setRequestProperty("Content-Type", type)
         conn.setRequestProperty("Content-Length", encodedData.length.toString())
         val os = conn.getOutputStream()
-        os.write(encodedData.toByteArray())
+        os.write(encodedData.toByteArray())*/
         return true;
         }
 
@@ -43,7 +43,7 @@ class AccountingServiceHttp : AccountingService {
 
 
     override fun getBudget(): Int {
-        val rawData = "id=10"
+        /*val rawData = "id=10"
         val type = "application/x-www-form-urlencoded"
         val encodedData = URLEncoder.encode(rawData, "UTF-8")
         val u = URL("$accountingURL/balance/$siloId")
@@ -55,6 +55,6 @@ class AccountingServiceHttp : AccountingService {
         val os = conn.getOutputStream()
         os.write(encodedData.toByteArray())
         print(os.write(encodedData.toByteArray()))
-
+*/return 0
     }
 }
