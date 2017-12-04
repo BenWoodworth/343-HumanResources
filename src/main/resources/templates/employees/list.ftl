@@ -38,8 +38,8 @@
     <a class="btn btn-primary btn-mid" role="button" href="add/">Add Employee</a>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+        Pay Employees
     </button>
 
 
@@ -54,11 +54,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    Do you want to want to pay all of KenUWare's Employees?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Naw Fam!</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" method="POST" action="pay-all/" >Heck Yea!</button>
                 </div>
             </div>
         </div>

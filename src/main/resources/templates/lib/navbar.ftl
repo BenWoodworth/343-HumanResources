@@ -18,6 +18,14 @@
 
         </ul>
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <#function avg x y>
+                <#return (x + y) / 2>
+            </#function>
+
+                <a class="nav-link disabled" href="#">Budget $${avg(10, 20)}</a>
+            </li>
+
             <li class="account-info nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Admin

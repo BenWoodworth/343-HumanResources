@@ -10,6 +10,10 @@
 </head>
 </#macro>
 
+<#function avg x y>
+    <#return (x + y) / 2>
+</#function>
+
 <#macro nav_bar>
 <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #444444;">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +50,9 @@
 
         </ul>
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Budget $${avg(10, 20)}</a>
+            </li>
             <li class=" nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user" aria-hidden="true"></i>
