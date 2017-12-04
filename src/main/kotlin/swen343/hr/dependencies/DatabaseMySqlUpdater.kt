@@ -101,6 +101,12 @@ class DatabaseMySqlUpdater : Updater<DatabaseMySql>({
                 """
         )
     }
+}, {
+    connect {
+        createStatement().execute(
+                "ALTER TABLE Employees MODIFY COLUMN phoneNumber VARCHAR(20);"
+        )
+    }
 }) {
 
     override fun initialize(updatable: DatabaseMySql) {}

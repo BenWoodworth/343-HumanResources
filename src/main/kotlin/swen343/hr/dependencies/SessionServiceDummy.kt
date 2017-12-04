@@ -25,8 +25,16 @@ class SessionServiceDummy @Inject constructor(
     }
 
     override fun loadSession(token: String): Session? {
-        return sessions.firstOrNull {
+        val session = sessions.firstOrNull {
             it.token == token
+        }
+
+        val user = session?.user?.let {
+            userService.getUser(it.id)
+        }
+
+        return user?.let {
+            session.copy(user = user)
         }
     }
 }

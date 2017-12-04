@@ -14,6 +14,7 @@ class TemplateLoaderResource : TemplateLoader {
 
         defaultEncoding = "UTF-8"
         templateExceptionHandler = freemarker.template.TemplateExceptionHandler.RETHROW_HANDLER
+        urlEscapingCharset = "ISO-8859-1"
     }
 
     override fun loadTemplate(file: String, model: ViewModel): String {

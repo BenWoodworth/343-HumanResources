@@ -20,43 +20,39 @@
 
                         <div class=" col-md-9 col-lg-9 ">
                             <form method="post" name="addUserForm" onsubmit="return validateForm()">
+                                <@u.validation_errors/>
+
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <td>*Username:</td>
+                                        <td>*User:</td>
                                         <td>
-                                            <input type="text" name="username"><br>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>*Password:</td>
-                                        <td>
-                                            <input type="password" name="password"><br>
+                                            <input type="text" name="username" value="${fields.username}"><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>*First name:</td>
                                         <td>
-                                            <input type="text" name="firstName"><br>
+                                            <input type="text" name="firstName" value="${fields.firstName}"><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>*Last name:</td>
                                         <td>
-                                            <input type="text" name="lastName"><br>
+                                            <input type="text" name="lastName" value="${fields.lastName}"><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Title:</td>
                                         <td>
-                                            <input type="text" name="title"><br>
+                                            <input type="text" name="title" value="${fields.title}"><br>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>*Department:</td>
                                         <td>
-                                            <input type="text" name="department" list="departments" >
+                                            <input type="text" name="department" list="departments" value="${fields.department}">
                                             <datalist id="departments">
                                                 <option value="Human Resources">
                                                 <option value="Sales">
@@ -71,28 +67,28 @@
                                     <tr>
                                         <td>Salary</td>
                                         <td>
-                                            <input type="number" name="salary"><br>
+                                            <input type="number" name="salary" value="${fields.salary}"><br>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>Phone Number:</td>
                                         <td>
-                                            <input type="text" name="phoneNumber"><br>
+                                            <input type="text" name="phoneNumber" value="${fields.phoneNumber}"><br>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>Email:</td>
                                         <td>
-                                            <input type="text" name="email"><br>
+                                            <input type="text" name="email" value="${fields.email}"><br>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>Address:</td>
                                         <td>
-                                            <input type="text" name="address"><br>
+                                            <input type="text" name="address" value="${fields.address}"><br>
                                         </td>
                                     </tr>
 

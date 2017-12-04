@@ -3,6 +3,7 @@ package swen343.hr.controllers.employees
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import spark.RouteGroup
+import spark.Spark.path
 import spark.kotlin.get
 import spark.kotlin.post
 import swen343.hr.Permissions
@@ -13,24 +14,23 @@ import swen343.hr.dependencies.UserService
 import swen343.hr.models.Employee
 import swen343.hr.models.User
 import swen343.hr.util.RouteUtil
-import swen343.hr.viewmodels.FormEmployeeEdit
-import swen343.hr.viewmodels.ViewModelBasic
-import swen343.hr.viewmodels.ViewModelEmployee
-import swen343.hr.viewmodels.ViewModelEmployeeList
+import swen343.hr.viewmodels.*
 
 /**
  * Created by ben on 10/16/17.
  */
 @Singleton
 class ControllerEmployees @Inject constructor(
+        private val controllerEmployeesDocuments: ControllerEmployeesDocuments,
         private val templateLoader: TemplateLoader,
         private val employeeService: EmployeeService,
         private val userService: UserService,
-        private val hashProvider: HashProvider,
         private val routeUtil: RouteUtil
 ) : RouteGroup {
 
     override fun addRoutes() {
+
+        path("", controllerEmployeesDocuments)
 
         get("") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)
@@ -46,37 +46,63 @@ class ControllerEmployees @Inject constructor(
             )
         }
 
-        get("/add") {
+        get("add/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
 
             templateLoader.loadTemplate(
                     "/employees/add.ftl",
-                    ViewModelBasic(routeUtil.user(this))
+                    FormEmployeeAdd(
+                            sessionUser = routeUtil.user(this),
+                            fields = FormEmployeeAdd.Fields(),
+                            userService = userService,
+                            employeeService = employeeService
+                    )
             )
         }
 
-        post("/add") {
+        post("add/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_ADD)
 
-            val employee = employeeService.addEmployee(Employee(
-                    user = userService.addUser(User(
-                            username = request.queryParams("username"),
-                            passwordHash = hashProvider.hash(request.queryParams("password")),
-                            permissions = listOf() // TODO
-                    )),
-                    firstName = request.queryParams("firstName"),
-                    lastName = request.queryParams("lastName"),
-                    title = request.queryParams("title"),
-                    department = request.queryParams("department"),
-                    salary = request.queryParams("salary").toInt(),
-                    phoneNumber = request.queryParams("phoneNumber"),
-                    email = request.queryParams("email"),
-                    address = request.queryParams("address")
-            ))
-            response.redirect("/employees/view/${employee.user.username}")
+            val form = FormEmployeeAdd(
+                    sessionUser = routeUtil.user(this),
+                    fields = FormEmployeeAdd.Fields(
+                            username = queryParams("username"),
+                            firstName = queryParams("firstName"),
+                            lastName = queryParams("lastName"),
+                            title = queryParams("title"),
+                            department = queryParams("department"),
+                            salary = queryParams("salary"),
+                            phoneNumber = queryParams("phoneNumber"),
+                            email = queryParams("email"),
+                            address = queryParams("address")
+                    ),
+                    userService = userService,
+                    employeeService = employeeService
+            )
+
+            if (!form.validate()) {
+                templateLoader.loadTemplate(
+                        "/employees/add.ftl",
+                        form
+                )
+            } else {
+                val employee = employeeService.addEmployee(Employee(
+                        user = userService.getUser(queryParams("username"))!!,
+                        firstName = queryParams("firstName"),
+                        lastName = queryParams("lastName"),
+                        title = queryParams("title"),
+                        department = queryParams("department"),
+                        salary = queryParams("salary").toInt(),
+                        phoneNumber = queryParams("phoneNumber"),
+                        email = queryParams("email"),
+                        address = queryParams("address")
+                ))
+                response.redirect("/employees/view/${employee.user.username}/")
+            }
+
         }
 
-        get("/edit/:username") {
+        get("edit/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_EDIT)
 
             val username = request.params("username")
@@ -95,7 +121,7 @@ class ControllerEmployees @Inject constructor(
             }
         }
 
-        post("/edit/:username") {
+        post("edit/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_EDIT)
 
             val username = request.params("username")
@@ -137,14 +163,14 @@ class ControllerEmployees @Inject constructor(
                             email = request.queryParams("email"),
                             address = request.queryParams("address")
                     ))
-                    response.redirect("/employees/view/$username")
+                    response.redirect("/employees/view/$username/")
                 }
             } else {
                 TODO("Error")
             }
         }
 
-        post("/delete/:username") {
+        post("delete/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_DELETE)
 
             val username = request.params("username")
@@ -154,13 +180,14 @@ class ControllerEmployees @Inject constructor(
 
             if (employee != null) {
                 employeeService.deleteEmployee(employee)
-                response.redirect("/employees")
+
+                response.redirect("/employees/")
             } else {
                 TODO("Error")
             }
         }
 
-        get("/view/:username") {
+        get("view/:username/") {
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)
 
             val username = request.params("username")

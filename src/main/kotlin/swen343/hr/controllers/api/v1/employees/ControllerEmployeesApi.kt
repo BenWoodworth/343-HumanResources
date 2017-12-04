@@ -26,7 +26,7 @@ class ControllerEmployeesApi @Inject constructor(
             ).jsonResponse(response)
         }
 
-        get("/:username") {
+        get(":username") {
             routeUtil.requirePermsApi(this, Permissions.HR_API_EMPLOYEES)
             val username = params("username")
             val employee = employeeService.getEmployee(username)
@@ -42,13 +42,14 @@ class ControllerEmployeesApi @Inject constructor(
             }
         }
 
-        get("/:username/avatar") {
+        get(":username/avatar") {
             routeUtil.requirePermsApi(this, Permissions.HR_API_EMPLOYEES)
             response.redirect("https://www.rit.edu/gccis/sites/rit.edu.gccis/files/Martinez.jpeg")
         }
     }
 
     class EmployeeResponse(employee: Employee) {
+        val id = employee.id
         val username = employee.user.username
         val firstName = employee.firstName
         val lastName = employee.lastName

@@ -1,10 +1,13 @@
 <#import "lib/utils.ftl" as u>
 
 <html>
+
 <title>Welcome to KennUWare</title>
+<#--<h2 class="text-center">Welcome back, ${sessionUser.username}</h2>-->
+
 <@u.head/>
 <body>
-<script src="js/konami.js"></script>
+<script src="/js/konami.js"></script>
 <div class="container" style="padding-top: 50px">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -25,6 +28,18 @@
 
         </div>
     </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col" align="left">
+                <h4 id="welcome"> Welcome back, ${sessionUser.username}!</h4>
+            </div>
+            <div class="col" align="right">
+                <a type="button" class="btn btn-primary" href="/auth/sign-out">Sign Out</a>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row" style="padding-left: 50 px; padding-right: 50px ">
             <div class="col col-lg-4">
@@ -37,7 +52,7 @@
         </div>
         <div class="row" style="padding-left: 50 px; padding-right: 50px ">
             <div class="col col-lg-4">
-                <A class="btn btn-warning " style="height:200px; width: 300px; padding-top: 100px" role="button"  href="/employees">Human Resources</A>
+                <A class="btn btn-warning " style="height:200px; width: 300px; padding-top: 100px" role="button"  href="/employees/">Human Resources</A>
             </div>
             <div class="col col-lg-4">
                 <A class="btn btn-primary" style="height:200px; width: 300px; padding-top: 100px" role="button"  href="http://sales.kennuware.com">Sales</A>

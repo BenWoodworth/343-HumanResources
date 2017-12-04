@@ -26,24 +26,21 @@ class ControllerIndex @Inject constructor(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        path("/api", controllerApi)
-        path("/employees", controllerEmployees)
-        path("/users", controllerUsers)
-        path("/auth", controllerAuth)
-        path("/payroll", controllerPayroll)
+        path("api/", controllerApi)
+        path("employees/", controllerEmployees)
+        path("users/", controllerUsers)
+        path("auth/", controllerAuth)
+        path("payroll/", controllerPayroll)
 
-        get("/") {
+        get("") {
             if (routeUtil.user(this) == null) {
-                response.redirect("/auth/login")
+                response.redirect("/auth/login/")
             } else {
-                templateLoader.loadTemplate(
-                        "index.ftl",
-                        ViewModelBasic(routeUtil.user(this))
-                )
+                redirect("/silos/")
             }
         }
 
-        get("/silos") {
+        get("silos/") {
             templateLoader.loadTemplate(
                     "silos.ftl",
                     ViewModelBasic(routeUtil.user(this))

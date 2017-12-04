@@ -17,8 +17,8 @@ class ControllerV1 @Inject constructor(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        path("/employees", controllerEmployeesApi)
-        path("/users", controllerUsersApi)
-        path("/sessions", controllerSessionsApi)
+        path("employees/", controllerEmployeesApi)
+        path("users/", controllerUsersApi)
+        path("sessions/", controllerSessionsApi)
     }
 }

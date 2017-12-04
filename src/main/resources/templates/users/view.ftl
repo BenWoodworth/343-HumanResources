@@ -41,8 +41,7 @@
 
                                     <#if permissions?has_content>
                                         <#list permissions as permission>
-                                            <code>${permission}</code>
-                                            <br></br>
+                                            <code>${permission}</code><br/>
                                         </#list>
                                     <#else>
                                         <i class="text-muted">None</i>
@@ -58,8 +57,8 @@
                         </div>
 
                         <div class="center-button">
-                            <a class="btn btn-primary btn-mid" role="button" href="../edit/${user.username}">Edit</a>
-                            <a class="btn btn-primary btn-mid" role="button" href="/users">Back</a>
+                            <a class="btn btn-primary btn-mid" role="button" href="/users/edit/${user.username}/">Edit</a>
+                            <a class="btn btn-primary btn-mid" role="button" href="/users/">Back</a>
                         </div>
                     </form>
 

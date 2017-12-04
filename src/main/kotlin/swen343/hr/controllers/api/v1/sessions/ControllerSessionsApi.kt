@@ -29,7 +29,7 @@ class ControllerSessionsApi @Inject constructor(
 ) : RouteGroup {
 
     override fun addRoutes() {
-        post("/new-session") {
+        post("new-session") {
             val username = queryParams("username")
             val password = queryParams("password")
 
@@ -47,7 +47,7 @@ class ControllerSessionsApi @Inject constructor(
             }
         }
 
-        get("/from-token/:token") {
+        get("from-token/:token") {
             val token = params("token")
             val session = sessionService.getSession(token, request.ip())
 
@@ -61,7 +61,7 @@ class ControllerSessionsApi @Inject constructor(
             }
         }
 
-        get("/from-cookie") {
+        get("from-cookie") {
             val token = routeUtil.sessionToken(this)
 
             if (token == null) {

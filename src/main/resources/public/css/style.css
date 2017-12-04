@@ -12,6 +12,12 @@ h2 {
     padding: 20px;
 }
 
+#welcome{
+    right: 0px;
+    padding: 20px;
+    position: absolute;
+}
+
 .github-button {
     background-color: black;
     color:white;
@@ -44,6 +50,3 @@ h2 {
 .center-button {
     text-align: center;
 }
-
-
-
