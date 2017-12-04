@@ -1,11 +1,13 @@
 package swen343.hr.viewmodels
 
+import swen343.hr.models.Employee
 import swen343.hr.models.User
 import java.nio.file.Files
 import java.nio.file.Path
 
 class ViewModelDocuments(
         override val sessionUser: User?,
+        val employee: Employee?,
         documentPaths: List<Path>
 ) : ViewModel {
 

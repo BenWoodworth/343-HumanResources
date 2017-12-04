@@ -52,7 +52,7 @@
 
             <td>
 
-                <form onsubmit="return confirm('Do you want to delete this user?');" method="POST" action="delete/${user.username}/">
+                <form onsubmit="return confirm('Do you want to delete ${user.username}?');" method="POST" action="delete/${user.username}/">
                     <input type="submit" title="Delete user" value="-"/>
                     <script type="text/javascript" src="/js/userList.js"></script>
                     <A class="btn icon" title="Edit employee" role="button" href="edit/${user.username}/">

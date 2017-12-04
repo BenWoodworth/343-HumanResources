@@ -1,7 +1,6 @@
 package swen343.hr.controllers.employees
 
 import spark.RouteGroup
-import spark.kotlin.delete
 import spark.kotlin.get
 import spark.kotlin.post
 import swen343.hr.Permissions
@@ -13,24 +12,29 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import javax.servlet.MultipartConfigElement
 import spark.kotlin.halt
+import swen343.hr.dependencies.EmployeeService
 import java.nio.file.Files
 
 @Singleton
 class ControllerEmployeesDocuments @Inject constructor(
         private val employeeDocumentService: EmployeeDocumentService,
+        private val employeeService: EmployeeService,
         private val routeUtil: RouteUtil,
         private val templateLoader: TemplateLoader
 ) : RouteGroup {
 
     override fun addRoutes() {
         get("view/:username/documents/") {
+            val username = request.params("username")
+            val employee = employeeService.getEmployee(username)
             routeUtil.requirePerms(this, Permissions.HR_EMPLOYEES_VIEW)
 
             templateLoader.loadTemplate(
                     "/employees/documents.ftl",
                     ViewModelDocuments(
-                            routeUtil.user(this),
-                            employeeDocumentService.getDocuments(params("username"))
+                            sessionUser = routeUtil.user(this),
+                            employee = employee,
+                            documentPaths = employeeDocumentService.getDocuments(params("username"))
                     )
             )
         }
@@ -54,7 +58,7 @@ class ControllerEmployeesDocuments @Inject constructor(
         }
 
         // Download
-        get("view/:username/documents/:filename") {
+        get("view/:username/documents/:filename/") {
             val path = employeeDocumentService.getDocument(
                     params("username"),
                     params("filename")
@@ -73,13 +77,22 @@ class ControllerEmployeesDocuments @Inject constructor(
         }
 
         // Delete
-        delete("view/:username/documents/:filename") {
-            employeeDocumentService.deleteDocument(
-                    params("username"),
-                    params("filename")
-            )
+        post("delete/:username/documents/:filename/") {
+            val username = request.params("username")
+            val doc = request.params("filename")
+            val employee = username?.let {
+                employeeService.getEmployee(it)
+            }
+            val document = employee?.let {
+                employeeDocumentService.getDocument(username, doc)
+            }
+            if (document != null) {
+                employeeDocumentService.deleteDocument(username, doc)
 
-            response.redirect(".")
+                response.redirect(".")
+            } else {
+                TODO("Error")
+            }
         }
     }
 }
