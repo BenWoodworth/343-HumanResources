@@ -2,29 +2,43 @@ package swen343.hr.controllers
 
 import com.google.inject.Inject
 import spark.kotlin.RouteHandler
-import swen343.hr.models.User
+import swen343.hr.dependencies.TemplateLoader
 import swen343.hr.util.RouteUtil
 
 abstract class RequestHandler<TData>(
         vararg val permissions: String
 ) {
 
-    @Inject private lateinit var routeUtil: RouteUtil
+    @Inject protected lateinit var routeUtil: RouteUtil
+    @Inject protected lateinit var templateLoader: TemplateLoader
 
-    fun handleRequest(routeHandler: RouteHandler) {
+    operator fun invoke(routeHandler: RouteHandler) {
         authorize(routeHandler)
 
         handleRequest(
-                mapRequest(routeHandler),
-                routeUtil.user(routeHandler)
+                dataMapper(routeHandler),
+                routeHandler
         )
     }
 
-    fun authorize(routeHandler: RouteHandler) {
+    abstract protected val dataMapper: RouteHandler.() -> TData
+
+    protected fun authorize(routeHandler: RouteHandler) {
         routeUtil.requirePerms(routeHandler, *permissions)
     }
 
-    abstract fun mapRequest(routeHandler: RouteHandler): TData
+    abstract fun handleRequest(data: TData, routeHandler: RouteHandler): Any
 
-    abstract fun handleRequest(data: TData, sessionUser: User?)
+    abstract class Basic(
+            vararg permissions: String
+    ) : RequestHandler<Unit>(*permissions) {
+
+        override val dataMapper: RouteHandler.() -> Unit = {}
+
+        final override fun handleRequest(data: Unit, routeHandler: RouteHandler): Any {
+            return handleRequest(routeHandler)
+        }
+
+        abstract fun handleRequest(routeHandler: RouteHandler): Any
+    }
 }
