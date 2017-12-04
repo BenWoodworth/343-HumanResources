@@ -3,7 +3,6 @@
 <html>
 
 <title>Welcome to KennUWare</title>
-<h4 id="welcome"> Welcome back, ${sessionUser.username}!  <a type="button" class="btn btn-primary" href="/auth/sign-out">Sign Out</a></h4>
 <#--<h2 class="text-center">Welcome back, ${sessionUser.username}</h2>-->
 
 <@u.head/>
@@ -29,6 +28,18 @@
 
         </div>
     </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col" align="left">
+                <h4 id="welcome"> Welcome back, ${sessionUser.username}!</h4>
+            </div>
+            <div class="col" align="right">
+                <a type="button" class="btn btn-primary" href="/auth/sign-out">Sign Out</a>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row" style="padding-left: 50 px; padding-right: 50px ">
             <div class="col col-lg-4">
