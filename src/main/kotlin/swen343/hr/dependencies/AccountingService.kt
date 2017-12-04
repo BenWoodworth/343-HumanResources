@@ -17,5 +17,5 @@ interface AccountingService {
      *
      * @return `true` iff the request was successful
      */
-    fun requestPayroll(employee: Employee): Boolean
+    fun requestPayroll(): Boolean
 }
