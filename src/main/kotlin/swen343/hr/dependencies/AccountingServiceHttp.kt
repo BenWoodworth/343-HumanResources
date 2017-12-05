@@ -28,7 +28,7 @@ class AccountingServiceHttp @Inject constructor(
                     "POST",
                     """
                         {
-                            "reason": "string",
+                            "reason": "Pay salaries",
                             "amount": $amount
                         }
                     """
