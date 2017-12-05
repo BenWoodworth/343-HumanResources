@@ -17,9 +17,9 @@
                     </form>
 
                     <#list documents as document>
-                        <a href="${document.name?url}">${document.name}</a>:
+                        <a href="download/${document.name?url}">${document.name}</a>:
                         ${document.size}
-                        <form  onsubmit="return confirm('Do you really want to delete ${document.name}?');" method="POST" action="delete/${employee.user.username}/documents/${document.name}/">
+                        <form  onsubmit="return confirm('Do you really want to delete ${document.name}?');" method="POST" action="delete/${document.name?url}">
                             <input type="submit" title="Delete document" value="Delete"/>
                         </form>
                         <br/>

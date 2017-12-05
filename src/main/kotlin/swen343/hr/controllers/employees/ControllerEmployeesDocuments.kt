@@ -58,7 +58,7 @@ class ControllerEmployeesDocuments @Inject constructor(
         }
 
         // Download
-        get("view/:username/documents/:filename/") {
+        get("view/:username/documents/download/:filename") {
             val path = employeeDocumentService.getDocument(
                     params("username"),
                     params("filename")
@@ -77,7 +77,7 @@ class ControllerEmployeesDocuments @Inject constructor(
         }
 
         // Delete
-        post("delete/:username/documents/:filename/") {
+        post("view/:username/documents/delete/:filename") {
             val username = request.params("username")
             val doc = request.params("filename")
             val employee = username?.let {
@@ -88,11 +88,8 @@ class ControllerEmployeesDocuments @Inject constructor(
             }
             if (document != null) {
                 employeeDocumentService.deleteDocument(username, doc)
-
-                response.redirect(".")
-            } else {
-                TODO("Error")
             }
+            response.redirect("..")
         }
     }
 }

@@ -46,7 +46,7 @@ class FormUserEdit(
                 username = user.username,
                 newPassword = "",
                 newPasswordConfirm = "",
-                permissions = user.permissions.joinToString("<br/>")
+                permissions = user.permissions.joinToString("\n")
         )
     }
 

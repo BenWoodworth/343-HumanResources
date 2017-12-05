@@ -69,9 +69,9 @@ class ControllerPayrollSpec : Spek({
                 conn.doOutput = true
                 conn.connect()
 
-                verify(accountingService, times(0)).requestPayroll(employee0)
-                verify(accountingService, times(1)).requestPayroll(employee1)
-                verify(accountingService, times(0)).requestPayroll(employee2)
+                verify(accountingService, times(0)).requestPayroll()
+                verify(accountingService, times(1)).requestPayroll()
+                verify(accountingService, times(0)).requestPayroll()
             }
         }
 
@@ -83,9 +83,9 @@ class ControllerPayrollSpec : Spek({
                 conn.doOutput = true
                 conn.connect()
 
-                verify(accountingService, times(1)).requestPayroll(employee0)
-                verify(accountingService, times(1)).requestPayroll(employee1)
-                verify(accountingService, times(1)).requestPayroll(employee2)
+                verify(accountingService, times(1)).requestPayroll()
+                verify(accountingService, times(1)).requestPayroll()
+                verify(accountingService, times(1)).requestPayroll()
             }
         }
     }

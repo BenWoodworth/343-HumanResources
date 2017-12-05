@@ -33,18 +33,18 @@ class ControllerIndex @Inject constructor(
         path("payroll/", controllerPayroll)
 
         get("") {
-            if (routeUtil.user(this) == null) {
-                response.redirect("/auth/login/")
-            } else {
-                redirect("/silos/")
-            }
+            response.redirect("/silos/")
         }
 
         get("silos/") {
-            templateLoader.loadTemplate(
-                    "silos.ftl",
-                    ViewModelBasic(routeUtil.user(this))
-            )
+            if (routeUtil.user(this) == null) {
+                response.redirect("/auth/login/")
+            } else {
+                templateLoader.loadTemplate(
+                        "silos.ftl",
+                        ViewModelBasic(routeUtil.user(this))
+                )
+            }
         }
     }
 }
