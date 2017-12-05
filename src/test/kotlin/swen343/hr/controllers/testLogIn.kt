@@ -8,8 +8,8 @@ class testLogin : Spek({
 
     describe("Testing logging in"){
         it("Should log in when provided a correct username and password."){}
-        it("Should not log in with the wrong credentials "){}
-
+        it("Should not log in with the wrong username "){}
+        it("Should not log in with the wrong password "){}
     }
 
 
