@@ -21,7 +21,11 @@ class RouteUtil @Inject constructor(
      * Get the current session token.
      */
     fun sessionToken(routeHandler: RouteHandler): String? {
-        return routeHandler.request.cookie("SID")
+        return if (routeHandler.queryMap().hasKey("session-token")) {
+            routeHandler.queryParams("session-token")
+        } else {
+            routeHandler.request.cookie("SID")
+        }
     }
 
     /**

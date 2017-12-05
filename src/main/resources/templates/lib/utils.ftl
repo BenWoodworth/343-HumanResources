@@ -1,3 +1,4 @@
+<import>swen343.hr.dependenciesAccountingServiceHTTP.kt</import>
 <#macro head>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -51,7 +52,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Budget $${avg(10, 20)}</a>
+                <a class="nav-link disabled" href="#">Budget $${avg(10,20)}</a>
             </li>
             <li class=" nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
